@@ -5,15 +5,42 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to Spring Web MVC project</title>
+        <title>Geofilm</title>
+        <link rel="shortcut icon" href="Ressources/logo2.png" >
+
+        <!-- BOOTSTRAP -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- LEAFLET LIBRARY -->
+        <script src="leaflet/leaflet-src.js"></script>
+        <script src="leaflet/leaflet.js"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="leaflet/leaflet.css">
+
+        <!-- CHAINES DE CARACTERES -->
+        <script src="Scripts/language.js"></script>
+        <script src="Scripts/strings.js"></script>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/navigation.css">
     </head>
 
     <body>
-        <p>Hello! This is the default welcome page for a Spring Web MVC project.</p>
-        <p><i>To display a different welcome page for this project, modify</i>
-            <tt>index.jsp</tt> <i>, or create your own welcome page then change
-                the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
-                welcome page and also update the welcome-file setting in</i>
-            <tt>web.xml</tt>.</p>
-    </body>
+
+        <!-- Barre de navigation -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="navbar-left" ><a href="#" id="logo"><img src="Ressources/logo1.png" width="100px" ></a></li> <!-- LOGO-->
+                <li class="navbar-right"><a href="#"><img id="connection" src="Ressources/connection.png" onMouseOver="this.src = 'Ressources/connection_over.png'" onMouseOut="this.src = 'Ressources/connection.png'" width="30px"></a></li><!-- Connexion-->
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Volet de gauche -->
+    
+    
+    <!-- Map -->
+
+</body>
 </html>

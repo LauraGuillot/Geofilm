@@ -1,5 +1,6 @@
 var lat = 48.862725;
 var long = 2.287592000000018;
+var prec;
 
 //Obtention de la position
 function getLocation() {
@@ -18,8 +19,11 @@ function recordPosition(position) {
 
 //Suivi de la position
 function displayPosition(){
+    if(prec!=null){
+    mymap.removeLayer(prec);
+    }
     mymap.panTo(new L.LatLng(lat, long));
-    L.marker([lat, long]).addTo(mymap);
+    prec = L.marker([lat, long]).addTo(mymap);
 }
 
 function trackPosition(position) {
@@ -29,5 +33,9 @@ function trackPosition(position) {
 
 function startTracker(){
     navigator.geolocation.watchPosition(trackPosition);
+}
+
+function removeAllMarkers(){
+   
 }
 

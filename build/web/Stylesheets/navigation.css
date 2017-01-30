@@ -23,6 +23,7 @@
 
 a{
     color:white!important;
+    padding-bottom :0!important;
 }
 a:hover{ 
     color:#23A1A8!important;

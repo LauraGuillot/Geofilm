@@ -25,6 +25,7 @@
         <!-- STYLES -->
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/navigation.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/home.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/button.css">
 
         <!-- MAP -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
@@ -34,7 +35,7 @@
 
         <!-- SCRIPTS -->
         <script src="Scripts/home.js"></script>
-        
+
     </head>
 
     <body onload="load();">
@@ -44,7 +45,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="navbar-left" ><a href="#" id="logo"><img src="Ressources/logo1.png" width="100px" ></a></li> <!-- LOGO-->
-                <li class="navbar-right"><a href="#"><img id="connection" src="Ressources/connection.png" onMouseOver="this.src = 'Ressources/connection_over.png'" onMouseOut="this.src = 'Ressources/connection.png'" width="30px"></a></li><!-- Connexion-->
+                <li class="navbar-right"><a href="#"><img id="connection" src="Ressources/connection.png" onMouseOver="this.src = 'Ressources/connection_over.png'" onMouseOut="this.src = 'Ressources/connection.png'" width="25px"></a></li><!-- Connexion-->
             </ul>
         </div>
     </nav>
@@ -53,10 +54,18 @@
         <div  class="row content">          
             <!-- Volet de gauche -->
             <div id="left_div" class="col-md-4">
-                <p id="welcome"></p>
-                <p id="title"> Geofilm </p>
-                <p id="description"> </p>
-            </div>   
+                <p id="welcome" style="color:rgb(148,204,205) ;font-size:30px"> </p>
+                <p id="title" style="color:rgb(4,175,182); font-size:30px"> Geofilm </p>
+                <br>
+                <p id="description" style="font-size:17px"> </p>
+                <p id="description2" style="font-size:17px"> </p>
+                <br>
+                <br>
+
+                <p><a href="https://github.com/" class="button1" style="color:black">Connexion</a></p>
+
+            </div>
+
             <!-- Map -->
             <div id="mapid" class="col-md-8"> </div>
         </div>

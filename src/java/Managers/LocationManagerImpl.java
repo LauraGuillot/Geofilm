@@ -8,8 +8,13 @@
  */
 package Managers;
 
+import Objects.Location;
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class LocationManagerImpl implements LocationManager {
 
@@ -27,5 +32,22 @@ public class LocationManagerImpl implements LocationManager {
             theLocationManager = new LocationManagerImpl();
         }
         return theLocationManager;
+    }
+
+    /**
+     * Récupérer toutes les positions de la base de données
+     * @return  Liste de positions
+     */
+    public ArrayList<Location> getMarkers() {
+        ArrayList<Location> l = new ArrayList<>();
+
+        EntityManager em = emf.createEntityManager();
+        Query queryProductsByName = em.createNamedQuery("Location.findAll", Location.class);
+        Collection c = queryProductsByName.getResultList();
+
+        for (Object loc : c) {
+            l.add((Location) loc);
+        }
+        return l;
     }
 }

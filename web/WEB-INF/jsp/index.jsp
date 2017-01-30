@@ -1,4 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -34,13 +38,19 @@
 
         <!-- SCRIPTS -->
         <script src="Scripts/home.js"></script>
-        
+
     </head>
 
     <body onload="load();">
 
+        <!-- Chargement des markers en caché -->
+        <input type="hidden" id="nbMarkers" value="<c:out value="${fn:length(markers)}"/>"/> 
+        <c:forEach var="p" items="${markers}" varStatus="status">
+            <input type="hidden" id="p<c:out value="${status.index}"/>" value="<c:out value="${p['locationThegeom']}"/>"/>
+        </c:forEach>
+
         <!-- Barre de navigation -->
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar-default navbar " role="navigation">
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="navbar-left" ><a href="#" id="logo"><img src="Ressources/logo1.png" width="100px" ></a></li> <!-- LOGO-->

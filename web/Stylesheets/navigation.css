@@ -1,16 +1,16 @@
 @media (min-width: 768px) {
-    .navbar-nav {
-        width: 100%;
-        text-align: center;
-    }
-
     .navbar{
         background-color: #000000;
         opacity :0.85;
         border-radius: 0;
         border:none;
+        margin-bottom:0px;  
+        height:8%;
     }
-
+    .navbar-nav {
+        width: 100%;
+        text-align: center;
+    }
     .navbar-nav > li {
         float: none;
         display: inline-block;

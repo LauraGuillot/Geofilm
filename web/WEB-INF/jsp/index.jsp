@@ -22,10 +22,22 @@
         <script src="Scripts/language.js"></script>
         <script src="Scripts/strings.js"></script>
 
+        <!-- STYLES -->
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/navigation.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/home.css">
+
+        <!-- MAP -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+        <script src="Scripts/position_tracker.js"></script>
+        <script src="Scripts/home_map.js"></script>
+
+        <!-- SCRIPTS -->
+        <script src="Scripts/home.js"></script>
+        
     </head>
 
-    <body>
+    <body onload="load();">
 
         <!-- Barre de navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -36,11 +48,19 @@
             </ul>
         </div>
     </nav>
-    
-    <!-- Volet de gauche -->
-    
-    
-    <!-- Map -->
 
+    <div class="container">    
+        <div  class="row content">          
+            <!-- Volet de gauche -->
+            <div id="left_div" class="col-md-4">
+                <p id="welcome"></p>
+                <p id="title"> Geofilm </p>
+                <p id="description"> </p>
+            </div>   
+            <!-- Map -->
+            <div id="mapid" class="col-md-8"> </div>
+        </div>
+
+    </div>
 </body>
 </html>

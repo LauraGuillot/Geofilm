@@ -9,8 +9,25 @@ function loadMap() {
         accessToken: 'pk.eyJ1IjoiZ2VvZmlsbSIsImEiOiJjaXlqd2d1NGUwMDA5MnFrMXUyaHdtYmt5In0.zaWf5uM65g8RiAj9LACvHw'
     }).addTo(mymap);
 
+    displayMarkers();
+
     getLocation();
     displayPosition();
     startTracker();
 }
 
+function displayMarkers() {
+
+    var cpt = document.getElementById("nbMarkers").value;
+
+    for (var i = 0; i < cpt; i++) {
+        var point = document.getElementById("p" + i).value;
+
+        point = point.substring(6, point.length - 1);
+        var pt = point.split(",");
+        var x = pt[0];
+        var y = pt[1];
+        
+        L.marker([x, y]).addTo(mymap);
+    }
+}

@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Laura
  */
 @Entity
-@Table(name = "location")
+@Table(name = "location", catalog = "geofilm", schema = "geofilm")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Location.findAll", query = "SELECT l FROM Location l"),

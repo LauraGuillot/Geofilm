@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Laura
  */
 @Entity
-@Table(name = "multimedia")
+@Table(name = "multimedia", catalog = "geofilm", schema = "geofilm")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Multimedia.findAll", query = "SELECT m FROM Multimedia m"),
@@ -51,7 +51,6 @@ public class Multimedia implements Serializable {
     @Basic(optional = false)
     @Column(name = "multimedia_id")
     private Integer multimediaId;
-    
     @Basic(optional = false)
     @Column(name = "multimedia_title")
     private String multimediaTitle;

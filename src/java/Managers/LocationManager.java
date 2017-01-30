@@ -7,6 +7,9 @@
  */
 package Managers;
 
+import Objects.Location;
+import java.util.ArrayList;
+
 public interface LocationManager {
-    
+     public ArrayList<Location> getMarkers();
 }

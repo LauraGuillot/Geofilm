@@ -25,6 +25,7 @@ public class HomeController {
 
         //Récupération des positions pour affichage
         LocationManager m = LocationManagerImpl.getInstance();
+       
         result.addObject("markers",m.getMarkers());
         
         return result;

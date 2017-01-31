@@ -30,6 +30,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/navigation.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/home.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/button.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/modal_error.css">
 
         <!-- MAP -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
@@ -50,7 +51,7 @@
             <input type="hidden" id="p<c:out value="${status.index}"/>" value="<c:out value="${p['locationThegeom']}"/>"/>
         </c:forEach>
 
-        <!-- Barre de navigation -->
+        <!-- NAVIGATION -->
     <nav class="navbar-default navbar " role="navigation">
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -60,26 +61,38 @@
         </div>
     </nav>
 
+    <!-- CONTENU PRINCIPAL -->
     <div class="container">    
         <div  class="row content">          
             <!-- Volet de gauche -->
             <div id="left_div" class="col-md-4">
-                <p id="welcome" style="color:rgb(148,204,205) ;font-size:30px"> </p>
-                <p id="title" style="color:rgb(4,175,182); font-size:30px"> Geofilm </p>
-                <br>
-                <p id="description" style="font-size:17px"> </p>
-                <p id="description2" style="font-size:17px"> </p>
-                <br>
-                <br>
-
-                <p><a href="https://github.com/" class="button1" style="color:black">Connexion</a></p>
-
+                <p id="welcome"> </p>
+                <p id="title"> Geofilm </p>
+                <br><br><br>
+                <p class="description" id="description"> </p>
+                <p class="description" id="description2"> </p>
+                <br><br><br><br>
+                <center> <button href="#" class="button large_button" id="connexion"></button></center>
             </div>
-
             <!-- Map -->
             <div id="mapid" class="col-md-8"> </div>
         </div>
-
     </div>
+
+
+    <!-- POPUP : message d'erreur si pas de gps -->
+    <div class="modal fade" id="gps_error_modal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p id="error_gps"></p>
+                </div>
+                <div class="modal-footer">
+                    <center>  <button id ="close_error_gps" type="button" class="button small_button" data-dismiss="modal"></button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -31,12 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Location.findAll", query = "SELECT l FROM Location l"),
     @NamedQuery(name = "Location.findByLocationId", query = "SELECT l FROM Location l WHERE l.locationId = :locationId"),
-    @NamedQuery(name = "Location.findByLocationThegeom", query = "SELECT l FROM Location l WHERE l.locationThegeom = :locationThegeom"),
-    @NamedQuery(name = "Location.findByLocationAddress", query = "SELECT l FROM Location l WHERE l.locationAddress = :locationAddress"),
-    @NamedQuery(name = "Location.findByLocationCity", query = "SELECT l FROM Location l WHERE l.locationCity = :locationCity"),
-    @NamedQuery(name = "Location.findByLocationPostalCode", query = "SELECT l FROM Location l WHERE l.locationPostalCode = :locationPostalCode"),
-    @NamedQuery(name = "Location.findByLocationCountry", query = "SELECT l FROM Location l WHERE l.locationCountry = :locationCountry"),
-    @NamedQuery(name = "Location.findByLocationAddressComplement", query = "SELECT l FROM Location l WHERE l.locationAddressComplement = :locationAddressComplement")})
+    @NamedQuery(name = "Location.findByLocationThegeom", query = "SELECT l FROM Location l WHERE l.locationThegeom = :locationThegeom")})
 public class Location implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,16 +42,6 @@ public class Location implements Serializable {
     private Integer locationId;
     @Column(name = "location_thegeom")
     private String locationThegeom;
-    @Column(name = "location_address")
-    private String locationAddress;
-    @Column(name = "location_city")
-    private String locationCity;
-    @Column(name = "location_postal_code")
-    private String locationPostalCode;
-    @Column(name = "location_country")
-    private String locationCountry;
-    @Column(name = "location_address_complement")
-    private String locationAddressComplement;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "locationId")
     private Collection<Multimedia> multimediaCollection;
 
@@ -81,46 +66,6 @@ public class Location implements Serializable {
 
     public void setLocationThegeom(String locationThegeom) {
         this.locationThegeom = locationThegeom;
-    }
-
-    public String getLocationAddress() {
-        return locationAddress;
-    }
-
-    public void setLocationAddress(String locationAddress) {
-        this.locationAddress = locationAddress;
-    }
-
-    public String getLocationCity() {
-        return locationCity;
-    }
-
-    public void setLocationCity(String locationCity) {
-        this.locationCity = locationCity;
-    }
-
-    public String getLocationPostalCode() {
-        return locationPostalCode;
-    }
-
-    public void setLocationPostalCode(String locationPostalCode) {
-        this.locationPostalCode = locationPostalCode;
-    }
-
-    public String getLocationCountry() {
-        return locationCountry;
-    }
-
-    public void setLocationCountry(String locationCountry) {
-        this.locationCountry = locationCountry;
-    }
-
-    public String getLocationAddressComplement() {
-        return locationAddressComplement;
-    }
-
-    public void setLocationAddressComplement(String locationAddressComplement) {
-        this.locationAddressComplement = locationAddressComplement;
     }
 
     @XmlTransient

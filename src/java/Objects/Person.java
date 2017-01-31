@@ -65,8 +65,6 @@ public class Person implements Serializable {
     private Collection<Multimedia> multimediaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisher")
     private Collection<Multimedia> multimediaCollection1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personId")
-    private Collection<Connect> connectCollection;
 
     public Person() {
     }
@@ -139,15 +137,6 @@ public class Person implements Serializable {
 
     public void setMultimediaCollection1(Collection<Multimedia> multimediaCollection1) {
         this.multimediaCollection1 = multimediaCollection1;
-    }
-
-    @XmlTransient
-    public Collection<Connect> getConnectCollection() {
-        return connectCollection;
-    }
-
-    public void setConnectCollection(Collection<Connect> connectCollection) {
-        this.connectCollection = connectCollection;
     }
 
     @Override

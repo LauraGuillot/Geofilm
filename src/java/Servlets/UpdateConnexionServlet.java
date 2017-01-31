@@ -2,7 +2,7 @@
  * Servlet appelée à chaque fois qu'un utilisateur effectue une action sur le site.
  * Elle met alors à jour sa connexion.
  */
-package Util;
+package Servlets;
 
 import Managers.ConnectManager;
 import Managers.ConnectManagerImpl;

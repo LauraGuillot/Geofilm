@@ -47,11 +47,7 @@ public class Source implements Serializable {
     @Column(name = "source_type")
     private String sourceType;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sourceId")
-    private Collection<Sequence> sequenceCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sourceId")
-    private Collection<Sound> soundCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sourceId")
-    private Collection<Picture> pictureCollection;
+    private Collection<Multimedia> multimediaCollection;
 
     public Source() {
     }
@@ -90,30 +86,12 @@ public class Source implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Sequence> getSequenceCollection() {
-        return sequenceCollection;
+    public Collection<Multimedia> getMultimediaCollection() {
+        return multimediaCollection;
     }
 
-    public void setSequenceCollection(Collection<Sequence> sequenceCollection) {
-        this.sequenceCollection = sequenceCollection;
-    }
-
-    @XmlTransient
-    public Collection<Sound> getSoundCollection() {
-        return soundCollection;
-    }
-
-    public void setSoundCollection(Collection<Sound> soundCollection) {
-        this.soundCollection = soundCollection;
-    }
-
-    @XmlTransient
-    public Collection<Picture> getPictureCollection() {
-        return pictureCollection;
-    }
-
-    public void setPictureCollection(Collection<Picture> pictureCollection) {
-        this.pictureCollection = pictureCollection;
+    public void setMultimediaCollection(Collection<Multimedia> multimediaCollection) {
+        this.multimediaCollection = multimediaCollection;
     }
 
     @Override

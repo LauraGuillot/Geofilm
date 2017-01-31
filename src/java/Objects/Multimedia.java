@@ -8,7 +8,6 @@ package Objects;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +18,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -42,7 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Multimedia.findByMultimediaLanguage", query = "SELECT m FROM Multimedia m WHERE m.multimediaLanguage = :multimediaLanguage"),
     @NamedQuery(name = "Multimedia.findByMultimediaLike", query = "SELECT m FROM Multimedia m WHERE m.multimediaLike = :multimediaLike"),
     @NamedQuery(name = "Multimedia.findByMultimediaDislike", query = "SELECT m FROM Multimedia m WHERE m.multimediaDislike = :multimediaDislike"),
-    @NamedQuery(name = "Multimedia.findByMultimediaIsSignaled", query = "SELECT m FROM Multimedia m WHERE m.multimediaIsSignaled = :multimediaIsSignaled")})
+    @NamedQuery(name = "Multimedia.findByMultimediaIsSignaled", query = "SELECT m FROM Multimedia m WHERE m.multimediaIsSignaled = :multimediaIsSignaled"),
+    @NamedQuery(name = "Multimedia.findByMultimediaType", query = "SELECT m FROM Multimedia m WHERE m.multimediaType = :multimediaType")})
 public class Multimedia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -76,20 +75,20 @@ public class Multimedia implements Serializable {
     @Basic(optional = false)
     @Column(name = "multimedia_is_signaled")
     private int multimediaIsSignaled;
+    @Basic(optional = false)
+    @Column(name = "multimedia_type")
+    private String multimediaType;
     @ManyToMany(mappedBy = "multimediaCollection")
     private Collection<Person> personCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimediaId")
-    private Collection<Sequence> sequenceCollection;
     @JoinColumn(name = "location_id", referencedColumnName = "location_id")
     @ManyToOne(optional = false)
     private Location locationId;
     @JoinColumn(name = "publisher", referencedColumnName = "person_id")
     @ManyToOne(optional = false)
     private Person publisher;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimediaId")
-    private Collection<Sound> soundCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimediaId")
-    private Collection<Picture> pictureCollection;
+    @JoinColumn(name = "source_id", referencedColumnName = "source_id")
+    @ManyToOne(optional = false)
+    private Source sourceId;
 
     public Multimedia() {
     }
@@ -98,7 +97,7 @@ public class Multimedia implements Serializable {
         this.multimediaId = multimediaId;
     }
 
-    public Multimedia(Integer multimediaId, String multimediaTitle, String multimediaDescription, String multimediaPath, String multimediaUploadDate, int multimediaLike, int multimediaDislike, int multimediaIsSignaled) {
+    public Multimedia(Integer multimediaId, String multimediaTitle, String multimediaDescription, String multimediaPath, String multimediaUploadDate, int multimediaLike, int multimediaDislike, int multimediaIsSignaled, String multimediaType) {
         this.multimediaId = multimediaId;
         this.multimediaTitle = multimediaTitle;
         this.multimediaDescription = multimediaDescription;
@@ -107,6 +106,7 @@ public class Multimedia implements Serializable {
         this.multimediaLike = multimediaLike;
         this.multimediaDislike = multimediaDislike;
         this.multimediaIsSignaled = multimediaIsSignaled;
+        this.multimediaType = multimediaType;
     }
 
     public Integer getMultimediaId() {
@@ -189,6 +189,14 @@ public class Multimedia implements Serializable {
         this.multimediaIsSignaled = multimediaIsSignaled;
     }
 
+    public String getMultimediaType() {
+        return multimediaType;
+    }
+
+    public void setMultimediaType(String multimediaType) {
+        this.multimediaType = multimediaType;
+    }
+
     @XmlTransient
     public Collection<Person> getPersonCollection() {
         return personCollection;
@@ -196,15 +204,6 @@ public class Multimedia implements Serializable {
 
     public void setPersonCollection(Collection<Person> personCollection) {
         this.personCollection = personCollection;
-    }
-
-    @XmlTransient
-    public Collection<Sequence> getSequenceCollection() {
-        return sequenceCollection;
-    }
-
-    public void setSequenceCollection(Collection<Sequence> sequenceCollection) {
-        this.sequenceCollection = sequenceCollection;
     }
 
     public Location getLocationId() {
@@ -223,22 +222,12 @@ public class Multimedia implements Serializable {
         this.publisher = publisher;
     }
 
-    @XmlTransient
-    public Collection<Sound> getSoundCollection() {
-        return soundCollection;
+    public Source getSourceId() {
+        return sourceId;
     }
 
-    public void setSoundCollection(Collection<Sound> soundCollection) {
-        this.soundCollection = soundCollection;
-    }
-
-    @XmlTransient
-    public Collection<Picture> getPictureCollection() {
-        return pictureCollection;
-    }
-
-    public void setPictureCollection(Collection<Picture> pictureCollection) {
-        this.pictureCollection = pictureCollection;
+    public void setSourceId(Source sourceId) {
+        this.sourceId = sourceId;
     }
 
     @Override

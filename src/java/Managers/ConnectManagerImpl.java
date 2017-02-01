@@ -10,6 +10,7 @@ package Managers;
 
 import Objects.Connect;
 import Objects.Person;
+import Util.PasswordHash;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -201,6 +202,29 @@ public class ConnectManagerImpl implements ConnectManager {
         } catch (ParseException e) {
         }
         return isold;
+    }
+
+    /**
+     * Vérifier si une personne de la base de données correspond aux paramètres
+     * donnés : email et mot de passe
+     *
+     * @param email Adresse email de la personne
+     * @param mdp Mot de passe de la personne
+     * @return Booléen : est-ce que cette personne existe ou non?
+     */
+    @Override
+    public boolean identifierValidation(String email, String mdp) {
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("SELECT p FROM Person p WHERE  p.personEmail=:email");
+        q.setParameter("email", email);
+        List l = q.getResultList();
+        
+        if(l.isEmpty()){
+            return false;
+        }else{
+            return PasswordHash.match(mdp, ((Person)l.get(0)).getPersonPassword());
+        }
+        
     }
 
 }

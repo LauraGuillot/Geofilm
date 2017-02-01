@@ -1,8 +1,17 @@
+//Latitude et longitude de l'utilisateur
 var lat = 48.862725;
 var long = 2.287592000000018;
-var prec; //Précédente position enregistrée
 
-//Définition des marqueurs
+//Précédente position enregistrée
+var prec;
+
+/*
+ * ****************************************************************************
+ * Définition des marqueurs
+ * *****************************************************************************
+ */
+
+//Marqueur bleu pour la position de l'utilisateur
 var blueIcon = L.icon({
     iconUrl: 'Ressources/marker_blue.png',
     shadowUrl: 'Ressources/marker_shadow.png',
@@ -12,6 +21,8 @@ var blueIcon = L.icon({
     shadowAnchor: [12, 17], // the same for the shadow
     popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
+
+//Marquer rouge pour les multimédias
 var redIcon = L.icon({
     iconUrl: 'Ressources/marker_red.png',
     shadowUrl: 'Ressources/marker_shadow.png',
@@ -22,48 +33,76 @@ var redIcon = L.icon({
     popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-//Obtention de la position
+
+/*
+ * ****************************************************************************
+ * Géolocalisation
+ * ****************************************************************************
+ */
+
+/**
+ * Obtention de la position de l'utilisateur
+ */
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(recordPosition);
     } else {
-        //Afficher message d'erreur 
+        //Afficher message d'erreur si pas de géolocalisation 
         console.log("error");
         $('#gps_error_modal').modal('show');
     }
 }
 
+/**
+ * Enregistrement de la position de l'utilisateur 
+ * @param {type} position
+ */
 function recordPosition(position) {
     lat = position.coords.latitude;
     long = position.coords.longitude;
 }
 
-//Suivi de la position
+/**
+ *Centrage de la carte sur la position de l'utilisateur
+ */
+function centerMap() {
+    mymap.panTo(new L.LatLng(lat, long));
+}
+
+/**
+ * Affichage d'un marqueur de position pour l'utilisateur
+ */
 function displayPosition() {
     if (prec != null) {
         mymap.removeLayer(prec);
     }
 
-    mymap.panTo(new L.LatLng(lat, long));
-
-
     if (!(lat == 48.862725 && long == 2.287592000000018)) {
         prec = L.marker([lat, long], {icon: blueIcon}).addTo(mymap);
     }
-
 }
 
+/*
+ * ****************************************************************************
+ * Tracking
+ * ****************************************************************************
+ */
 
+/**
+ * Tracking de la position de l'utilisateur : à chaque nouvelle position, 
+ * enregistrement et affichage de celle-ci
+ * @param {type} position
+ */
 function trackPosition(position) {
     recordPosition(position);
     displayPosition();
 }
 
+/**
+ * Lancement du tracking
+ */
 function startTracker() {
     navigator.geolocation.watchPosition(trackPosition);
 }
 
-function removeAllMarkers() {
-
-}
 

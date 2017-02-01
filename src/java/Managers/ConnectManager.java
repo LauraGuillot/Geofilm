@@ -58,4 +58,14 @@ public interface ConnectManager {
      */
     public void checkConnection();
 
+    /**
+     * Vérifier si une personne de la base de données correspond aux paramètres
+     * donnés : email et mot de passe
+     *
+     * @param email Adresse email de la personne
+     * @param mdp Mot de passe de la personne
+     * @return Booléen : est-ce que cette personne existe ou non?
+     */
+    public boolean identifierValidation(String email, String mdp);
+
 }

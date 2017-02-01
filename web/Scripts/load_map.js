@@ -24,9 +24,6 @@ function loadMap() {
     // Affichage de la position de l'utilisateur
     displayPosition();
 
-    //Centrage de la carte sur sa position
-    centerMap();
-
     //Début du tracking de la position de l'utilisateur
     startTracker();
 }

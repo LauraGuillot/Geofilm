@@ -5,6 +5,8 @@ var long = 2.287592000000018;
 //Précédente position enregistrée
 var prec;
 
+var center = 0;
+
 /*
  * ****************************************************************************
  * Définition des marqueurs
@@ -63,13 +65,6 @@ function recordPosition(position) {
 }
 
 /**
- *Centrage de la carte sur la position de l'utilisateur
- */
-function centerMap() {
-    mymap.panTo(new L.LatLng(lat, long));
-}
-
-/**
  * Affichage d'un marqueur de position pour l'utilisateur
  */
 function displayPosition() {
@@ -78,6 +73,11 @@ function displayPosition() {
     }
 
     if (!(lat == 48.862725 && long == 2.287592000000018)) {
+        //Centrage initial
+        if (center == 0) {
+            center = 1;
+            mymap.panTo(new L.LatLng(lat, long));
+        }
         prec = L.marker([lat, long], {icon: blueIcon}).addTo(mymap);
     }
 }

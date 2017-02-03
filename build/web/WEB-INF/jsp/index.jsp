@@ -41,6 +41,8 @@
 
         <!-- SCRIPTS -->
         <script src="Scripts/home.js"></script>
+        <script src="Scripts/connect.js"></script>
+        
 
         <!--CONNECTION-->
         <script src="Scripts/connect.js"></script>
@@ -77,7 +79,9 @@
                 <p class="description" id="description"> </p>
                 <p class="description" id="description2"> </p>
                 <br><br><br><br>
-                <center> <button href="#" class="button large_button" id="connexion" onclick="pop_connexion()"></button></center>
+                <center> <button href="#" class="button large_button" id="connexion"></button></center>
+                 <br><br><br><br>
+                 <p id="info_gps" style="font-style:italic;color:#87c2c4;"> </p>
             </div>
             <!-- Map -->
             <div id="mapid" class="col-md-8"> </div>

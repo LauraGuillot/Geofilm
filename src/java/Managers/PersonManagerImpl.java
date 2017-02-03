@@ -34,18 +34,32 @@ public class PersonManagerImpl implements PersonManager {
     }
 
     /**
+     * Retrouver une personne par son identifiant de connexion
+     *
+     * @param id Identifiant de connexion
+     * @return Personne
+     */
+    @Override
+    public Person findPerson(String id) {
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("SELECT c.personId FROM Connect c WHERE  c.connectId=:id");
+        q.setParameter("id", id);
+        List l = q.getResultList();
+        return l.isEmpty() ? null : (Person) l.get(0);
+    }
+
+     /**
      * Retrouver une personne par son email
      *
      * @param email Adresse email
      * @return Personne
      */
     @Override
-    public Person findPerson(String email) {
-        EntityManager em = emf.createEntityManager();
+    public Person findPersonByEmail(String email){
+         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("SELECT p FROM Person p WHERE  p.personEmail=:email");
         q.setParameter("email", email);
         List l = q.getResultList();
         return l.isEmpty() ? null : (Person) l.get(0);
     }
-
 }

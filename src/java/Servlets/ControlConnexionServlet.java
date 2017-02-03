@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ControlConnexionServlet extends HttpServlet {
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -28,13 +28,17 @@ public class ControlConnexionServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String mdp = request.getParameter("mdp");
+        System.out.println(mdp);
         String email = request.getParameter("email");
+        System.out.println(email);
         ConnectManager m = ConnectManagerImpl.getInstance();
         response.setContentType("text/html; charset=UTF-8");
+        System.out.println(m.identifierValidation(email, mdp));
         response.getWriter().write(m.identifierValidation(email, mdp) + "");
+        
 
     }
 }

@@ -17,6 +17,14 @@ public interface PersonManager {
      * @param email Adresse email
      * @return Personne
      */
-    public Person findPerson(String email);
+    public Person findPersonByEmail(String email);
+    
+    /**
+     * Retrouver une personne par son identifiant de connexion
+     *
+     * @param id Identifiant de connexion
+     * @return Personne
+     */
+    public Person findPerson(String id) ;
 
 }

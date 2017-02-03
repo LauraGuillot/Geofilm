@@ -79,7 +79,7 @@
                 <p class="description" id="description"> </p>
                 <p class="description" id="description2"> </p>
                 <br><br><br><br>
-                <center> <button href="#" class="button large_button" id="connexion"></button></center>
+                <center> <button href="#" class="button large_button" id="connexion" onclick="pop_connexion()"></button></center>
                  <br><br><br><br>
                  <p id="info_gps" style="font-style:italic;color:#87c2c4;"> </p>
             </div>
@@ -98,10 +98,10 @@
                 <hr>
                 <div class="modal-body">         
                     <p id="connection_id"></p>
-                    <input style="text-align:left" type="text" name ="id">
+                    <input style="text-align:left" type="text" name ="email" id="email">
                     <br>
                     <p  id="connection_password"></p>
-                    <input style="text-align:left" type="text" name="password">
+                    <input style="text-align:left" type="text" name="password" id="password">
                     <br>
                     <p id="password_forgotten"></p><p id="click_here" a href=""></p>
                 </div>

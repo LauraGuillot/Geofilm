@@ -20,6 +20,7 @@
         <property name="mappings">
             <props>
                 <prop key="index.htm">homeController</prop>
+                <prop key="globalMap.htm">connectController</prop>
             </props>
         </property>
     </bean>
@@ -39,6 +40,10 @@
     <bean
         name="homeController"
         class="Controllers.HomeController"
+    />
+     <bean
+        name="connectController"
+        class="Controllers.ConnectController"
     />
 
 </beans>

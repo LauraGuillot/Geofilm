@@ -26,25 +26,31 @@ public class ConnectController {
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView home(@RequestParam("email") String email, @RequestParam("mdp") String mdp) {
         ModelAndView r = new ModelAndView("redirect:globalMap.htm");
-        r.addObject("mdp", mdp);
-        r.addObject("email", email);
+        
+        //Récupération de l'utilisateur
+        PersonManager pm = PersonManagerImpl.getInstance();
+        Person p = pm.findPersonByEmail(email);
+        
+        //Connexion de l'utilisateur 
+        ConnectManager cm = ConnectManagerImpl.getInstance();
+        String idco = cm.connect(p);
+        r.addObject("idco", idco);
+        
         return r;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView handleHome(HttpServletRequest request, HttpServletResponse response, @RequestParam("email") String email, @RequestParam("mdp") String mdp) {
+    public ModelAndView handleHome(HttpServletRequest request, HttpServletResponse response, @RequestParam("idco") String idco) {
         ModelAndView result = new ModelAndView("globalMap");
 
         //Récupération de l'utilisateur
         PersonManager pm = PersonManagerImpl.getInstance();
-        Person p = pm.findPerson(email);
-        result.addObject("email", email);
+        Person p = pm.findPerson(idco);
+        result.addObject("email", p.getPersonEmail());
         result.addObject("nom", p.getPersonName());
         result.addObject("prenom",p.getPersonFirstname());
 
         //Connexion de l'utilisateur 
-        ConnectManager cm = ConnectManagerImpl.getInstance();
-        String idco = cm.connect(p);
         result.addObject("idco", idco);
         
         //Récupération des multimédias

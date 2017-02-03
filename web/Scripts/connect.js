@@ -3,8 +3,8 @@ function connect() {
     //TODO
 
     //On récupère les données saisies
-    var email = "";
-    var mdp = "";
+    var email = document.getElementById("email").value;
+    var mdp = document.getElementById("password").value;
 
     //Si la saisie est valide : appel à la servlet de connexion
     if (verif_saisie(email, mdp)) {
@@ -47,12 +47,10 @@ function connect() {
 
             }
         };
-        xhttp.open("POST", "ControlConnexionServlet", true);
-        xhttp.setRequestHeader("Content-Type", "text/html; charset=UTF-8");
-        xhttp.send("email=" + email);
-        xhttp.send("mdp=" + mdp);
-
-        //Si la saisie est invalide : message d'erreur    
+         var data = "email="+ email+"&"+"mdp="+ mdp;
+        xhttp.open("GET", "ControlConnexionServlet?"+data, true);
+        xhttp.setRequestHeader("Content-Type", "text/html; charset=UTF-8");       
+        xhttp.send();   
     }
 }
 

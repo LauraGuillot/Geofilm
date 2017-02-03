@@ -12,5 +12,6 @@ function loadText(){
         document.getElementById("connexion").innerHTML=connection_fr;
         document.getElementById("error_gps").innerHTML=error_gps_fr;
         document.getElementById("close_error_gps").innerHTML=close_fr;
+        document.getElementById("info_gps").innerHTML=info_gps_fr;
     }
 }

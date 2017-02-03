@@ -31,6 +31,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/home.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/button.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/modal_error.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/modal_form.css">
 
         <!-- MAP -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
@@ -40,6 +41,10 @@
 
         <!-- SCRIPTS -->
         <script src="Scripts/home.js"></script>
+
+        <!--CONNECTION-->
+        <script src="Scripts/connect.js"></script>
+        <script src="Scripts/update_connexion.js"></script>
 
     </head>
 
@@ -72,13 +77,37 @@
                 <p class="description" id="description"> </p>
                 <p class="description" id="description2"> </p>
                 <br><br><br><br>
-                <center> <button href="#" class="button large_button" id="connexion"></button></center>
+                <center> <button href="#" class="button large_button" id="connexion" onclick="pop_connexion()"></button></center>
             </div>
             <!-- Map -->
             <div id="mapid" class="col-md-8"> </div>
         </div>
     </div>
 
+    <!--POPUP : boîte de connexion-->
+    <div class="modal fade" id="connection_form" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <p id="connexion2" style="color:rgb(131,179,183)"</p> 
+                <p id="error_connect"></p>
+                <hr>
+                <div class="modal-body">         
+                    <p id="connection_id"></p>
+                    <input style="text-align:left" type="text" name ="id">
+                    <br>
+                    <p  id="connection_password"></p>
+                    <input style="text-align:left" type="text" name="password">
+                    <br>
+                    <p id="password_forgotten"></p><p id="click_here" a href=""></p>
+                </div>
+                <div class="modal-footer">
+                    <center>  <button id ="valider" type="button" class="button small_button" onclick="connect()"></button></center>
+                </div>
+                <p id="membership"></p><p id="click_here2" a href=""></p>
+            </div>
+        </div>
+    </div>
 
     <!-- POPUP : message d'erreur si pas de gps -->
     <div class="modal fade" id="gps_error_modal" role="dialog">

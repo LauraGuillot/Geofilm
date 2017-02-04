@@ -27,12 +27,15 @@ public class ConnectController {
     public ModelAndView post(@RequestParam("email") String email, @RequestParam("mdp") String mdp) {
         ModelAndView r = new ModelAndView("redirect:globalMap.htm");
         
+        //Mise à jour des connexion dans la base de données
+        ConnectManager cm = ConnectManagerImpl.getInstance();
+        cm.checkConnection();
+        
         //Récupération de l'utilisateur
         PersonManager pm = PersonManagerImpl.getInstance();
         Person p = pm.findPersonByEmail(email);
         
         //Connexion de l'utilisateur 
-        ConnectManager cm = ConnectManagerImpl.getInstance();
         String idco = cm.connect(p);
         r.addObject("idco", idco);
         

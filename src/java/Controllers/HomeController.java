@@ -7,6 +7,8 @@
  */
 package Controllers;
 
+import Managers.ConnectManager;
+import Managers.ConnectManagerImpl;
 import Managers.LocationManager;
 import Managers.LocationManagerImpl;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,10 @@ public class HomeController {
     public ModelAndView handleHome(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView result = new ModelAndView("index");
 
+        //Mise à jour des connexion dans la base de données
+        ConnectManager cm = ConnectManagerImpl.getInstance();
+        cm.checkConnection();
+        
         //Récupération des positions pour affichage
         LocationManager m = LocationManagerImpl.getInstance();
        

@@ -18,13 +18,22 @@ public interface PersonManager {
      * @return Personne
      */
     public Person findPersonByEmail(String email);
-    
+
     /**
      * Retrouver une personne par son identifiant de connexion
      *
      * @param id Identifiant de connexion
      * @return Personne
      */
-    public Person findPerson(String id) ;
+    public Person findPerson(String id);
 
+    /**
+     * Inscription d'une personne
+     *
+     * @param email Adresse email
+     * @param mdp Mot de passe
+     * @param name Nom
+     * @param firstname Prénom
+     */
+    public void insert(String email, String mdp, String name, String firstname);
 }

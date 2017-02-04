@@ -43,7 +43,7 @@
         <!-- SCRIPTS -->
         <script src="Scripts/home.js"></script>
         <script src="Scripts/connect.js"></script>
-        <script src="Scripts/update_connexion.js"></script>
+        <script src="Scripts/inscription.js"></script>
 
     </head>
 
@@ -60,7 +60,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="navbar-left" ><a href="#" id="logo"><img src="Ressources/logo1.png" width="100px" ></a></li> <!-- LOGO-->
-                <li class="navbar-right"><a href="#"><img id="connection" src="Ressources/connection.png" onMouseOver="this.src = 'Ressources/connection_over.png'" onMouseOut="this.src = 'Ressources/connection.png'" width="25px"></a></li><!-- Connexion-->
+                <li class="navbar-right"><a href="#"><img id="connection" src="Ressources/connection.png" onMouseOver="this.src = 'Ressources/connection_over.png'" onMouseOut="this.src = 'Ressources/connection.png'" width="25px" onclick="pop_connexion()"></a></li><!-- Connexion-->
             </ul>
         </div>
     </nav>
@@ -107,19 +107,52 @@
                         <div class="info_link">.</div>
                         </div></center>
 
-                    <center><button id ="valider" type="button" class="button small_button" onclick="connect()" style="margin-bottom: 40px"></button></center>
+                    <center><button id ="valid_connexion" type="button" class="button small_button" onclick="connect()" style="margin-bottom: 40px"></button></center>
 
                     <center><div class="info_link">
                         <div class="info_link" id="membership"></div>
-                        <a id="click_here2" class="click_here" href="#"></a>
+                        <a id="click_here2" class="click_here" href="#" onclick="pop_inscription();"></a>
                          <div class="info_link" id="membership2"></div>
                         </div><center>
                 </div>
-
             </div>
         </div>
     </div>
 
+    
+    <!--POPUP : inscription-->
+    <div class="modal fade" id="inscription_form" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content modal_form">
+
+                <button class="close" data-dismiss="modal">&times;</button>
+                
+                <p id="inscription" class= "title"  style="margin-top: 40px"</p> 
+                <p id="inscription_error" class="error_message"></p>
+
+                <div class="modal-body">  
+                     <p  class="label_form" id="inscription_name_label"></p>
+                    <input  type="text" name="name" id="inscription_name">
+                     <p  class="label_form" id="inscription_firstname_label"></p>
+                    <input  type="text" name="firstname" id="inscription_firstname">
+                    <p class="label_form" id="inscription_email_label"></p>
+                    <input type="text" name ="email" id="inscription_email">               
+                    <p  class="label_form" id="inscription_password_label"></p>
+                    <input  type="password" name="password" id="inscription_password">
+                    <p  class="label_form" id="inscription_password2_label"></p>
+                    <input  type="password" name="password" id="inscription_password2">
+
+                    <center><button id ="valid_inscription" type="button" class="button small_button" onclick="inscription()" style="margin-top: 20px"></button></center>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
     <!-- POPUP : message d'erreur si pas de gps -->
     <div class="modal fade" id="gps_error_modal" role="dialog">
         <div class="modal-dialog modal-sm">

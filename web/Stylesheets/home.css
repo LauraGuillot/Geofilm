@@ -48,3 +48,7 @@ p{
 .description{
     font-size: 14pt;
 }
+
+.leaflet-touch .leaflet-bar a{
+    color :#23a1a8!important;
+}

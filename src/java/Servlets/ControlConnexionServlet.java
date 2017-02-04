@@ -30,13 +30,12 @@ public class ControlConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String mdp = request.getParameter("mdp");
-        System.out.println(mdp);
         String email = request.getParameter("email");
-        System.out.println(email);
+        
         ConnectManager m = ConnectManagerImpl.getInstance();
         response.setContentType("text/html; charset=UTF-8");
-        System.out.println(m.identifierValidation(email, mdp));
         response.getWriter().write(m.identifierValidation(email, mdp) + "");
         
 

@@ -22,6 +22,7 @@ function loadText() {
         document.getElementById("valider").innerHTML = validation_fr;
         document.getElementById("click_here").innerHTML = click_here_fr;
         document.getElementById("click_here2").innerHTML = click_here_fr;
+        document.getElementById("membership2").innerHTML = membership2_fr;
 
     }
 }

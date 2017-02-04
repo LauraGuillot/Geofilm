@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ConnectController {
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView home(@RequestParam("email") String email, @RequestParam("mdp") String mdp) {
+    public ModelAndView post(@RequestParam("email") String email, @RequestParam("mdp") String mdp) {
         ModelAndView r = new ModelAndView("redirect:globalMap.htm");
         
         //Récupération de l'utilisateur
@@ -40,7 +40,7 @@ public class ConnectController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView handleHome(HttpServletRequest request, HttpServletResponse response, @RequestParam("idco") String idco) {
+    public ModelAndView get(HttpServletRequest request, HttpServletResponse response, @RequestParam("idco") String idco) {
         ModelAndView result = new ModelAndView("globalMap");
 
         //Récupération de l'utilisateur

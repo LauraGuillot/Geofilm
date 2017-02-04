@@ -1,7 +1,14 @@
+/**
+ * Méthode permettant d'afficher la pop-up de connexion
+ */
+function pop_connexion() {
+    $('#connection_form').modal('show');
+}
+
+/**
+ * Connexion de l'utilisateur 
+ */
 function connect() {
-
-    //TODO
-
     //On récupère les données saisies
     var email = document.getElementById("email").value;
     var mdp = document.getElementById("password").value;
@@ -38,19 +45,18 @@ function connect() {
                     document.body.appendChild(form);
                     form.submit();
 
-
                     //Si il y a une erreur d'identification    
                 } else {
                     //Message d'erreur
-                   document.getElementById("error_connect").innerHTML=error_authentification_fr;
+                    document.getElementById("error_connect").innerHTML = error_authentification_fr;
                 }
 
             }
         };
-         var data = "email="+ email+"&"+"mdp="+ mdp;
-        xhttp.open("GET", "ControlConnexionServlet?"+data, true);
-        xhttp.setRequestHeader("Content-Type", "text/html; charset=UTF-8");       
-        xhttp.send();   
+        var data = "email=" + email + "&" + "mdp=" + mdp;
+        xhttp.open("GET", "ControlConnexionServlet?" + data, true);
+        xhttp.setRequestHeader("Content-Type", "text/html; charset=UTF-8");
+        xhttp.send();
     }
 }
 
@@ -62,29 +68,18 @@ function connect() {
  */
 function verif_saisie(email, mdp) {
     var v_email = valid_email(email);
-    var v_mdp = (mdp!="");
+    var v_mdp = (mdp != "");
 
     if (!v_email) {
         //Erreur email 
-        document.getElementById("error_connect").innerHTML=error_email_fr;
+        document.getElementById("error_connect").innerHTML = error_email_fr;
     } else if (!v_mdp) {
         //Erreur mot de passe vide
-         document.getElementById("error_connect").innerHTML=error_empty_password_fr;
+        document.getElementById("error_connect").innerHTML = error_empty_password_fr;
     }
     return v_email && v_mdp;
 
 }
-
-/**
- * Méthode permettant d'afficher la pop-up de connexion
- * @returns {undefined}
- */
-function pop_connexion() {
-
-    $('#connection_form').modal('show');
-    }
-
-
 
 /**
  * Vérifier qu'une adresse email est syntaxiquement valide

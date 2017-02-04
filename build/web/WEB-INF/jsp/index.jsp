@@ -32,6 +32,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/button.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/modal_error.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/modal_form.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/font.css">
 
         <!-- MAP -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
@@ -41,10 +42,6 @@
 
         <!-- SCRIPTS -->
         <script src="Scripts/home.js"></script>
-        <script src="Scripts/connect.js"></script>
-        
-
-        <!--CONNECTION-->
         <script src="Scripts/connect.js"></script>
         <script src="Scripts/update_connexion.js"></script>
 
@@ -80,8 +77,8 @@
                 <p class="description" id="description2"> </p>
                 <br><br><br><br>
                 <center> <button href="#" class="button large_button" id="connexion" onclick="pop_connexion()"></button></center>
-                 <br><br><br><br>
-                 <p id="info_gps" style="font-style:italic;color:#87c2c4;"> </p>
+                <br><br><br><br>
+                <p id="info_gps" class="info"> </p>
             </div>
             <!-- Map -->
             <div id="mapid" class="col-md-8"> </div>
@@ -91,24 +88,34 @@
     <!--POPUP : boîte de connexion-->
     <div class="modal fade" id="connection_form" role="dialog">
         <div class="modal-dialog modal-sm">
-            <div class="modal-content">
+            <div class="modal-content modal_form">
 
-                <p id="connexion2" style="color:rgb(131,179,183)"</p> 
-                <p id="error_connect"></p>
-                <hr>
+                <button class="close" data-dismiss="modal">&times;</button>
+                
+                <p id="connexion2" class= "title"  style="margin-top: 40px"</p> 
+                <p id="error_connect" class="error_message"></p>
+
                 <div class="modal-body">         
-                    <p id="connection_id"></p>
-                    <input style="text-align:left" type="text" name ="email" id="email">
-                    <br>
-                    <p  id="connection_password"></p>
-                    <input style="text-align:left" type="text" name="password" id="password">
-                    <br>
-                    <p id="password_forgotten"></p><p id="click_here" a href=""></p>
+                    <p class="label_form" id="connection_id"></p>
+                    <input type="text" name ="email" id="email">               
+                    <p  class="label_form" id="connection_password"></p>
+                    <input  type="password" name="password" id="password">
+
+                    <center><div class="info_link" style="margin-bottom: 20px">
+                        <div class="info_link" id="password_forgotten"></div>
+                        <a id="click_here" class="click_here" href="#"></a>
+                        <div class="info_link">.</div>
+                        </div></center>
+
+                    <center><button id ="valider" type="button" class="button small_button" onclick="connect()" style="margin-bottom: 40px"></button></center>
+
+                    <center><div class="info_link">
+                        <div class="info_link" id="membership"></div>
+                        <a id="click_here2" class="click_here" href="#"></a>
+                         <div class="info_link" id="membership2"></div>
+                        </div><center>
                 </div>
-                <div class="modal-footer">
-                    <center>  <button id ="valider" type="button" class="button small_button" onclick="connect()"></button></center>
-                </div>
-                <p id="membership"></p><p id="click_here2" a href=""></p>
+
             </div>
         </div>
     </div>

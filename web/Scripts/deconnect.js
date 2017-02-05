@@ -1,5 +1,8 @@
+/**
+ * Déconnexion d'un utilisateur 
+ * (Appel du controleur de déconnexion en POST)
+ */
 function deconnect() {
-
     var form = document.createElement('form');
     form.method = "POST";
     form.action = "index.htm";
@@ -12,7 +15,6 @@ function deconnect() {
 
     document.body.appendChild(form);
     form.submit();
-
 }
 
 

@@ -71,6 +71,7 @@ public class PersonManagerImpl implements PersonManager {
      * @param name Nom
      * @param firstname Prénom 
      */
+    @Override
     public void insert(String email, String mdp, String name, String firstname) {
         Person p = new Person();
         p.setPersonEmail(email);
@@ -80,6 +81,24 @@ public class PersonManagerImpl implements PersonManager {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(p);
+        em.getTransaction().commit();
+    }
+    
+    /**
+     * Mise à jour des informations d'une personne
+     * @param p Personne
+     * @param name Nom
+     * @param firstname Prénom
+     * @param email  Adresse Email
+     */
+    @Override
+    public void updateInfos(Person p, String name, String firstname, String email){
+        p.setPersonEmail(email);
+        p.setPersonFirstname(firstname);
+        p.setPersonName(firstname);
+         EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(p);
         em.getTransaction().commit();
     }
 }

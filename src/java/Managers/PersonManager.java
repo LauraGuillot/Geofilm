@@ -36,4 +36,14 @@ public interface PersonManager {
      * @param firstname Prénom
      */
     public void insert(String email, String mdp, String name, String firstname);
+
+    /**
+     * Mise à jour des informations d'une personne
+     *
+     * @param p Personne
+     * @param name Nom
+     * @param firstname Prénom
+     * @param email Adresse Email
+     */
+    public void updateInfos(Person p, String name, String firstname, String email);
 }

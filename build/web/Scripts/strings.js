@@ -42,3 +42,6 @@ var global_map_fr ="GLOBAL MAP";
 var route_map_fr="ROUTE MAP";
 var modification_fr="Modifier";
 var favorite_fr ="Favoris";
+
+//Modification des informations personnelles
+var modif_infos_fr = "MODIFICATION DES INFORMATIONS PERSONNELLES"

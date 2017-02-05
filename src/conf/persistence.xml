@@ -10,6 +10,7 @@
     <class>Objects.Connect</class>
     <class>Objects.Sound</class>
     <class>Objects.Picture</class>
+    <class>Objects.Liked</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/geofilm"/>

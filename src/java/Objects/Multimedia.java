@@ -8,6 +8,7 @@ package Objects;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -41,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Multimedia.findByMultimediaLanguage", query = "SELECT m FROM Multimedia m WHERE m.multimediaLanguage = :multimediaLanguage"),
     @NamedQuery(name = "Multimedia.findByMultimediaType", query = "SELECT m FROM Multimedia m WHERE m.multimediaType = :multimediaType")})
 public class Multimedia implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimedia")
+    private Collection<Liked> likedCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -257,6 +262,15 @@ public class Multimedia implements Serializable {
     @Override
     public String toString() {
         return "Objects.Multimedia[ multimediaId=" + multimediaId + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Liked> getLikedCollection() {
+        return likedCollection;
+    }
+
+    public void setLikedCollection(Collection<Liked> likedCollection) {
+        this.likedCollection = likedCollection;
     }
     
 }

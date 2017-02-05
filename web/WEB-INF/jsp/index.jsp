@@ -99,7 +99,8 @@
                     <p class="label_form" id="connection_id"></p>
                     <input type="text" name ="email" id="email">               
                     <p  class="label_form" id="connection_password"></p>
-                    <input  type="password" name="password" id="password">
+                    <input  type="password" name="password" id="password"  style="margin-bottom:7px">
+                    <p class="label_form_small" id="mandatory"></p>
 
                     <center><div class="info_link" style="margin-bottom: 20px">
                         <div class="info_link" id="password_forgotten"></div>
@@ -140,7 +141,8 @@
                     <p  class="label_form" id="inscription_password_label"></p>
                     <input  type="password" name="password" id="inscription_password">
                     <p  class="label_form" id="inscription_password2_label"></p>
-                    <input  type="password" name="password" id="inscription_password2">
+                    <input  type="password" name="password" id="inscription_password2" style="margin-bottom:7px">
+                    <p class="label_form_small" id="mandatory2"></p>
 
                     <center><button id ="valid_inscription" type="button" class="button small_button" onclick="inscription()" style="margin-top: 20px"></button></center>
 

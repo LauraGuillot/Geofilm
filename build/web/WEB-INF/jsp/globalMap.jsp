@@ -59,14 +59,14 @@
                     <li class="navbar-left" ><a href="#" id="logo"><img src="Ressources/logo1.png" width="100px" ></a></li> <!-- LOGO-->
                     <li class="navbar-left onglet" ><a href="#" class=" onglet onglet_actif" id="global_map"></a></li>
                     <li class="navbar-left onglet" ><a href="#" class="onglet" id="route_map"></a></li>
-                    <li class="navbar-right"><a href="#"><img id="connection" src="Ressources/connection.png" onMouseOver="this.src = 'Ressources/connection_over.png'" onMouseOut="this.src = 'Ressources/connection.png'" width="25px" onclick=""></a></li><!-- Connexion-->
+                    <li class="navbar-right"><a href="#"><img id="connection" src="Ressources/connection.png" onMouseOver="this.src = 'Ressources/connection_over.png'" onMouseOut="this.src = 'Ressources/connection.png'" width="25px" onclick="deconnect();"></a></li><!-- Connexion-->
                     <li class="navbar-right" style="margin-right:20px; border-left: solid white 1px; padding-left:6px;">
                         <p class="info_perso" style="margin-top:10px;font-weight:bold;"><c:out value="${nom}"/> <c:out value="${prenom}"/></p>
                         <p class="info_perso"><c:out value="${email}"/></p>
                         <a id="modification_link" href="#" onclick=""></a>
                     </li>
                     <li class="navbar-right">
-                        <a href="#" onclick="deconnect();" onmouseover="favoriteOver();" onmouseout="favoriteOut();" style="padding-right:6px;padding-top:9px;">
+                        <a href="#" onclick="" onmouseover="favoriteOver();" onmouseout="favoriteOut();" style="padding-right:6px;padding-top:9px;">
                              <img id="star" style="padding-bottom:4px;" src="Ressources/star.png" width="30px" >
                              <p id="favorite_link"></p>
                         </a>

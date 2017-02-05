@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Laura/Desktop/Geofilm/web/Stylesheets/navigation.css</file>
-            <file>file:/Users/Laura/Desktop/Geofilm/src/java/Controllers/ConnectController.java</file>
-            <file>file:/Users/Laura/Desktop/Geofilm/web/Scripts/strings.js</file>
-            <file>file:/Users/Laura/Desktop/Geofilm/web/Stylesheets/home.css</file>
-            <file>file:/Users/Laura/Desktop/Geofilm/web/WEB-INF/jsp/index.jsp</file>
+            <file>file:/Users/Laura/Desktop/Geofilm/web/Scripts/deconnect.js</file>
+            <file>file:/Users/Laura/Desktop/Geofilm/web/WEB-INF/dispatcher-servlet.xml</file>
+            <file>file:/Users/Laura/Desktop/Geofilm/src/java/Controllers/HomeController.java</file>
+            <file>file:/Users/Laura/Desktop/Geofilm/web/WEB-INF/jsp/globalMap.jsp</file>
         </group>
     </open-files>
 </project-private>

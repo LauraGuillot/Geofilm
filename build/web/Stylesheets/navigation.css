@@ -35,3 +35,58 @@ a:hover{
 #connection:hover{
     background-image: url(../Ressources/connection_over.png);
 }
+
+.onglet {
+    padding:7px;
+    color : white!important;
+    font-weight: 200;
+}
+.onglet:hover{
+    color:#87c2c4!important;
+    text-decoration: underline!important;
+}
+
+.onglet_actif{
+    text-decoration: underline!important;
+    color:#23A1A8 !important;
+    cursor:default;
+}
+.onglet_actif:hover{
+    text-decoration: underline!important;
+    color:#23A1A8 !important;
+}
+
+.info_perso{
+    color:white!important;
+    font-weight: 200;
+    text-align: left;
+    line-height:5pt;
+}
+
+#modification_link{
+   text-align:left!important; 
+   padding:0;
+    font-weight: 200;
+   font-style:italic;
+   text-decoration:underline;
+   color:#87c2c4!important;
+   font-size: 9pt;
+}
+
+#modification_link:hover{
+     color:#23A1A8!important;
+}
+
+#favorite_link{
+   text-align:left!important; 
+   padding:0;
+   font-weight: 200;
+   font-style:italic;
+   text-decoration:underline;
+   color:#fffe83!important;
+   font-size: 9pt;
+}
+
+#favorite_link:hover{
+     color:#FFFF51!important;
+}

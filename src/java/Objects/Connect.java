@@ -49,16 +49,18 @@ public class Connect implements Serializable {
         this.connectId = connectId;
     }
 
+    public Connect(String connectId, String connectLastAction) {
+        this.connectId = connectId;
+        this.connectLastAction = connectLastAction;
+    }
+
     public Connect(String connectId, String connectLastAction, Person personId) {
         this.connectId = connectId;
         this.connectLastAction = connectLastAction;
         this.personId = personId;
     }
     
-    public Connect(String connectId, String connectLastAction) {
-        this.connectId = connectId;
-        this.connectLastAction = connectLastAction;
-    }
+    
 
     public String getConnectId() {
         return connectId;

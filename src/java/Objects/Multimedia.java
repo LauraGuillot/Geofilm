@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -38,9 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Multimedia.findByMultimediaUploadDate", query = "SELECT m FROM Multimedia m WHERE m.multimediaUploadDate = :multimediaUploadDate"),
     @NamedQuery(name = "Multimedia.findByMultimediaFormat", query = "SELECT m FROM Multimedia m WHERE m.multimediaFormat = :multimediaFormat"),
     @NamedQuery(name = "Multimedia.findByMultimediaLanguage", query = "SELECT m FROM Multimedia m WHERE m.multimediaLanguage = :multimediaLanguage"),
-    @NamedQuery(name = "Multimedia.findByMultimediaLike", query = "SELECT m FROM Multimedia m WHERE m.multimediaLike = :multimediaLike"),
-    @NamedQuery(name = "Multimedia.findByMultimediaDislike", query = "SELECT m FROM Multimedia m WHERE m.multimediaDislike = :multimediaDislike"),
-    @NamedQuery(name = "Multimedia.findByMultimediaIsSignaled", query = "SELECT m FROM Multimedia m WHERE m.multimediaIsSignaled = :multimediaIsSignaled"),
     @NamedQuery(name = "Multimedia.findByMultimediaType", query = "SELECT m FROM Multimedia m WHERE m.multimediaType = :multimediaType")})
 public class Multimedia implements Serializable {
 
@@ -67,19 +65,25 @@ public class Multimedia implements Serializable {
     @Column(name = "multimedia_language")
     private String multimediaLanguage;
     @Basic(optional = false)
-    @Column(name = "multimedia_like")
-    private int multimediaLike;
-    @Basic(optional = false)
-    @Column(name = "multimedia_dislike")
-    private int multimediaDislike;
-    @Basic(optional = false)
-    @Column(name = "multimedia_is_signaled")
-    private int multimediaIsSignaled;
-    @Basic(optional = false)
     @Column(name = "multimedia_type")
     private String multimediaType;
-    @ManyToMany(mappedBy = "multimediaCollection")
+    @JoinTable(name = "badlocation", joinColumns = {
+        @JoinColumn(name = "multimedia_id", referencedColumnName = "multimedia_id")}, inverseJoinColumns = {
+        @JoinColumn(name = "person_id", referencedColumnName = "person_id")})
+    @ManyToMany
     private Collection<Person> personCollection;
+    @JoinTable(name = "disliked", joinColumns = {
+        @JoinColumn(name = "multimedia_id", referencedColumnName = "multimedia_id")}, inverseJoinColumns = {
+        @JoinColumn(name = "person_id", referencedColumnName = "person_id")})
+    @ManyToMany
+    private Collection<Person> personCollection1;
+    @ManyToMany(mappedBy = "multimediaCollection2")
+    private Collection<Person> personCollection2;
+    @JoinTable(name = "liked", joinColumns = {
+        @JoinColumn(name = "multimedia_id", referencedColumnName = "multimedia_id")}, inverseJoinColumns = {
+        @JoinColumn(name = "person_id", referencedColumnName = "person_id")})
+    @ManyToMany
+    private Collection<Person> personCollection3;
     @JoinColumn(name = "location_id", referencedColumnName = "location_id")
     @ManyToOne(optional = false)
     private Location locationId;
@@ -97,15 +101,12 @@ public class Multimedia implements Serializable {
         this.multimediaId = multimediaId;
     }
 
-    public Multimedia(Integer multimediaId, String multimediaTitle, String multimediaDescription, String multimediaPath, String multimediaUploadDate, int multimediaLike, int multimediaDislike, int multimediaIsSignaled, String multimediaType) {
+    public Multimedia(Integer multimediaId, String multimediaTitle, String multimediaDescription, String multimediaPath, String multimediaUploadDate, String multimediaType) {
         this.multimediaId = multimediaId;
         this.multimediaTitle = multimediaTitle;
         this.multimediaDescription = multimediaDescription;
         this.multimediaPath = multimediaPath;
         this.multimediaUploadDate = multimediaUploadDate;
-        this.multimediaLike = multimediaLike;
-        this.multimediaDislike = multimediaDislike;
-        this.multimediaIsSignaled = multimediaIsSignaled;
         this.multimediaType = multimediaType;
     }
 
@@ -165,30 +166,6 @@ public class Multimedia implements Serializable {
         this.multimediaLanguage = multimediaLanguage;
     }
 
-    public int getMultimediaLike() {
-        return multimediaLike;
-    }
-
-    public void setMultimediaLike(int multimediaLike) {
-        this.multimediaLike = multimediaLike;
-    }
-
-    public int getMultimediaDislike() {
-        return multimediaDislike;
-    }
-
-    public void setMultimediaDislike(int multimediaDislike) {
-        this.multimediaDislike = multimediaDislike;
-    }
-
-    public int getMultimediaIsSignaled() {
-        return multimediaIsSignaled;
-    }
-
-    public void setMultimediaIsSignaled(int multimediaIsSignaled) {
-        this.multimediaIsSignaled = multimediaIsSignaled;
-    }
-
     public String getMultimediaType() {
         return multimediaType;
     }
@@ -204,6 +181,33 @@ public class Multimedia implements Serializable {
 
     public void setPersonCollection(Collection<Person> personCollection) {
         this.personCollection = personCollection;
+    }
+
+    @XmlTransient
+    public Collection<Person> getPersonCollection1() {
+        return personCollection1;
+    }
+
+    public void setPersonCollection1(Collection<Person> personCollection1) {
+        this.personCollection1 = personCollection1;
+    }
+
+    @XmlTransient
+    public Collection<Person> getPersonCollection2() {
+        return personCollection2;
+    }
+
+    public void setPersonCollection2(Collection<Person> personCollection2) {
+        this.personCollection2 = personCollection2;
+    }
+
+    @XmlTransient
+    public Collection<Person> getPersonCollection3() {
+        return personCollection3;
+    }
+
+    public void setPersonCollection3(Collection<Person> personCollection3) {
+        this.personCollection3 = personCollection3;
     }
 
     public Location getLocationId() {

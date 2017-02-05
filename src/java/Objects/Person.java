@@ -58,13 +58,21 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @Column(name = "person_password")
     private String personPassword;
+    @ManyToMany(mappedBy = "personCollection")
+    private Collection<Multimedia> multimediaCollection;
+    @ManyToMany(mappedBy = "personCollection1")
+    private Collection<Multimedia> multimediaCollection1;
     @JoinTable(name = "favorite", joinColumns = {
         @JoinColumn(name = "person_id", referencedColumnName = "person_id")}, inverseJoinColumns = {
         @JoinColumn(name = "multimedia_id", referencedColumnName = "multimedia_id")})
     @ManyToMany
-    private Collection<Multimedia> multimediaCollection;
+    private Collection<Multimedia> multimediaCollection2;
+    @ManyToMany(mappedBy = "personCollection3")
+    private Collection<Multimedia> multimediaCollection3;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisher")
-    private Collection<Multimedia> multimediaCollection1;
+    private Collection<Multimedia> multimediaCollection4;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personId")
+    private Collection<Connect> connectCollection;
 
     public Person() {
     }
@@ -137,6 +145,42 @@ public class Person implements Serializable {
 
     public void setMultimediaCollection1(Collection<Multimedia> multimediaCollection1) {
         this.multimediaCollection1 = multimediaCollection1;
+    }
+
+    @XmlTransient
+    public Collection<Multimedia> getMultimediaCollection2() {
+        return multimediaCollection2;
+    }
+
+    public void setMultimediaCollection2(Collection<Multimedia> multimediaCollection2) {
+        this.multimediaCollection2 = multimediaCollection2;
+    }
+
+    @XmlTransient
+    public Collection<Multimedia> getMultimediaCollection3() {
+        return multimediaCollection3;
+    }
+
+    public void setMultimediaCollection3(Collection<Multimedia> multimediaCollection3) {
+        this.multimediaCollection3 = multimediaCollection3;
+    }
+
+    @XmlTransient
+    public Collection<Multimedia> getMultimediaCollection4() {
+        return multimediaCollection4;
+    }
+
+    public void setMultimediaCollection4(Collection<Multimedia> multimediaCollection4) {
+        this.multimediaCollection4 = multimediaCollection4;
+    }
+
+    @XmlTransient
+    public Collection<Connect> getConnectCollection() {
+        return connectCollection;
+    }
+
+    public void setConnectCollection(Collection<Connect> connectCollection) {
+        this.connectCollection = connectCollection;
     }
 
     @Override

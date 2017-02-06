@@ -25,6 +25,7 @@ function loadText() {
         document.getElementById("click_here").innerHTML = click_here_fr;
         document.getElementById("click_here2").innerHTML = click_here_fr;
         document.getElementById("membership2").innerHTML = membership2_fr;
+        document.getElementById("mandatory").innerHTML = mandatory_fr;
         //INSCRIPTION
         document.getElementById("valid_inscription").innerHTML = validation_fr;
         document.getElementById("inscription_password_label").innerHTML = inscription_password_fr;
@@ -33,5 +34,11 @@ function loadText() {
         document.getElementById("inscription_name_label").innerHTML = name_fr;
         document.getElementById("inscription_firstname_label").innerHTML = firstname_fr;
         document.getElementById("inscription").innerHTML = inscription_fr;
+        document.getElementById("mandatory2").innerHTML = mandatory_fr;
+        //PASSWORD FORGOTTEN
+        document.getElementById("password_title").innerHTML = password_title_fr;
+        document.getElementById("password_forgotten_email_label").innerHTML = email_fr;
+        document.getElementById("mandatory3").innerHTML = mandatory_fr;
+        document.getElementById("valid_password_forgotten").innerHTML = validation_fr;
     }
 }

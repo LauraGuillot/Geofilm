@@ -2,6 +2,34 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/inscription.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Stylesheets/global_map.css</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/load_map.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Managers/ConnectManagerImpl.java</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/connect.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/home.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Stylesheets/home.css</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/WEB-INF/jsp/globalMap.jsp</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Ressources/connection.png</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Servlets/ControlConnexionServlet.java</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Controllers/ConnectController.java</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Objects/Person.java</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Controllers/HomeController.java</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Servlets/UpdateConnexionServlet.java</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Stylesheets/button.css</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Ressources/logo1.png</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/update_connexion.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Stylesheets/modal_form.css</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/deconnect.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/language.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/position_tracker.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/WEB-INF/jsp/index.jsp</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/strings.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Stylesheets/modal_error.css</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Ressources/marker_blue.png</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/WEB-INF/applicationContext.xml</file>
+        </group>
     </open-files>
 </project-private>

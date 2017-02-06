@@ -24,6 +24,7 @@ var membership2_fr = " pour vous inscrire.";
 var error_email_fr = "Adresse email invalide";
 var error_empty_password_fr = "Veuillez saisir un mot de passe";
 var error_authentification_fr = "Erreur d'identification";
+var mandatory_fr = "* Champ(s) obligatoire(s)";
 
 //INSCRIPTION
 var inscription_fr = "INSCRIPTION";
@@ -35,7 +36,7 @@ var error_name_fr="Veuillez saisir votre nom";
 var error_firstname_fr="Veuillez saisir votre prénom";
 var error_password_fr="Veuillez saisir un mot de passe d'au moins 6 caractères.";
 var error_passwords_fr="Les mots de passe ne correspondent pas.";
-var error_email_already_taken_fr ="Cette adresse email est déjà utilisée."
+var error_email_already_taken_fr ="Cette adresse email est déjà utilisée.";
 
 //Navigation
 var global_map_fr ="GLOBAL MAP";
@@ -58,3 +59,7 @@ var video_fr ="Video";
 var image_fr = "Image";
 var sound_fr ="Son";
 var remode_bad_location_fr = "Retirer les contenus mal géolocalisés"
+
+//Mot de passe oublié
+var password_title_fr = "MOT DE PASSE OUBLIE";
+var error_email_not_found_fr = "Cette adresse email est inconnue de notre base de données";

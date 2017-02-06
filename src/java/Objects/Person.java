@@ -40,6 +40,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Person.findByPersonPassword", query = "SELECT p FROM Person p WHERE p.personPassword = :personPassword")})
 public class Person implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personId")
+    private Collection<Badlocation> badlocationCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -195,6 +198,15 @@ public class Person implements Serializable {
     @Override
     public String toString() {
         return "Objects.Person[ personId=" + personId + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Badlocation> getBadlocationCollection() {
+        return badlocationCollection;
+    }
+
+    public void setBadlocationCollection(Collection<Badlocation> badlocationCollection) {
+        this.badlocationCollection = badlocationCollection;
     }
     
 }

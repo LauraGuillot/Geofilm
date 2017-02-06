@@ -21,7 +21,7 @@ var blueIcon = L.icon({
     shadowSize: [24, 24], // size of the shadow
     iconAnchor: [12, 17], // point of the icon which will correspond to marker's location
     shadowAnchor: [12, 17], // the same for the shadow
-    popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor: [0, -12] // point from which the popup should open relative to the iconAnchor
 });
 
 //Marquer rouge pour les multimédias
@@ -32,7 +32,7 @@ var redIcon = L.icon({
     shadowSize: [24, 24], // size of the shadow
     iconAnchor: [12, 17], // point of the icon which will correspond to marker's location
     shadowAnchor: [12, 17], // the same for the shadow
-    popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor: [0, -12] // point from which the popup should open relative to the iconAnchor
 });
 
 

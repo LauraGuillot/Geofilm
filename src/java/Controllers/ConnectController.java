@@ -15,7 +15,10 @@ import Managers.MultimediaManager;
 import Managers.MultimediaManagerImpl;
 import Managers.PersonManager;
 import Managers.PersonManagerImpl;
+import Objects.Location;
+import Objects.Multimedia;
 import Objects.Person;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -26,7 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ConnectController {
-    
+
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView post(@RequestParam("email") String email, @RequestParam("mdp") String mdp) {
         ModelAndView r = new ModelAndView("redirect:globalMap.htm");
@@ -42,10 +45,10 @@ public class ConnectController {
         //Connexion de l'utilisateur 
         String idco = cm.connect(p);
         r.addObject("idco", idco);
-        
+
         return r;
     }
-    
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView get(HttpServletRequest request, HttpServletResponse response, @RequestParam("idco") String idco) {
         ModelAndView result = new ModelAndView("globalMap");
@@ -63,9 +66,16 @@ public class ConnectController {
         //Récupération des multimédias
         MultimediaManager mm = MultimediaManagerImpl.getInstance();
         LocationManager lm = LocationManagerImpl.getInstance();
-        result.addObject("markers", lm.getMarkers());
-        result.addObject("multis", mm.getMultiByPos(lm.getMarkers()));
-        
+        ArrayList<Location> markers = lm.getMarkers();
+        result.addObject("markers", markers);
+        ArrayList<ArrayList<Multimedia>> multis = mm.getMultiByPos(markers);
+        result.addObject("multis", multis);
+
+        //Pour chaque multimédia : like, dislike et bad location
+        result.addObject("likes", mm.getLikes(multis));
+        result.addObject("dislikes", mm.getDislikes(multis));
+        result.addObject("badloc", mm.getBadLoc(multis));
+
         return result;
     }
 }

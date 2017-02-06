@@ -47,3 +47,9 @@ function favoriteOut() {
     document.getElementById("star").src = "Ressources/star.png";
 }
 
+
+
+
+
+
+	

@@ -44,6 +44,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Multimedia.findByMultimediaType", query = "SELECT m FROM Multimedia m WHERE m.multimediaType = :multimediaType")})
 public class Multimedia implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimediaId")
+    private Collection<Badlocation> badlocationCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -242,6 +245,15 @@ public class Multimedia implements Serializable {
     @Override
     public String toString() {
         return "Objects.Multimedia[ multimediaId=" + multimediaId + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Badlocation> getBadlocationCollection() {
+        return badlocationCollection;
+    }
+
+    public void setBadlocationCollection(Collection<Badlocation> badlocationCollection) {
+        this.badlocationCollection = badlocationCollection;
     }
     
 }

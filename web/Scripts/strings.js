@@ -44,4 +44,17 @@ var modification_fr="Modifier";
 var favorite_fr ="Favoris";
 
 //Modification des informations personnelles
-var modif_infos_fr = "MODIFICATION DES INFORMATIONS PERSONNELLES"
+var modif_infos_fr = "MODIFICATION DES INFORMATIONS PERSONNELLES";
+
+//Pop-up pour les markers
+var by_fr = "Par ";
+var the_fr=" le ";
+var sort_by_fr="Trier par :";
+var title_fr ="Titre";
+var date_fr="Date";
+var likes_fr="Likes";
+var source_type_fr ="Type de contenu :";
+var video_fr ="Video";
+var image_fr = "Image";
+var sound_fr ="Son";
+var remode_bad_location_fr = "Retirer les contenus mal géolocalisés"

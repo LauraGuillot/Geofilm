@@ -49,10 +49,18 @@
     <body onload="load();">
 
         <!-- CHARGEMENT DES DONNEES -->
+       
+        <!-- Données personnelles-->
         <input type="hidden" id="name" value="<c:out value="${nom}"/>"/> 
         <input type="hidden" id="firstname" value="<c:out value="${prenom}"/>"/> 
         <input type="hidden" id="email" value="<c:out value="${email}"/>"/> 
         <input type="hidden" id="idco" value="<c:out value="${idco}"/>"/> 
+        
+         <!-- Markers (positions) -->
+        <input type="hidden" id="nbMarkers" value="<c:out value="${fn:length(markers)}"/>"/> 
+        <c:forEach var="p" items="${markers}" varStatus="status">
+            <input type="hidden" id="p<c:out value="${status.index}"/>" value="<c:out value="${p['locationThegeom']}"/>"/>
+        </c:forEach>
 
         <!-- NAVIGATION -->
         <nav class="navbar-default navbar " role="navigation">

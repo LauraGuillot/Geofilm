@@ -51,8 +51,6 @@ function modif() {
         xhttp.open("GET", "ModifInfoServlet?" + data, true);
         xhttp.setRequestHeader("Content-Type", "text/html; charset=UTF-8");
         xhttp.send();
-
-
     }
 }
 

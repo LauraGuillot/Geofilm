@@ -44,9 +44,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Multimedia.findByMultimediaType", query = "SELECT m FROM Multimedia m WHERE m.multimediaType = :multimediaType")})
 public class Multimedia implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimedia")
-    private Collection<Liked> likedCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,18 +74,8 @@ public class Multimedia implements Serializable {
         @JoinColumn(name = "person_id", referencedColumnName = "person_id")})
     @ManyToMany
     private Collection<Person> personCollection;
-    @JoinTable(name = "disliked", joinColumns = {
-        @JoinColumn(name = "multimedia_id", referencedColumnName = "multimedia_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "person_id", referencedColumnName = "person_id")})
-    @ManyToMany
+    @ManyToMany(mappedBy = "multimediaCollection1")
     private Collection<Person> personCollection1;
-    @ManyToMany(mappedBy = "multimediaCollection2")
-    private Collection<Person> personCollection2;
-    @JoinTable(name = "liked", joinColumns = {
-        @JoinColumn(name = "multimedia_id", referencedColumnName = "multimedia_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "person_id", referencedColumnName = "person_id")})
-    @ManyToMany
-    private Collection<Person> personCollection3;
     @JoinColumn(name = "location_id", referencedColumnName = "location_id")
     @ManyToOne(optional = false)
     private Location locationId;
@@ -98,6 +85,8 @@ public class Multimedia implements Serializable {
     @JoinColumn(name = "source_id", referencedColumnName = "source_id")
     @ManyToOne(optional = false)
     private Source sourceId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimedia")
+    private Collection<Liked> likedCollection;
 
     public Multimedia() {
     }
@@ -197,24 +186,6 @@ public class Multimedia implements Serializable {
         this.personCollection1 = personCollection1;
     }
 
-    @XmlTransient
-    public Collection<Person> getPersonCollection2() {
-        return personCollection2;
-    }
-
-    public void setPersonCollection2(Collection<Person> personCollection2) {
-        this.personCollection2 = personCollection2;
-    }
-
-    @XmlTransient
-    public Collection<Person> getPersonCollection3() {
-        return personCollection3;
-    }
-
-    public void setPersonCollection3(Collection<Person> personCollection3) {
-        this.personCollection3 = personCollection3;
-    }
-
     public Location getLocationId() {
         return locationId;
     }
@@ -237,6 +208,15 @@ public class Multimedia implements Serializable {
 
     public void setSourceId(Source sourceId) {
         this.sourceId = sourceId;
+    }
+
+    @XmlTransient
+    public Collection<Liked> getLikedCollection() {
+        return likedCollection;
+    }
+
+    public void setLikedCollection(Collection<Liked> likedCollection) {
+        this.likedCollection = likedCollection;
     }
 
     @Override
@@ -262,15 +242,6 @@ public class Multimedia implements Serializable {
     @Override
     public String toString() {
         return "Objects.Multimedia[ multimediaId=" + multimediaId + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Liked> getLikedCollection() {
-        return likedCollection;
-    }
-
-    public void setLikedCollection(Collection<Liked> likedCollection) {
-        this.likedCollection = likedCollection;
     }
     
 }

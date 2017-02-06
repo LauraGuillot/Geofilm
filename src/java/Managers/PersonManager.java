@@ -7,7 +7,10 @@
  */
 package Managers;
 
+import Objects.Liked;
+import Objects.Multimedia;
 import Objects.Person;
+import java.util.ArrayList;
 
 public interface PersonManager {
 
@@ -46,4 +49,29 @@ public interface PersonManager {
      * @param email Adresse Email
      */
     public void updateInfos(Person p, String name, String firstname, String email);
+
+    /**
+     * Renvoi des favoris d'une personne
+     *
+     * @param p Personne p
+     * @return Liste de multimédias favoris
+     */
+    public ArrayList<Multimedia> getFavorite(Person p);
+
+    /**
+     * Renvoi de tous les likes faits par une personne
+     *
+     * @param p Persone
+     * @return Liste de likes
+     */
+    public ArrayList<Liked> getLike(Person p);
+
+    /**
+     * Renvoi de la liste des multimédias signalés comme mal gélolocalisés par
+     * une personne
+     *
+     * @param p Personne
+     * @return Liste de multimédias
+     */
+    public ArrayList<Multimedia> getBadLoc(Person p);
 }

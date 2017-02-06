@@ -10,8 +10,9 @@ function askForUpdate(idco) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
         }
     };
-    xhttp.open("POST", "UpdateConnexionServlet", true);
+    var data = "idco=" + idco;
+    xhttp.open("GET", "UpdateConnexionServlet?" + data, true);
     xhttp.setRequestHeader("Content-Type", "text/html; charset=UTF-8");
-    xhttp.send("idco=" + idco);
+    xhttp.send();
 }
 

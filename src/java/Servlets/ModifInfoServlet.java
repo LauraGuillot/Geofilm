@@ -3,8 +3,11 @@
  */
 package Servlets;
 
+import Managers.ConnectManager;
+import Managers.ConnectManagerImpl;
 import Managers.PersonManager;
 import Managers.PersonManagerImpl;
+import Objects.Connect;
 import Objects.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ModifInfoServlet", urlPatterns = {"/ModifInfoServlet"})
 public class ModifInfoServlet extends HttpServlet {
- /**
+
+    /**
      * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
@@ -32,23 +36,33 @@ public class ModifInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //On récupère les paramètres
         String email = request.getParameter("email");
         String idco = request.getParameter("idco");
         String name = request.getParameter("name");
         String firstname = request.getParameter("firstname");
 
+        //Mise à jour des connexions
+        ConnectManager cm = ConnectManagerImpl.getInstance();
+        Connect c = cm.getByConnectId(idco);
+        cm.updateConnection(c);
+        cm.checkConnection();
+
         PersonManager pm = PersonManagerImpl.getInstance();
+        //On récupère la personne qiu correspond à l'email
         Person p = pm.findPersonByEmail(email);
-        Person p1=pm.findPerson(idco);
+        //On récupère la personne qui correspond à l'identifiant de connexion
+        Person p1 = pm.findPerson(idco);
 
         //On teste si le nouveau email est déjà utilisé par un autre utilisateur ou non 
-        Boolean b = (p == null)||(p.equals(p1));
+        Boolean b = (p == null) || (p.equals(p1));
 
         //Update
         if (b) {
-            pm.updateInfos(p1,email,name,firstname);
+            pm.updateInfos(p1, name, firstname,email);
         }
 
+        //Envoi de la réponse : booléen vrai si l'email n'est pas celui d'un autre utilisateur
         response.setContentType("text/html; charset=UTF-8");
         response.getWriter().write(b + "");
     }

@@ -36,7 +36,7 @@ var error_name_fr="Veuillez saisir votre nom";
 var error_firstname_fr="Veuillez saisir votre prénom";
 var error_password_fr="Veuillez saisir un mot de passe d'au moins 6 caractères.";
 var error_passwords_fr="Les mots de passe ne correspondent pas.";
-var error_email_already_taken_fr ="Cette adresse email est déjà utilisée."
+var error_email_already_taken_fr ="Cette adresse email est déjà utilisée.";
 
 //Navigation
 var global_map_fr ="GLOBAL MAP";
@@ -45,4 +45,8 @@ var modification_fr="Modifier";
 var favorite_fr ="Favoris";
 
 //Modification des informations personnelles
-var modif_infos_fr = "MODIFICATION DES INFORMATIONS PERSONNELLES"
+var modif_infos_fr = "MODIFICATION DES INFORMATIONS PERSONNELLES";
+
+//Mot de passe oublié
+var password_title_fr = "MOT DE PASSE OUBLIE";
+var error_email_not_found_fr = "Cette adresse email est inconnue de notre base de données";

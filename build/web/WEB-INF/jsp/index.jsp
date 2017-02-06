@@ -104,7 +104,7 @@
 
                     <center><div class="info_link" style="margin-bottom: 20px">
                         <div class="info_link" id="password_forgotten"></div>
-                        <a id="click_here" class="click_here" href="#"></a>
+                        <a id="click_here" class="click_here" href="#" onclick="pop_obtain_password()"></a>
                         <div class="info_link">.</div>
                         </div></center>
 
@@ -145,6 +145,30 @@
                     <p class="label_form_small" id="mandatory2"></p>
 
                     <center><button id ="valid_inscription" type="button" class="button small_button" onclick="inscription()" style="margin-top: 20px"></button></center>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!--POPUP : password forgotten-->
+    <div class="modal fade" id="password_forgotten_form" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content modal_form">
+
+                <button class="close" data-dismiss="modal">&times;</button>
+                
+                <p id="password_title" class= "title"  style="margin-top: 40px"</p> 
+                <p id="password_forgotten_error" class="error_message"></p>
+
+                <div class="modal-body">  
+                     <p  class="label_form" id="password_forgotten_email_label"></p>
+                    <input  type="text" name="name" id="password_forgotten_email">
+                    
+                    <p class="label_form_small" id="mandatory3"></p>
+
+                    <center><button id ="valid_password_forgotten" type="button" class="button small_button" onclick="obtain_password()" style="margin-top: 20px"></button></center>
 
                 </div>
             </div>

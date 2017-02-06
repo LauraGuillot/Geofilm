@@ -7,5 +7,17 @@ html, body {
     height:92%;
     width:100%;
     margin: 0px;
-    padding: 0px;
+
+    padding: 0px!important;
 }
+
+#mapid{
+    margin: 0px;
+    padding: 0px;
+    height:100%;
+    width: 100%;
+}
+.leaflet-touch .leaflet-bar a{
+    color :#23a1a8!important;
+}
+

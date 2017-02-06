@@ -60,8 +60,7 @@ public class Connect implements Serializable {
         this.personId = personId;
     }
     
-    
-
+   
     public String getConnectId() {
         return connectId;
     }

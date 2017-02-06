@@ -9,6 +9,10 @@ package Controllers;
  */
 import Managers.ConnectManager;
 import Managers.ConnectManagerImpl;
+import Managers.LocationManager;
+import Managers.LocationManagerImpl;
+import Managers.MultimediaManager;
+import Managers.MultimediaManagerImpl;
 import Managers.PersonManager;
 import Managers.PersonManagerImpl;
 import Objects.Person;
@@ -22,26 +26,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ConnectController {
-
+    
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView post(@RequestParam("email") String email, @RequestParam("mdp") String mdp) {
         ModelAndView r = new ModelAndView("redirect:globalMap.htm");
-        
+
         //Mise à jour des connexion dans la base de données
         ConnectManager cm = ConnectManagerImpl.getInstance();
         cm.checkConnection();
-        
+
         //Récupération de l'utilisateur
         PersonManager pm = PersonManagerImpl.getInstance();
         Person p = pm.findPersonByEmail(email);
-        
+
         //Connexion de l'utilisateur 
         String idco = cm.connect(p);
         r.addObject("idco", idco);
         
         return r;
     }
-
+    
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView get(HttpServletRequest request, HttpServletResponse response, @RequestParam("idco") String idco) {
         ModelAndView result = new ModelAndView("globalMap");
@@ -51,14 +55,17 @@ public class ConnectController {
         Person p = pm.findPerson(idco);
         result.addObject("email", p.getPersonEmail());
         result.addObject("nom", p.getPersonName());
-        result.addObject("prenom",p.getPersonFirstname());
+        result.addObject("prenom", p.getPersonFirstname());
 
         //Connexion de l'utilisateur 
         result.addObject("idco", idco);
-        
-        //Récupération des multimédias
-        //TODO
 
+        //Récupération des multimédias
+        MultimediaManager mm = MultimediaManagerImpl.getInstance();
+        LocationManager lm = LocationManagerImpl.getInstance();
+        result.addObject("markers", lm.getMarkers());
+        result.addObject("multis", mm.getMultiByPos(lm.getMarkers()));
+        
         return result;
     }
 }

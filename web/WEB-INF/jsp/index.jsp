@@ -44,6 +44,7 @@
         <script src="Scripts/home.js"></script>
         <script src="Scripts/connect.js"></script>
         <script src="Scripts/inscription.js"></script>
+        <script src="Scripts/password_forgotten.js"></script>
 
     </head>
 

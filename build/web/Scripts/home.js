@@ -38,7 +38,7 @@ function loadText() {
         //PASSWORD FORGOTTEN
         document.getElementById("password_title").innerHTML = password_title_fr;
         document.getElementById("password_forgotten_email_label").innerHTML = email_fr;
-        document.getElementById("mandatory3").innerHTML = mandatory_fr;
+        //document.getElementById("mandatory3").innerHTML = mandatory_fr;
         document.getElementById("valid_password_forgotten").innerHTML = validation_fr;
     }
 }

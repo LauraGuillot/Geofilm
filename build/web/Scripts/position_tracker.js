@@ -4,7 +4,6 @@ var long = 2.287592000000018;
 
 //Précédente position enregistrée
 var prec;
-
 var center = 0;
 
 /*

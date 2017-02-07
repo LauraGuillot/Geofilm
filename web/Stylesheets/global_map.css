@@ -17,6 +17,18 @@ html, body {
     width: 100%;
     position:absolute;
 }
-.leaflet-touch .leaflet-bar a{
-    color :#23a1a8!important;
+
+.suggestions{
+     background-color: #2b2f36!important; 
+      opacity:0.9;
 }
+
+.mapboxgl-ctrl-geocoder ul > li.active > a{
+      background-color: black!important; 
+}
+
+.links{
+    max-height: 250px;
+    overflow-y: auto;
+}
+

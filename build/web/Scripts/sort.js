@@ -176,11 +176,3 @@ function compareDate(a, b) {
     return (annee1 > annee2) || (annee1 == annee2 && mois1 > mois2) || (annee1 == annee2 && mois1 == mois2 && jour1 > jour2);
 }
 
-/**
- * Tri des multimédias par date d'upload
- * @param {type} multis tableau de mutimédias
- */
-function dateSort(multis) {
-
-}
-

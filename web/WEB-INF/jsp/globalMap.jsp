@@ -16,14 +16,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <!-- LEAFLET LIBRARY -->
-        <script src="leaflet/leaflet-src.js"></script>
-        <script src="leaflet/leaflet.js"></script>
-        <script src="leaflet/leaflet-search.js"></script>
-        <link rel="stylesheet" type="text/css" media="screen" href="leaflet/leaflet.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="leaflet/leaflet-search.css">
-
-
+        <!--MAP BOX -->
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet' />
+        <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'></script>
+        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css' />
 
         <!-- CHAINES DE CARACTERES -->
         <script src="Scripts/language.js"></script>
@@ -37,11 +34,10 @@
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/modal_form.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/font.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/pop_up_marker.css">
+         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/marker.css">
 
         <!-- MAP -->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-        <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-        <script src="Scripts/position_tracker.js"></script>
+        <script src="Scripts/mapbox_tracker.js"></script>
         <script src="Scripts/load_map_2.js"></script>
 
         <!-- SCRIPTS -->
@@ -110,16 +106,11 @@
             </div>
         </nav>
 
-
         <!-- CONTENU PRINCIPAL -->
         <div class="container">   
-
             <!-- Map -->
             <div id="mapid" class="col-md-8"> </div>
-
         </div>
-
-
 
         <!--POPUP : modification des informations personnelles-->
         <div class="modal fade" id="modification_form" role="dialog">
@@ -138,9 +129,7 @@
                         <input  type="text" name="firstname" id="firstname_input">
                         <p  class="label_form" id="email_label"></p>
                         <input  type="text" name="email" id="email_input">
-
                         <center><button id ="valid_modif" type="button" class="button small_button" onclick="modif();"></button></center>
-
                     </div>
                 </div>
             </div>

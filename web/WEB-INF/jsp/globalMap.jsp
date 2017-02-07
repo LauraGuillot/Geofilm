@@ -110,6 +110,10 @@
         <div class="container">   
             <!-- Map -->
             <div id="mapid" class="col-md-8"> </div>
+            <button id="upload" onmouseover="overUpload();" onmouseout="outUpload();">
+                <p id="upload_text" style="display:none"></p>
+                <img id="upload_img" src="Ressources/upload.png" width="30px" height="30px"/>
+            </button>
         </div>
 
         <!--POPUP : modification des informations personnelles-->

@@ -25,6 +25,9 @@ function loadText() {
         document.getElementById("email_label").innerHTML = email_fr;
         document.getElementById("modification_title").innerHTML = modif_infos_fr;
         document.getElementById("valid_modif").innerHTML = validation_fr;
+        
+        //BOUTON UPLOAD
+         document.getElementById("upload_text").innerHTML = upload_fr;
 
     }
 }
@@ -48,8 +51,21 @@ function favoriteOut() {
 }
 
 
-
-
-
+/**
+ * Fonction d'affichage dynamique pour le bouton d'upload
+ */
+function overUpload(){
+      document.getElementById("upload_img").src = "Ressources/upload_over.png";
+      document.getElementById("upload_img").className="img_over";
+       document.getElementById("upload_text").style.display = "block";
+}
+/**
+ * Fonction d'affichage dynamique pour le bouton d'upload
+ */
+function outUpload(){
+      document.getElementById("upload_img").src = "Ressources/upload.png";
+       document.getElementById("upload_img").className="";
+       document.getElementById("upload_text").style.display = "none";
+}
 
 	

@@ -19,12 +19,12 @@ html, body {
 }
 
 .suggestions{
-     background-color: #2b2f36!important; 
-      opacity:0.9;
+    background-color: #2b2f36!important; 
+    opacity:0.9;
 }
 
 .mapboxgl-ctrl-geocoder ul > li.active > a{
-      background-color: black!important; 
+    background-color: black!important; 
 }
 
 .links{
@@ -32,3 +32,33 @@ html, body {
     overflow-y: auto;
 }
 
+#upload{
+    position:fixed;
+    z-index: 10;
+    margin:0;
+    margin-top: 3%;
+    background-color: rgba(43,47,54,0.8); 
+    padding:4px;
+    height:40px;
+    width:40px;
+    border:none;
+    outline:none;
+}
+
+
+#upload:hover{
+    width:130px;
+}
+
+
+#upload_text{
+    color:#23a1a8!important;
+    position:absolute;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top:5px;
+}
+
+.img_over{
+     margin-left: 60px;
+}

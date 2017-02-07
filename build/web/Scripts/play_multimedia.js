@@ -1,3 +1,3 @@
-function openMult(id) {
+function openMult(id,i,j) {
 
 }

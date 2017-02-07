@@ -59,7 +59,7 @@ function preparePopUp(marker, i) {
     var html = header(i);
 
     //Pour chaque multimédia, on ajoute un lien
-    html += "<div id=\"pos" + i + "\">"
+    html += "<div id=\"multis_" + i + "\">"
     var cpt = document.getElementById("nbMulti" + i).value;
     for (var j = 0; j < cpt; j++) {
         var li = getLinkMulti(i, j);
@@ -84,7 +84,7 @@ function getLinkMulti(i, j) {
     var date = document.getElementById("pos" + i + "_multi" + j + "_uploaddate").value;
     var type = document.getElementById("pos" + i + "_multi" + j + "_type").value;
 
-    html += "<a class=\"link_marker\"  onclick=\"openMult("+id+")\">";
+    html += "<a class=\"link_marker\"  onclick=\"openMult("+id+","+i+","+j+")\">";
     html += "<div class=\"p_group\"><p class=\"link_title\">";
     html += title;
     html += "</p>";
@@ -136,7 +136,11 @@ function header(i) {
     html += "<label><input id=\"sound_" + i + "\" class=\"checkbox_marker\" type=\"checkbox\" name=\"sound\" value=\"sound\" onclick=\"sort("+i+")\"checked>";
     html += sound_fr + "</label>";
     html += "</div>";
-
+    
+    html += "<br><div class=\"checkbox_pop\">";
+    html += "<label><input id=\"badloc_" + i + "\" class=\"checkbox_marker\" type=\"checkbox\" name=\"badloc\" value=\"badloc\" onclick=\"sort("+i+")\">";
+    html += remove_bad_location_fr + "</label>";
+    html += "</div>";
 
     html += "<HR align=center size=5 width=\"90%\">";
 

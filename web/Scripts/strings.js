@@ -58,7 +58,7 @@ var source_type_fr ="Type de contenu :";
 var video_fr ="Video";
 var image_fr = "Image";
 var sound_fr ="Son";
-var remode_bad_location_fr = "Retirer les contenus mal géolocalisés"
+var remove_bad_location_fr = "Retirer les contenus mal géolocalisés"
 
 //Mot de passe oublié
 var password_title_fr = "MOT DE PASSE OUBLIE";

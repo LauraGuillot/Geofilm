@@ -9,6 +9,7 @@ package Managers;
 
 import Objects.Location;
 import Objects.Multimedia;
+import Objects.Person;
 import java.util.ArrayList;
 
 public interface MultimediaManager {
@@ -71,4 +72,24 @@ public interface MultimediaManager {
      * @return Nombre de signalements
      */
     public int getBadLocMult(Multimedia m) ;
+    
+     /**
+     * Récupérer un multimédia par son id
+     * @param id Identifiant
+     * @return Multimédia
+     */
+    public Multimedia getMultById(int id);
+    
+    /**
+     * Récupérer les actions d'une personne sur un multimédia sous la forme
+     * d'une chaîne de caractère de la forme : badloc:[est ce que la personne a
+     * signalé le multimédia ]*favoris:[est ce que la personne a ajouté ce
+     * multimédia à ses favoris]*like:[est ce que la personne a liké le
+     * multimédia]
+     *
+     * @param m Multimedia
+     * @param p Personne
+     * @return Chaîne d'informations
+     */
+    public String getInfosMuliPerson(Multimedia m, Person p);
 }

@@ -25,6 +25,7 @@ function sort(i) {
         m.type = type;
         m.likes = likes;
         m.badloc = badloc;
+        m.rank = j;
 
         multis.push(m);
     }
@@ -136,7 +137,8 @@ function displayMultis(i, multis) {
 
         var a = document.createElement('a');
         a.className = "link_marker";
-        a.addEventListener("click", openMult(multis[j].id, i, j), false);
+        var multi = multis[j];
+        a.addEventListener("click", delegate(i, multi.id, multi.rank), false);
 
         var p_group = document.createElement("div");
         p_group.className = "p_group";
@@ -153,6 +155,19 @@ function displayMultis(i, multis) {
         p_group.appendChild(p2);
         a.appendChild(p_group);
         div.appendChild(a);
+    }
+}
+
+/**
+ * Fonction de délégation pour ouvrir un multimédia
+ * @param {type} i Index de la position du multimédia
+ * @param {type} id Id du multimédia
+ * @param {type} j Index du multimédia
+ * @returns {Function}
+ */
+function delegate(i, id, j) {
+    return function () {
+        openMult(i, id, j);
     }
 }
 

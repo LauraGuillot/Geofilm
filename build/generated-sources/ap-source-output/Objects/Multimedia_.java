@@ -1,6 +1,7 @@
 package Objects;
 
 import Objects.Badlocation;
+import Objects.Favorite;
 import Objects.Liked;
 import Objects.Location;
 import Objects.Person;
@@ -10,12 +11,13 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-02-07T10:16:46")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-02-08T19:42:33")
 @StaticMetamodel(Multimedia.class)
 public class Multimedia_ { 
 
     public static volatile SingularAttribute<Multimedia, Source> sourceId;
     public static volatile SingularAttribute<Multimedia, String> multimediaFormat;
+    public static volatile CollectionAttribute<Multimedia, Favorite> favoriteCollection;
     public static volatile CollectionAttribute<Multimedia, Badlocation> badlocationCollection;
     public static volatile SingularAttribute<Multimedia, String> multimediaPath;
     public static volatile CollectionAttribute<Multimedia, Person> personCollection;

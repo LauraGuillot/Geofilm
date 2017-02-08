@@ -114,7 +114,7 @@ function getLinkMulti(i, j) {
     var date = document.getElementById("pos" + i + "_multi" + j + "_uploaddate").value;
     var type = document.getElementById("pos" + i + "_multi" + j + "_type").value;
 
-    html += '<a class="link_marker"  onclick="openMult(' + id + ',' + i + ',' + j + ')">';
+    html += '<a class="link_marker"  onclick="openMult(' + i + ',' + id + ',' + j + ')">';
     html += '<div class="p_group"><p class="link_title">';
     html += title;
     html += '</p>';

@@ -12,6 +12,7 @@
     <class>Objects.Picture</class>
     <class>Objects.Liked</class>
     <class>Objects.Badlocation</class>
+    <class>Objects.Favorite</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/geofilm"/>

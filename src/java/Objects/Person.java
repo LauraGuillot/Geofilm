@@ -41,6 +41,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Person implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "personId")
+    private Collection<Favorite> favoriteCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personId")
     private Collection<Badlocation> badlocationCollection;
 
     private static final long serialVersionUID = 1L;
@@ -207,6 +210,15 @@ public class Person implements Serializable {
 
     public void setBadlocationCollection(Collection<Badlocation> badlocationCollection) {
         this.badlocationCollection = badlocationCollection;
+    }
+
+    @XmlTransient
+    public Collection<Favorite> getFavoriteCollection() {
+        return favoriteCollection;
+    }
+
+    public void setFavoriteCollection(Collection<Favorite> favoriteCollection) {
+        this.favoriteCollection = favoriteCollection;
     }
     
 }

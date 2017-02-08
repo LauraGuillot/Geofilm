@@ -59,7 +59,7 @@ public class ModifInfoServlet extends HttpServlet {
 
         //Update
         if (b) {
-            pm.updateInfos(p1, name, firstname,email);
+            pm.updateInfos(p1, name,firstname,email);
         }
 
         //Envoi de la réponse : booléen vrai si l'email n'est pas celui d'un autre utilisateur

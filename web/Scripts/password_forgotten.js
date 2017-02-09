@@ -30,8 +30,7 @@ function obtain_password() {
                 //Réponse de la servlet
                 var answer = xhttp.responseText;
 
-                //Si l'adresse email n'est pas déjà prise, l'inscription a été effectuée. 
-                //Reste à connecter la personne
+                //Si l'adresse email est dans la base de données, on envoie un mail noreply à l'utilisateur
                 if (answer == "true") {
 
                     //TODO : envoyer un mail en noreply à l'adresse mail entrée
@@ -41,11 +40,15 @@ function obtain_password() {
                     //Si l'addresse email n'est pas déjà dans la base de données :  
                 } else {
                     //Message d'erreur
-                    document.getElementById("inscription_error").innerHTML = error_email_not_found_fr;
+                    document.getElementById("password_forgotten_error").innerHTML = error_email_not_found_fr;
                 }
 
             }
-        }
+        };
+        var data = "email=" + email;
+        xhttp.open("GET", "ControlInscriptionServlet?" + data, true);
+        xhttp.setRequestHeader("Content-Type", "text/html; charset=UTF-8");
+        xhttp.send();
     }
 }
 

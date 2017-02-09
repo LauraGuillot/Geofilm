@@ -45,6 +45,7 @@
         <script src="Scripts/connect.js"></script>
         <script src="Scripts/inscription.js"></script>
         <script src="Scripts/password_forgotten.js"></script>
+        
 
     </head>
 
@@ -165,7 +166,7 @@
 
                 <div class="modal-body">  
                      <p  class="label_form" id="password_forgotten_email_label"></p>
-                    <input  type="text" name="name" id="password_forgotten_email">
+                    <input  type="text" name="email" id="password_forgotten_email">
                     
                     <p class="label_form_small" id="mandatory3"></p>
 

@@ -47,6 +47,7 @@
         <script src="Scripts/modif_infos_perso.js"></script>
         <script src="Scripts/sort.js"></script>
         <script src="Scripts/play_multimedia.js"></script>
+        <script src="Scripts/upload.js"></script>
 
     </head>
     <body onload="load();">
@@ -110,7 +111,7 @@
         <div class="container">   
             <!-- Map -->
             <div id="mapid" class="col-md-8"> </div>
-            <button id="upload" onmouseover="overUpload();" onmouseout="outUpload();">
+            <button id="upload" onmouseover="overUpload();" onmouseout="outUpload();" a href="#" onclick="open_upload()">
                 <p id="upload_text" style="display:none"></p>
                 <img id="upload_img" src="Ressources/upload.png" width="30px" height="30px"/>
             </button>

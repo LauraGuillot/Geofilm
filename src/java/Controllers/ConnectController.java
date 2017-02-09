@@ -34,7 +34,7 @@ public class ConnectController {
     public ModelAndView post(@RequestParam("email") String email, @RequestParam("mdp") String mdp) {
         ModelAndView r = new ModelAndView("redirect:globalMap.htm");
 
-        //Mise à jour des connexion dans la base de données
+        //Mise à jour des connexions dans la base de données
         ConnectManager cm = ConnectManagerImpl.getInstance();
         cm.checkConnection();
 

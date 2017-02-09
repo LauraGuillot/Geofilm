@@ -2,6 +2,8 @@
  * Définition des chaînes de caractères pour les pages HTML
  */
 
+var star_fr = "*";
+
 //GENERAL
 var close_fr = "FERMER";
 var validation_fr = "VALIDER";
@@ -64,3 +66,19 @@ var remove_bad_location_fr = "Retirer les contenus mal géolocalisés"
 //Mot de passe oublié
 var password_title_fr = "MOT DE PASSE OUBLIE";
 var error_email_not_found_fr = "Cette adresse email est inconnue de notre base de données";
+
+//Upload d'un multimédia
+var upload_title_fr = "UPLOADER UN MULTIMEDIA";
+var upload_subtitle1_fr = "Informations générales";
+var upload_type_fr = "Type de contenu* :";
+var upload_video_fr = "Vidéo";
+var upload_image_fr = "Image";
+var upload_sound_fr = "Son";
+var upload_description_fr = "Description";
+var upload_source_fr = "Quelle est la source de votre multimédia ?";
+var upload_source_search_fr = "Choisissez votre source";
+var upload_source_title_fr = "Quel est le titre de votre source ?";
+var upload_source_unknown_fr = "Indéterminée";
+var upload_source_movie_fr = "Film";
+var upload_source_serie_fr = "Série";
+var upload_source_game_fr = "Jeu Vidéo";

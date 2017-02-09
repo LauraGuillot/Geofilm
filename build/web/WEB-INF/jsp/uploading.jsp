@@ -4,7 +4,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<!DOCTYPE html>
+<!--DOCTYPE html-->
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -34,7 +34,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/modal_form.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/font.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/pop_up_marker.css">
-         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/marker.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/marker.css">
 
         <!-- MAP -->
         <script src="Scripts/mapbox_tracker.js"></script>
@@ -42,11 +42,11 @@
 
         <!-- SCRIPTS -->
         <script src="Scripts/update_connexion.js"></script>
-        <script src="Scripts/global_map.js"></script>
         <script src="Scripts/deconnect.js"></script>
         <script src="Scripts/modif_infos_perso.js"></script>
         <script src="Scripts/sort.js"></script>
         <script src="Scripts/play_multimedia.js"></script>
+        <script src="Scripts/uploading.js"></script>
         <script src="Scripts/upload.js"></script>
 
     </head>
@@ -66,23 +66,6 @@
             <input type="hidden" id="p<c:out value="${status.index}"/>" value="<c:out value="${p['locationThegeom']}"/>"/>
         </c:forEach>
 
-        <!--Multimedias-->
-        <c:forEach var="mu" items="${multis}" varStatus="status">
-            <input type="hidden" id="nbMulti<c:out value="${status.index}"/>" value="<c:out value="${fn:length(mu)}"/>"/> 
-            <c:forEach var="m" items="${mu}" varStatus="status1">
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_id"/>" value="<c:out value="${m['multimediaId']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_title"/>" value="<c:out value="${m['multimediaTitle']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_publisher"/>" value="<c:out value="${m['publisher']['personFirstname']}"/> <c:out value="${m['publisher']['personName']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_descr"/>" value="<c:out value="${m['multimediaDescription']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_path"/>" value="<c:out value="${m['multimediaPath']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_uploaddate"/>" value="<c:out value="${m['multimediaUploadDate']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_format"/>" value="<c:out value="${m['multimediaFormat']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_type"/>" value="<c:out value="${m['multimediaType']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_like"/>" value="<c:out value="${likes[status.index][status1.index]}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_dislike"/>" value="<c:out value="${dislikes[status.index][status1.index]}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_badloc"/>" value="<c:out value="${badloc[status.index][status1.index]}"/>"/>
-            </c:forEach>
-        </c:forEach>
 
         <!-- NAVIGATION -->
         <nav class="navbar-default navbar " role="navigation">
@@ -108,36 +91,42 @@
         </nav>
 
         <!-- CONTENU PRINCIPAL -->
-        <div class="container">   
-            <!-- Map -->
-            <div id="mapid" class="col-md-8"> </div>
-            <button id="upload" onmouseover="overUpload();" onmouseout="outUpload();" a href="#" onclick="open_upload()">
-                <p id="upload_text" style="display:none"></p>
-                <img id="upload_img" src="Ressources/upload.png" width="30px" height="30px"/>
-            </button>
-        </div>
-
-        <!--POPUP : modification des informations personnelles-->
-        <div class="modal fade" id="modification_form" role="dialog">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content modal_form">
-
-                    <button class="close" data-dismiss="modal">&times;</button>
-
-                    <center><p id="modification_title" class= "title"  style="margin-top: 40px"</p> </center>
-                    <p id="modification_error" class="error_message"></p>
-
-                    <div class="modal-body">         
-                        <p class="label_form" id="name_label"></p>
-                        <input type="text" name ="name" id="name_input">               
-                        <p  class="label_form" id="firstname_label"></p>
-                        <input  type="text" name="firstname" id="firstname_input">
-                        <p  class="label_form" id="email_label"></p>
-                        <input  type="text" name="email" id="email_input">
-                        <center><button id ="valid_modif" type="button" class="button small_button" onclick="modif();"></button></center>
-                    </div>
-                </div>
+        <div class="container"> 
+            <!--Trois blocs pour l'upload-->
+            <div id="content_general" class="col-md-8">
+                <p class="title" id="upload_multimedia"></p>
+                <p class="title" id="upload_general_information"></p>
+                <br>
+                <p class="label_form" id="upload_type_multimedia"></p>
+                <input type="radio" name="video" id="upload_video" value="v"> 
+                <input type="radio" name="image" id="upload_image" value="i"> 
+                <input type="radio" name="sound" id="upload_sound" value="s"> 
+                <p class="label_form" id="upload_title_multimedia"></p>
+                <p class="label_form" id="star"></p>
+                <br>
+                <input type="text" name="titre" id="upload_title_entered"><!--id = id à retenir pour le fichier upload.js-->
+                <p class="label_form" id="upload_description"></p>
+                <input type="text" name ="description" id="upload_description_entered">
+                <p class="label_form" id="upload_source"></p>
+                <p class="label_form" id="star"></p>
+                <br>
+                <input type="" name="source" id="upload_source_entered">
+                <!--TODO-->
+                <select>
+                    <option id="upload_film"></option>
+                    <option id="upload_serie"></option>
+                    <option id="upload_game"></option>
+                </select>
+                <input type ="submit">
+                <p class="label_form" id="upload_source_title"></p>
+                <br>
+                <input type="text" name="title_source" id="upload_source_title_entered">
+               
             </div>
+            <div class="col-md-8" hidden></div>
         </div>
+
+
     </body>
 </html>
+

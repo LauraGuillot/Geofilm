@@ -1,6 +1,7 @@
 /*
- * Servlet appelée pour l'ouverture d'un multimédia (requetage des informations)
- */
+ * Servlet appelée lorsqu'un utilisateur like ou dislike un multimédia 
+*/
+
 package Servlets;
 
 import Managers.ConnectManager;
@@ -22,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Laura
  */
-@WebServlet(name = "OpenMultimediaServlet", urlPatterns = {"/OpenMultimediaServlet"})
-public class OpenMultimediaServlet extends HttpServlet {
+@WebServlet(name = "LikeServlet", urlPatterns = {"/LikeServlet"})
+public class LikeServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -40,6 +41,7 @@ public class OpenMultimediaServlet extends HttpServlet {
         //On récupère les paramètres
         String idco = request.getParameter("idco");
         String multiid = request.getParameter("id");
+        String type = request.getParameter("type");
         
         //Mise à jour des connexions
         ConnectManager cm = ConnectManagerImpl.getInstance();
@@ -52,9 +54,12 @@ public class OpenMultimediaServlet extends HttpServlet {
         MultimediaManager mm = MultimediaManagerImpl.getInstance();
         Multimedia m = mm.getMultById(Integer.parseInt(multiid));
         
-        //On envoie la réponse : informations sur les actions faites par la personne sur le multimédia
+        //Traitement de la requête
+        mm.like(m, p, type);
+        
+        //Envoi de la réponse
         response.setContentType("text/html; charset=UTF-8");
-        response.getWriter().write(mm.getInfosMuliPerson(m,p));
+        response.getWriter().write("done");
     }
 
 }

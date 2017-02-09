@@ -16,6 +16,7 @@
 
 .img_multi{
     max-height:400px;
+    max-width:100%;
 }
 
 .video_multi{
@@ -34,6 +35,7 @@
 #multimedia_info{
         display:inline-block;
         vertical-align: top;
+        width:50%!important;
 }
 
 #multimedia_action{
@@ -119,7 +121,7 @@
     margin-left : 10px;
 }
 
-#ndislike , #ndislike2{
+#ndislike , #ndislike1{
     display:inline-block;
     color : #f01644;
     font-weight: 400;

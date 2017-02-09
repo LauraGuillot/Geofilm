@@ -48,6 +48,9 @@
         <script src="Scripts/modif_infos_perso.js"></script>
         <script src="Scripts/sort.js"></script>
         <script src="Scripts/play_multimedia.js"></script>
+        <script src="Scripts/add_favorite.js"></script>
+        <script src="Scripts/signal_bad_loc.js"></script>
+        <script src="Scripts/like.js"></script>
 
     </head>
     <body onload="load();">
@@ -124,7 +127,7 @@
             <div class="modal-dialog modal-sm">
                 <div class="modal-content modal_form">
 
-                    <button class="close" data-dismiss="modal">&times;</button>
+                    <button class="close close1" data-dismiss="modal">&times;</button>
 
                     <input type="hidden" id="multi_open" value=""/>
                     <div class="modal-body">      
@@ -139,7 +142,7 @@
 
                         <div id="multimedia_action">
                             <!-- Ajout aux favoris-->
-                            <div id="favorite_action" onmouseover="overFavorite()" onmouseout="outFavorite();" onclick="">
+                            <div id="favorite_action" onmouseover="overFavorite()" onmouseout="outFavorite();" onclick="addToFavorite();">
                                 <img id="button_favorite" src="Ressources/star.png"width="30px" height="30px" ></img>
                                 <p class="p_favorite" id="add_favorite"></p>
                             </div>
@@ -149,22 +152,22 @@
 
                             <!-- Like / Dislike -->
                             <div id="like_action" >
-                                <button class="like_button like"></button>
+                                <button class="like_button like" onclick="like('LIKE');"></button>
                                 <p id="nlike"></p>
                                 <div class="separator"></div>
-                                <button class="like_button dislike"></button>
+                                <button class="like_button dislike" onclick="like('DISLIKE');"></button>
                                 <p id="ndislike"></p>
                             </div>
                             <div id="like_action_locked" >
-                                <button class=" like_button like_lock"></button>
+                                <button id="like_lock" class="like_button like_lock" ></button>
                                 <p id="nlike1"></p>
                                 <div class="separator"></div>
-                                <button class="like_button dislike_lock"></button>
+                                <button id="dislike_lock" class="like_button dislike_lock"></button>
                                 <p id="ndislike1"></p>
                             </div>
 
                             <div id="signalisation_action" >
-                                <a id="signal"></a>
+                                <a id="signal" onclick="signal();"></a>
                                 <p id="signal2"> </p>
                             </div>
                             <div id="signalisation_action_locked" >

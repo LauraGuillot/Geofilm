@@ -8,7 +8,10 @@
  */
 package Managers;
 
+import Objects.Badlocation;
+import Objects.Favorite;
 import Objects.Liked;
+import Objects.LikedPK;
 import Objects.Location;
 import Objects.Multimedia;
 import Objects.Person;
@@ -237,8 +240,95 @@ public class MultimediaManagerImpl implements MultimediaManager {
         q2.setParameter("m", m);
         q2.setParameter("p", p);
         List l2 = q2.getResultList();
-        result += (!l2.isEmpty());
+        
+        if(l2.isEmpty()){
+            result+="no";
+        }else{
+            result+=((Liked)l2.get(0)).getLikedType();
+        }
 
         return result;
+    }
+
+    /**
+     * Ajout d'un multimédia dans les favoris d'une personne
+     *
+     * @param m Multimédia
+     * @param p Personne
+     */
+    @Override
+    public void addToFavorite(Multimedia m, Person p) {
+        EntityManager em = emf.createEntityManager();
+
+        //Récupération id max des favoris
+        Query q = em.createNamedQuery("Favorite.findAll", Favorite.class);
+        List l = q.getResultList();
+
+        //Création du favoris
+        Favorite f = new Favorite(l.size() + 1);
+        f.setMultimediaId(m);
+        f.setPersonId(p);
+        System.out.println(f.getFavoriteId());
+
+        //Insertion
+        em.getTransaction().begin();
+        em.persist(f);
+        em.getTransaction().commit();
+    }
+
+    /**
+     * Signalement d'un multimédia comme mal géolocalisé
+     *
+     * @param m Multimédia
+     * @param p Personne
+     */
+    @Override
+    public void signal(Multimedia m, Person p) {
+        EntityManager em = emf.createEntityManager();
+
+        //Récupération id max des favoris
+        Query q = em.createNamedQuery("Badlocation.findAll", Badlocation.class);
+        List l = q.getResultList();
+
+        //Création du favoris
+        System.out.println(l.size() + 1);
+        Badlocation b = new Badlocation(l.size() + 1);
+        b.setMultimediaId(m);
+        b.setPersonId(p);
+
+        //Insertion
+        em.getTransaction().begin();
+        em.persist(b);
+        em.getTransaction().commit();
+    }
+
+    /**
+     * Enregistrement d'un like/dislike d'une personne
+     *
+     * @param m Multimedia
+     * @param p Personne
+     * @param type Type : like ou dislike
+     */
+    @Override
+    public void like(Multimedia m, Person p, String type) {
+        EntityManager em = emf.createEntityManager();
+
+        //Primary key
+        LikedPK pk = new LikedPK();
+        pk.setMultimediaId(m.getMultimediaId());
+        pk.setPersonId(p.getPersonId());
+
+        //Like
+        Liked like = new Liked();
+        like.setLikedPK(pk);
+        like.setLikedType(type);
+        like.setMultimedia(m);
+        like.setPerson(p);
+
+        //Insertion
+        em.getTransaction().begin();
+        em.persist(like);
+        em.getTransaction().commit();
+
     }
 }

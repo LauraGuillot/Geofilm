@@ -96,7 +96,7 @@ function displayMultimedia(id, i, j, like, favorite, badloc) {
     var isPublisher = (document.getElementById("pos" + i + "_multi" + j + "_publisherID").value == document.getElementById("person_id").value);
 
     //Affichage de la fonctionnalité like/dislike
-    displayLikeDiv(like || isPublisher, document.getElementById("pos" + i + "_multi" + j + "_like").value, document.getElementById("pos" + i + "_multi" + j + "_dislike").value);
+    displayLikeDiv(like, isPublisher, document.getElementById("pos" + i + "_multi" + j + "_like").value, document.getElementById("pos" + i + "_multi" + j + "_dislike").value);
 
     //Affichage de la fonctionnalité de signalement
     displayBadLocDiv(badloc || isPublisher);
@@ -148,10 +148,12 @@ function loadMulti(path, type) {
  */
 function  displayFavoriteDiv(favorite) {
 
-    if (favorite == true) {
+    if (favorite === 'true') {
         document.getElementById("favorite_action_locked").style.display = "block";
+        document.getElementById("favorite_action").style.display = "none";
     } else {
         document.getElementById("favorite_action").style.display = "block";
+        document.getElementById("favorite_action_locked").style.display = "none";
     }
 }
 /**
@@ -161,7 +163,7 @@ function  displayFavoriteDiv(favorite) {
  * @param {int} ndislike - Nombre de dislike
  * @returns {void}
  */
-function displayLikeDiv(like, nlike, ndislike) {
+function displayLikeDiv(like, publisher, nlike, ndislike) {
 
     // Affichage du nombre de likes
     document.getElementById("nlike").innerHTML = nlike;
@@ -169,10 +171,24 @@ function displayLikeDiv(like, nlike, ndislike) {
     document.getElementById("ndislike").innerHTML = ndislike;
     document.getElementById("ndislike1").innerHTML = ndislike;
 
-    if (like == true) {
+    if (publisher === 'true') {
         document.getElementById("like_action_locked").style.display = "block";
+        document.getElementById("like_action").style.display = "none";
     } else {
-        document.getElementById("like_action").style.display = "block";
+        if (like === 'LIKE') {
+            document.getElementById("like_action_locked").style.display = "block";
+            document.getElementById("like_action").style.display = "none";
+            document.getElementById("like_lock").style.backgroundImage = "url('Ressources/like_green.png')";
+        }
+        if (like === 'DISLIKE') {
+            document.getElementById("like_action_locked").style.display = "block";
+            document.getElementById("like_action").style.display = "none";
+            document.getElementById("dislike_lock").style.backgroundImage = "url('Ressources/dislike_red.png')";
+        }
+        if (like === 'no') {
+            document.getElementById("like_action").style.display = "block";
+            document.getElementById("like_action_locked").style.display = "none";
+        }
     }
 }
 
@@ -182,9 +198,11 @@ function displayLikeDiv(like, nlike, ndislike) {
  * @returns {void}
  */
 function displayBadLocDiv(badloc) {
-    if (badloc == true) {
+    if (badloc === 'true') {
         document.getElementById("signalisation_action_locked").style.display = "block";
+        document.getElementById("signalisation_action").style.display = "none";
     } else {
+        document.getElementById("signalisation_action_locked").style.display = "none";
         document.getElementById("signalisation_action").style.display = "block";
     }
 }

@@ -59,6 +59,7 @@ public class ConnectController {
         result.addObject("email", p.getPersonEmail());
         result.addObject("nom", p.getPersonName());
         result.addObject("prenom", p.getPersonFirstname());
+         result.addObject("id", p.getPersonId());
 
         //Connexion de l'utilisateur 
         result.addObject("idco", idco);

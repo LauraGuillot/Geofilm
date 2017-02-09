@@ -1,16 +1,17 @@
 /*
- * Servlet pour mettre à jour les informations d'un utilisateur 
+ * Servlet appelée lorsqu'un utilisateur ajoute un multimédia à ses favoris
  */
 package Servlets;
 
 import Managers.ConnectManager;
 import Managers.ConnectManagerImpl;
+import Managers.MultimediaManager;
+import Managers.MultimediaManagerImpl;
 import Managers.PersonManager;
 import Managers.PersonManagerImpl;
-import Objects.Connect;
+import Objects.Multimedia;
 import Objects.Person;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Laura
  */
-@WebServlet(name = "ModifInfoServlet", urlPatterns = {"/ModifInfoServlet"})
-public class ModifInfoServlet extends HttpServlet {
+@WebServlet(name = "AddFavoriteServlet", urlPatterns = {"/AddFavoriteServlet"})
+public class AddFavoriteServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -37,33 +38,26 @@ public class ModifInfoServlet extends HttpServlet {
             throws ServletException, IOException {
 
         //On récupère les paramètres
-        String email = request.getParameter("email");
         String idco = request.getParameter("idco");
-        String name = request.getParameter("name");
-        String firstname = request.getParameter("firstname");
+        String multiid = request.getParameter("id");
 
         //Mise à jour des connexions
         ConnectManager cm = ConnectManagerImpl.getInstance();
-        Connect c = cm.getByConnectId(idco);
-        cm.updateConnection(c);
+        cm.updateConnection(cm.getByConnectId(idco));
         cm.checkConnection();
 
+        //On récupère les objets
         PersonManager pm = PersonManagerImpl.getInstance();
-        //On récupère la personne qiu correspond à l'email
-        Person p = pm.findPersonByEmail(email);
-        //On récupère la personne qui correspond à l'identifiant de connexion
-        Person p1 = pm.findPerson(idco);
+        Person p = pm.findPerson(idco);
+        MultimediaManager mm = MultimediaManagerImpl.getInstance();
+        Multimedia m = mm.getMultById(Integer.parseInt(multiid));
 
-        //On teste si le nouveau email est déjà utilisé par un autre utilisateur ou non 
-        Boolean b = (p == null) || (p.equals(p1));
+        //Traitement de la requête
+        mm.addToFavorite(m, p);
 
-        //Update
-        if (b) {
-            pm.updateInfos(p1, name,firstname,email);
-        }
-
-        //Envoi de la réponse : booléen vrai si l'email n'est pas celui d'un autre utilisateur
+        //Envoi de la réponse
         response.setContentType("text/html; charset=UTF-8");
-        response.getWriter().write(b + "");
+        response.getWriter().write("done");
     }
+
 }

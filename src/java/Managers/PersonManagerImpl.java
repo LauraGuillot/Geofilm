@@ -101,7 +101,7 @@ public class PersonManagerImpl implements PersonManager {
     public void updateInfos(Person p, String name, String firstname, String email) {
         p.setPersonEmail(email);
         p.setPersonFirstname(firstname);
-        p.setPersonName(firstname);
+        p.setPersonName(name);
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(p);

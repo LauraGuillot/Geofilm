@@ -1,18 +1,18 @@
 /**
  * Accès à la page d'upload
+ * @param {type} idco
+ * @returns {undefined}
  */
-function open_upload() {
+function open_upload(idco) {
+
+    askForUpdate(idco);
 
     var form = document.createElement('form');
     form.method = "POST";
-    form.action = "upload.htm";
+    form.action = "uploading.htm";
 
-    var c1 = document.createElement('input');
-    c1.type = "hidden";
-    c1.name = "idco";
-    c1.value = document.getElementById("idco").value;
-    form.appendChild(c1);
-
+    document.body.appendChild(form);
+    form.submit();
 
 }
 //TODO : saisie des données dans la base

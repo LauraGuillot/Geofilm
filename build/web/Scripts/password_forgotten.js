@@ -1,8 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 
 /**
@@ -21,7 +16,7 @@ function obtain_password() {
     var email = document.getElementById("password_forgotten_email").value;
 
     //Si la saisie est valide
-    if (valid_form(email)) {
+    if (valid_amil_mdp(email)) {
 
         //On envoie le mail à une servlet pour voir si celui-ci est déjà utilisé ou non
         xhttp = new XMLHttpRequest();

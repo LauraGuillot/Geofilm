@@ -67,6 +67,7 @@ var remove_bad_location_fr = "Retirer les contenus mal géolocalisés"
 var password_title_fr = "MOT DE PASSE OUBLIE";
 var error_email_not_found_fr = "Cette adresse email est inconnue de notre base de données";
 
+
 //Upload d'un multimédia
 var upload_title_fr = "UPLOADER UN MULTIMEDIA";
 var upload_subtitle1_fr = "Informations générales";
@@ -78,7 +79,32 @@ var upload_description_fr = "Description";
 var upload_source_fr = "Quelle est la source de votre multimédia ?";
 var upload_source_search_fr = "Choisissez votre source";
 var upload_source_title_fr = "Quel est le titre de votre source ?";
-var upload_source_unknown_fr = "Indéterminée";
+var upload_source_unknown_fr = "Indéterminé";
 var upload_source_movie_fr = "Film";
 var upload_source_serie_fr = "Série";
 var upload_source_game_fr = "Jeu Vidéo";
+
+var upload_subtitle2_fr = "Localisation";
+var address_fr = "SAISIR UNE ADRESSE";
+var numero_fr = "N°";
+var street_fr = "Rue";
+var address_complement_fr = "Complément d'adresse";
+var postal_code_fr = "Code postal";
+var city_fr = "Ville";
+var country_fr = "Pays";
+var next_fr = "SUIVANT";
+
+var upload_subtitle3_fr = "Ajout du fichier multimédia";
+var upload_choice_input_fr = "Choisissez un fichier multimédia :";
+
+
+//Visualisation d'un multimédia
+var signal_fr = "Signaler";
+var signal2_fr = "une mauvaise géolocalisation";
+var signal_lock_fr = "Vous avez signalé une mauvaise localisation";
+var add_favorite_fr = "Ajouter aux favoris";
+var favorite_added_fr="Ajouté aux favoris";
+var or_fr = "OU";
+var point_map_fr = "POINTER SUR LA CARTE";
+
+

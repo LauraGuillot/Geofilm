@@ -11,13 +11,19 @@
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Stylesheets/global_map.css</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/uploading.js</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/load_map.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/like.js</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Managers/ConnectManagerImpl.java</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/home.js</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/connect.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Servlets/LikeServlet.java</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/leaflet/leaflet.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Ressources/upload_over.png</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/WEB-INF/jsp/globalMap.jsp</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/play_multimedia.js</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/load_map_2.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Ressources/connection.png</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Servlets/ControlConnexionServlet.java</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Controllers/ConnectController.java</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Objects/Person.java</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Controllers/HomeController.java</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/password_forgotten.js</file>
@@ -26,17 +32,23 @@
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Stylesheets/button.css</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/update_connexion.js</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/mapbox_tracker.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Servlets/UploadMultimedia.java</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/upload.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Servlets/AddFavoriteServlet.java</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/WEB-INF/dispatcher-servlet.xml</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/deconnect.js</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Stylesheets/modal_form.css</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/language.js</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/leaflet/leaflet-src.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Controllers/UploadController.java</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/position_tracker.js</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/WEB-INF/jsp/index.jsp</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/strings.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/src/java/Servlets/ControlInscriptionServlet.java</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/add_favorite.js</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Stylesheets/pop_up_marker.css</file>
             <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/Scripts/sort.js</file>
+            <file>file:/C:/Users/Paola/Documents/NetBeansProjects/Geofilm/web/WEB-INF/applicationContext.xml</file>
         </group>
     </open-files>
 </project-private>

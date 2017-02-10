@@ -93,37 +93,97 @@
         <!-- CONTENU PRINCIPAL -->
         <div class="container"> 
             <!--Trois blocs pour l'upload-->
-            <div id="content_general" class="col-md-8">
-                <p class="title" id="upload_multimedia"></p>
-                <p class="title" id="upload_general_information"></p>
-                <br>
-                <p class="label_form" id="upload_type_multimedia"></p>
-                <input type="radio" name="video" id="upload_video" value="v"> 
-                <input type="radio" name="image" id="upload_image" value="i"> 
-                <input type="radio" name="sound" id="upload_sound" value="s"> 
-                <p class="label_form" id="upload_title_multimedia"></p>
-                <p class="label_form" id="star"></p>
-                <br>
-                <input type="text" name="titre" id="upload_title_entered"><!--id = id à retenir pour le fichier upload.js-->
-                <p class="label_form" id="upload_description"></p>
-                <input type="text" name ="description" id="upload_description_entered">
-                <p class="label_form" id="upload_source"></p>
-                <p class="label_form" id="star"></p>
-                <br>
-                <input type="" name="source" id="upload_source_entered">
-                <!--TODO-->
-                <select>
-                    <option id="upload_film"></option>
-                    <option id="upload_serie"></option>
-                    <option id="upload_game"></option>
-                </select>
-                <input type ="submit">
-                <p class="label_form" id="upload_source_title"></p>
-                <br>
-                <input type="text" name="title_source" id="upload_source_title_entered">
-               
+            
+            
+            <!--Premier bloc : informations générales-->
+
+            <div id="content_general" class="row">
+                <div id="head" class="col-md-6">
+                    <p class="title" id="title1"></p>
+                    <p class="title" id="subtitle1"></p>
+                </div>
+                <div id ="content1" class="col-md-6">
+                    <p class="label_form" id="upload_type_multimedia"></p>
+                    <input type="radio" name="video" id="upload_video" value="v"> 
+                    <input type="radio" name="image" id="upload_image" value="i"> 
+                    <input type="radio" name="sound" id="upload_sound" value="s"> 
+                    <p class="label_form" id="upload_title_multimedia"></p>
+                    <p class="label_form" id="star1"></p>
+                    <br>
+                    <input type="text" name="titre" id="upload_title_entered"><!--id = id à retenir pour le fichier upload.js-->
+                    <p class="label_form" id="upload_description"></p>
+                    <input type="text" name ="description" id="upload_description_entered">
+                    <p class="label_form" id="upload_source"></p>
+                    <p class="label_form" id="star2"></p>
+                    <br>
+                    <input type="" name="source" id="upload_source_entered">
+                    <select>
+                        <option id="upload_source_search"></option>
+                        <option id="upload_film"></option>
+                        <option id="upload_serie"></option>
+                        <option id="upload_game"></option>
+                    </select>
+                    <input type ="submit">
+                    <br>
+                    <p class="label_form" id="upload_source_title"></p>
+                    <br>
+                    <input type="text" name="title_source" id="upload_source_title_entered">
+                </div>
+                <!--Boutton Valider-->
             </div>
-            <div class="col-md-8" hidden></div>
+            
+            <!--Deucième bloc de saisie des informations de localisation-->
+            <div id="upload1" class="row" style="visibility:hidden;">
+                <div id="left_div" class="col-md-6">
+                    <div id="title" class="head">
+                        <p class="title" id="title2"></p>
+                        <p class="title" id="subtitle2"></p>
+                    </div>
+                    <div class="col-md-6" id="content2">
+                        <p class="title" id="address"></p>
+                        <br>
+                        <p class="label_form" id="numero"></p>
+                        <p class=label_form" id="star3">    </p>
+                        <p class="label_form" id="street"></p>
+                        <p class=label_form" id=""star4"></p>    
+                        <br>
+                        <input type="text" name="loc_numero" id="numero_entered">
+                        <input type="text" name="loc_street" id="street_entered">
+                        <br>
+                        <p class="label_form" id="address_complement"></p>
+                        <input type="text" id="address_complement_entered" name="loc_ad_complement">
+                        <p class ="label_form" id="postal_code"></p>
+                        <p class="label_form" id="star5"></p>
+                        <input type="text" name="loc_code" id="postal_code_entered">
+                        <p class="label_form" id="city"></p>
+                        <p class="label_form" id="star6"></p>
+                        <input type="text" name="loc_city" id="city_entered">
+                        <p class="label_form" id="country"></p>
+                        <p class="label_form" id="star7"></p>
+                        <input type="text" name="loc_country" id="country_entered">
+                    </div>
+                    <div id="right_div" class="col-md-6">
+                        <!--TODO : carte interactive -->
+                    </div>
+                    <!--Boutton Valider-->
+                </div>
+
+            </div>
+            <div id="upload2" class="row" style="visibility:hidden">
+                <div id="head" class="col-md-6">
+                    <p class="title" id="title3"></p>
+                    <p class="title" id="subtitle3"></p>
+                </div>
+                <div id ="content1" class="col-md-6">
+                    <p class="label_form" id="input_choice"></p>
+                    <p class="label_form" id="star8"></p>
+                    <input type="file" name="file" id="file_entered">
+                </div>
+                <!--Boutton Valider-->
+            
+
+            </div>
+
         </div>
 
 

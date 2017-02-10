@@ -21,6 +21,7 @@
             <props>
                 <prop key="index.htm">homeController</prop>
                 <prop key="globalMap.htm">connectController</prop>
+                <prop key="routeMap.htm">routeMapController</prop>
                 
             </props>
         </property>
@@ -46,7 +47,10 @@
         name="connectController"
         class="Controllers.ConnectController"
     />
-     
+     <bean
+        name="routeMapController"
+        class="Controllers.RouteMapController"
+    />
    
 
 </beans>

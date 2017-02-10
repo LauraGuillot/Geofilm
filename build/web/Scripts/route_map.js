@@ -26,15 +26,20 @@ function loadText() {
         document.getElementById("modification_title").innerHTML = modif_infos_fr;
         document.getElementById("valid_modif").innerHTML = validation_fr;
 
-        //BOUTON UPLOAD
-        document.getElementById("upload_text").innerHTML = upload_fr;
-
         //POP-UP MULTIMEDIA
         document.getElementById("add_favorite").innerHTML = add_favorite_fr;
         document.getElementById("added_favorite").innerHTML = favorite_added_fr;
         document.getElementById("signal").innerHTML = signal_fr;
         document.getElementById("signal2").innerHTML = signal2_fr;
         document.getElementById("signal_locked").innerHTML = signal_lock_fr;
+
+        //VOLET DE GAUCHE
+        document.getElementById("select_default").innerHTML = chose_source_fr;
+        document.getElementById("select_film").innerHTML = film_fr;
+        document.getElementById("select_serie").innerHTML = serie_fr;
+        document.getElementById("select_game").innerHTML = game_fr;
+        document.getElementById("or").innerHTML = or_fr;
+         document.getElementById("search_key_word").placeholder = search_key_word_fr;
     }
 }
 
@@ -58,48 +63,13 @@ function favoriteOut() {
 
 
 /**
- * Fonction d'affichage dynamique pour le bouton d'upload
- */
-function overUpload() {
-    document.getElementById("upload_img").src = "Ressources/upload_over.png";
-    document.getElementById("upload_img").className = "img_over";
-    document.getElementById("upload_text").style.display = "block";
-}
-/**
- * Fonction d'affichage dynamique pour le bouton d'upload
- */
-function outUpload() {
-    document.getElementById("upload_img").src = "Ressources/upload.png";
-    document.getElementById("upload_img").className = "";
-    document.getElementById("upload_text").style.display = "none";
-}
-
-
-/**
- * Fonction d'affichage dynamique pour le bouton d'ajout aux favoris
- */
-function overFavorite() {
-    document.getElementById("button_favorite").src = "Ressources/star_over.png";
-    document.getElementById("add_favorite").style.color = "#FFFF51";
-    document.getElementById("add_favorite").style.textDecoration = "underline";
-}
-/**
- * Fonction d'affichage dynamique pour le bouton d'ajout aux favoris
- */
-function outFavorite() {
-    document.getElementById("button_favorite").src = "Ressources/star.png";
-    document.getElementById("add_favorite").style.color = "#fffe83";
-    document.getElementById("add_favorite").style.textDecoration = "none";
-}
-
-/**
- * Affichage de la route map
+ * Affichage de la global map
  * @returns {void}
  */
-function getRouteMap() {
+function getGlobalMap() {
     var form = document.createElement('form');
     form.method = "GET";
-    form.action = "routeMap.htm";
+    form.action = "globalMap.htm";
 
     var c1 = document.createElement('input');
     c1.type = "hidden";

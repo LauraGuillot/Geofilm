@@ -40,6 +40,7 @@ a:hover{
 }
 
 .onglet {
+    cursor:pointer;
     padding:7px;
     color : white!important;
     font-weight: 200;

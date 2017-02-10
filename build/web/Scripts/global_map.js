@@ -92,4 +92,21 @@ function outFavorite() {
     document.getElementById("add_favorite").style.textDecoration = "none";
 }
 
-	
+/**
+ * Affichage de la route map
+ * @returns {void}
+ */
+function getRouteMap() {
+    var form = document.createElement('form');
+    form.method = "GET";
+    form.action = "routeMap.htm";
+
+    var c1 = document.createElement('input');
+    c1.type = "hidden";
+    c1.name = "idco";
+    c1.value = document.getElementById("idco").value;
+    form.appendChild(c1);
+
+    document.body.appendChild(form);
+    form.submit();
+}

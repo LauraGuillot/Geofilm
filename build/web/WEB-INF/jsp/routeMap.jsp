@@ -28,7 +28,7 @@
 
         <!-- STYLES -->
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/navigation.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/global_map.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/route_map.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/button.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/modal_error.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/modal_form.css">
@@ -39,16 +39,12 @@
 
         <!-- MAP -->
         <script src="Scripts/mapbox_tracker.js"></script>
-        <script src="Scripts/load_map_2.js"></script>
+        <script src="Scripts/load_route_map.js"></script>
 
         <!-- SCRIPTS -->
-        <script src="Scripts/update_connexion.js"></script>
-        <script src="Scripts/global_map.js"></script>
+        <script src="Scripts/route_map.js"></script>
         <script src="Scripts/deconnect.js"></script>
         <script src="Scripts/modif_infos_perso.js"></script>
-        <script src="Scripts/sort.js"></script>
-        <script src="Scripts/play_multimedia.js"></script>
-        <script src="Scripts/upload.js"></script>
         <script src="Scripts/add_favorite.js"></script>
         <script src="Scripts/signal_bad_loc.js"></script>
         <script src="Scripts/like.js"></script>
@@ -65,38 +61,14 @@
         <input type="hidden" id="email" value="<c:out value="${email}"/>"/> 
         <input type="hidden" id="idco" value="<c:out value="${idco}"/>"/> 
 
-        <!-- Markers (positions) -->
-        <input type="hidden" id="nbMarkers" value="<c:out value="${fn:length(markers)}"/>"/> 
-        <c:forEach var="p" items="${markers}" varStatus="status">
-            <input type="hidden" id="p<c:out value="${status.index}"/>" value="<c:out value="${p['locationThegeom']}"/>"/>
-        </c:forEach>
-
-        <!--Multimedias-->
-        <c:forEach var="mu" items="${multis}" varStatus="status">
-            <input type="hidden" id="nbMulti<c:out value="${status.index}"/>" value="<c:out value="${fn:length(mu)}"/>"/> 
-            <c:forEach var="m" items="${mu}" varStatus="status1">
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_id"/>" value="<c:out value="${m['multimediaId']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_title"/>" value="<c:out value="${m['multimediaTitle']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_publisher"/>" value="<c:out value="${m['publisher']['personFirstname']}"/> <c:out value="${m['publisher']['personName']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_publisherID"/>" value="<c:out value="${m['publisher']['personId']}"/>"/> 
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_descr"/>" value="<c:out value="${m['multimediaDescription']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_path"/>" value="<c:out value="${m['multimediaPath']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_uploaddate"/>" value="<c:out value="${m['multimediaUploadDate']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_format"/>" value="<c:out value="${m['multimediaFormat']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_type"/>" value="<c:out value="${m['multimediaType']}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_like"/>" value="<c:out value="${likes[status.index][status1.index]}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_dislike"/>" value="<c:out value="${dislikes[status.index][status1.index]}"/>"/>
-                <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_badloc"/>" value="<c:out value="${badloc[status.index][status1.index]}"/>"/>
-            </c:forEach>
-        </c:forEach>
 
         <!-- NAVIGATION -->
         <nav class="navbar-default navbar " role="navigation">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="navbar-left" ><a href="#" id="logo"><img src="Ressources/logo1.png" width="100px" ></a></li> <!-- LOGO-->
-                    <li class="navbar-left onglet" ><a href="#" class=" onglet onglet_actif" id="global_map"></a></li>
-                    <li class="navbar-left onglet" ><a onclick="getRouteMap();" class="onglet" id="route_map"></a></li>
+                    <li class="navbar-left onglet" ><a onclick="getGlobalMap();" class=" onglet " id="global_map"></a></li>
+                    <li class="navbar-left onglet" ><a href="#" class="onglet onglet_actif" id="route_map"></a></li>
                     <li class="navbar-right"><a href="#"><img id="connection" src="Ressources/connection.png" onMouseOver="this.src = 'Ressources/connection_over.png'" onMouseOut="this.src = 'Ressources/connection.png'" width="25px" onclick="deconnect();"></a></li><!-- Connexion-->
                     <li class="navbar-right" style="margin-right:20px; border-left: solid white 1px; padding-left:6px;">
                         <p class="info_perso" id="info_name" style="margin-top:10px;font-weight:bold;"><c:out value="${prenom}"/> <c:out value="${nom}"/></p>
@@ -114,13 +86,34 @@
         </nav>
 
         <!-- CONTENU PRINCIPAL -->
-        <div class="container">   
-            <!-- Map -->
-            <div id="mapid" class="col-md-8"> </div>
-            <button id="upload" onmouseover="overUpload();" onmouseout="outUpload();" a href="#" onclick="open_upload()">
-                <p id="upload_text" style="display:none"></p>
-                <img id="upload_img" src="Ressources/upload.png" width="30px" height="30px"/>
-            </button>
+        <div class="container"> 
+            <div  class="row content">          
+                <!-- Volet-->
+                <div id="left_div" class="col-md-3">
+                    <div id="head">
+                        <select name="source">
+                            <option id="select_default">  </option>
+                            <option id="select_film">  </option>
+                            <option id="select_serie"> </option>
+                            <option id="select_game"> </option>
+                        </select>
+
+                        <br><br>
+                        <p id="or"></p>
+
+                        <div id="search_bar">
+                            <input id="search_key_word" style="padding-left:10px;" type="text"/>
+                            <input id="search_button" onclick="" type="submit" value="OK"/>
+                        </div>
+
+                        <br><br>
+                        <div id="separator"> </div>
+                    </div>
+                    <div id="result"></div>
+                </div>
+                <!-- Map -->
+                <div id="mapid" class="col-md-9"> </div>
+            </div>
         </div>
 
         <!--POPUP : visualisation d'un multimédia-->

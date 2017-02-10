@@ -240,11 +240,11 @@ public class MultimediaManagerImpl implements MultimediaManager {
         q2.setParameter("m", m);
         q2.setParameter("p", p);
         List l2 = q2.getResultList();
-        
-        if(l2.isEmpty()){
-            result+="no";
-        }else{
-            result+=((Liked)l2.get(0)).getLikedType();
+
+        if (l2.isEmpty()) {
+            result += "no";
+        } else {
+            result += ((Liked) l2.get(0)).getLikedType();
         }
 
         return result;
@@ -329,6 +329,68 @@ public class MultimediaManagerImpl implements MultimediaManager {
         em.getTransaction().begin();
         em.persist(like);
         em.getTransaction().commit();
-
     }
+
+    /**
+     * Matrice de multimédias qui correspond à une matrice de positions
+     *
+     * @param loc Matrice de positions
+     * @return Matrice de multimédia
+     */
+    public ArrayList<ArrayList<ArrayList<Multimedia>>> getMultimediaForSource(ArrayList<ArrayList<Location>> loc) {
+        ArrayList<ArrayList<ArrayList<Multimedia>>> multi = new ArrayList<>();
+
+        for (ArrayList<Location> pos : loc) {
+            multi.add(getMultiByPos(pos));
+        }
+
+        return multi;
+    }
+
+    /**
+     * Récupérer les likes de chaque multimédiasde chaque source
+     *
+     * @param multis Matrice de multimédias
+     * @return Matrice de nombre de likes
+     */
+    @Override
+    public ArrayList<ArrayList<ArrayList<Integer>>> getLikesSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis) {
+        ArrayList<ArrayList< ArrayList< Integer>>> li = new ArrayList<>();
+        for (ArrayList<ArrayList<Multimedia>> m : multis) {
+            li.add(this.getLikes(m));
+        }
+        return li;
+    }
+
+    /**
+     * Récupérer les dislikes de chaque multimédias pour chaque sources
+     *
+     * @param multis Matrice de multimédias
+     * @return Matrice de nombre de dislikes
+     */
+    @Override
+    public ArrayList<ArrayList<ArrayList<Integer>>> getDislikesSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis) {
+        ArrayList<ArrayList< ArrayList< Integer>>> li = new ArrayList<>();
+        for (ArrayList<ArrayList<Multimedia>> m : multis) {
+            li.add(this.getDislikes(m));
+        }
+        return li;
+    }
+
+    /**
+     * Récupérer le nombre de signalements de chaque multimédias pour chaque
+     * sources
+     *
+     * @param multis Matrice de multimédias
+     * @return Matrice de nombre de dsignalements
+     */
+    @Override
+    public ArrayList<ArrayList<ArrayList<Integer>>> getBadLocSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis) {
+        ArrayList<ArrayList< ArrayList< Integer>>> li = new ArrayList<>();
+        for (ArrayList<ArrayList<Multimedia>> m : multis) {
+            li.add(this.getBadLoc(m));
+        }
+        return li;
+    }
+
 }

@@ -7,6 +7,15 @@
  */
 package Managers;
 
+import Objects.Source;
+import java.util.ArrayList;
+
 public interface SourceManager {
-    
+
+    /**
+     * Récupérer toutes les sources de la base
+     *
+     * @return Liste de sources
+     */
+    public ArrayList<Source> getSources() ;
 }

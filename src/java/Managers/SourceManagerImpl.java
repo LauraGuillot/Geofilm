@@ -1,15 +1,21 @@
 /**
  * ********************************************************************
  * Class SourcesManagementImpl
- * Gestion des sources (film, série ou jeu) 
+ * Gestion des sources (film, série ou jeu)
  * --------------------------------------------------------------------
  * Last update : 29/01/2017
  *********************************************************************
  */
 package Managers;
 
+import Objects.Badlocation;
+import Objects.Source;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class SourceManagerImpl implements SourceManager {
 
@@ -27,6 +33,28 @@ public class SourceManagerImpl implements SourceManager {
             theSourceManager = new SourceManagerImpl();
         }
         return theSourceManager;
+    }
+
+    /**
+     * Récupérer toutes les sources de la base
+     *
+     * @return Liste de sources
+     */
+    @Override
+    public ArrayList<Source> getSources() {
+        ArrayList<Source> s = new ArrayList<>();
+
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createNamedQuery("Source.findAll", Source.class);
+        List l = q.getResultList();
+
+        for (Object o : l) {
+            if (((Source) o).getSourceId() > 0) {
+                s.add((Source) o);
+            }
+        }
+
+        return s;
     }
 
 }

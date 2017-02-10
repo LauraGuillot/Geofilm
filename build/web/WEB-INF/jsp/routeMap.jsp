@@ -48,11 +48,61 @@
         <script src="Scripts/add_favorite.js"></script>
         <script src="Scripts/signal_bad_loc.js"></script>
         <script src="Scripts/like.js"></script>
+        <script src="Scripts/search_source.js"></script>
+        <script src="Scripts/sort_routeMap.js"></script>
+        <script src="Scripts/play_multimedia_routeMap.js"></script>
 
     </head>
     <body onload="load();">
 
         <!-- CHARGEMENT DES DONNEES -->
+        <div style="display:none;">
+
+            <!-- Données personnelles-->
+            <input type="hidden" id="person_id" value="<c:out value="${id}"/>"/>
+            <input type="hidden" id="name" value="<c:out value="${nom}"/>"/> 
+            <input type="hidden" id="firstname" value="<c:out value="${prenom}"/>"/> 
+            <input type="hidden" id="email" value="<c:out value="${email}"/>"/> 
+            <input type="hidden" id="idco" value="<c:out value="${idco}"/>"/> 
+
+            <!-- Sources-->
+            <input type="hidden" id="nbSources" value="<c:out value="${fn:length(src)}"/>"/> 
+            <c:forEach var="s" items="${src}" varStatus="status">
+                <input type="hidden" id="src_<c:out value="${status.index}"/>_title" value="<c:out value="${s['sourceTitle']}"/>"/>
+                <input type="hidden" id="src_<c:out value="${status.index}"/>_type" value="<c:out value="${s['sourceType']}"/>"/>
+            </c:forEach>
+
+            <!--Position-->
+            <c:forEach var="loc" items="${pos}" varStatus="status">
+                <input type="hidden" id="nbPos<c:out value="${status.index}"/>" value="<c:out value="${fn:length(loc)}"/>"/> 
+                <c:forEach var="l" items="${loc}" varStatus="status1">
+                    <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>" value="<c:out value="${l['locationThegeom']}"/>"/>
+                </c:forEach>
+            </c:forEach>
+
+            <!--Mutimédias-->
+            <!--Multimedias-->
+            <c:forEach var="mult" items="${multis}" varStatus="status">
+                <c:forEach var="mu" items="${mult}" varStatus="status1">
+                    <input type="hidden" id="nbMulti<c:out value="${status.index}"/>_<c:out value="${status1.index}"/>" value="<c:out value="${fn:length(mu)}"/>"/> 
+                    <c:forEach var="m" items="${mu}" varStatus="status2">
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_id"/>" value="<c:out value="${m['multimediaId']}"/>"/>
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_title"/>" value="<c:out value="${m['multimediaTitle']}"/>"/>
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_publisher"/>" value="<c:out value="${m['publisher']['personFirstname']}"/> <c:out value="${m['publisher']['personName']}"/>"/>
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_publisherID"/>" value="<c:out value="${m['publisher']['personId']}"/>"/> 
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_descr"/>" value="<c:out value="${m['multimediaDescription']}"/>"/>
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_path"/>" value="<c:out value="${m['multimediaPath']}"/>"/>
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_uploaddate"/>" value="<c:out value="${m['multimediaUploadDate']}"/>"/>
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_format"/>" value="<c:out value="${m['multimediaFormat']}"/>"/>
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_type"/>" value="<c:out value="${m['multimediaType']}"/>"/>
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_like"/>" value="<c:out value="${likes[status.index][status1.index][status2.index]}"/>"/>
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_dislike"/>" value="<c:out value="${dislikes[status.index][status1.index][status2.index]}"/>"/>
+                        <input type="hidden" id="src<c:out value="${status.index}"/>_pos<c:out value="${status1.index}"/>_multi<c:out value="${status2.index}_badloc"/>" value="<c:out value="${badloc[status.index][status1.index][status2.index]}"/>"/>
+                    </c:forEach>
+                </c:forEach>
+            </c:forEach>
+        </div>
+
 
         <!-- Données personnelles-->
         <input type="hidden" id="person_id" value="<c:out value="${id}"/>"/>
@@ -91,8 +141,8 @@
                 <!-- Volet-->
                 <div id="left_div" class="col-md-3">
                     <div id="head">
-                        <select name="source">
-                            <option id="select_default">  </option>
+                        <select id="select_source" name="source" onchange="search_key_word();">
+                            <option id="select_default"> </option>
                             <option id="select_film">  </option>
                             <option id="select_serie"> </option>
                             <option id="select_game"> </option>
@@ -102,8 +152,8 @@
                         <p id="or"></p>
 
                         <div id="search_bar">
-                            <input id="search_key_word" style="padding-left:10px;" type="text"/>
-                            <input id="search_button" onclick="" type="submit" value="OK"/>
+                            <input id="search_key_word" style="padding-left:10px;" type="text" value=""/>
+                            <input id="search_button" onclick="search_key_word();" type="submit" value="OK"/>
                         </div>
 
                         <br><br>

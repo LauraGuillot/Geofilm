@@ -1,11 +1,12 @@
 /**
  * Ouverture d'un multimédia : on récupère les données, on prépare la pop-up et on l'affiche
  * @param {int} id Identifiant du multimédia
- * @param {int} i Index de la position du multimédia
- * @param {int} j Index du multimédia
+ * @param {int} i Index de la source
+ * @param {int} j Index de la position du multimédia
+ * @param {int} k Index du multimédia
  * @returns {void}
  */
-function openMult(i, id, j) {
+function openMult(i, j, k, id) {
     var idco = document.getElementById("idco").value;
 
     //On appelle la servlet pour récupérer les infos sur le multimédia
@@ -17,13 +18,15 @@ function openMult(i, id, j) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             //Réponse de la servlet
             var answer = xhttp.responseText;
+
             //On récupère les infos
             var answers = answer.split("*");
             var like = extractInfosLike(answers[2]);
             var favorite = extractInfosFavorite(answers[1]);
             var badloc = extractInfosBadLos(answers[0]);
+
             //Affichage du multimedia
-            displayMultimedia(id, i, j, like, favorite, badloc);
+            displayMultimedia(id, i, j, k, like, favorite, badloc);
 
         }
     };
@@ -70,7 +73,7 @@ function extractInfosBadLos(answer) {
  * @param {Booleen} badloc - Est ce que l'utilisateur a signalé le multimédia comme mal géolocalisé?
  * @returns {void}
  */
-function displayMultimedia(id, i, j, like, favorite, badloc) {
+function displayMultimedia(id, i, j, k, like, favorite, badloc) {
 
     //Id en champ caché 
     document.getElementById("multi_open").value = id;
@@ -79,13 +82,13 @@ function displayMultimedia(id, i, j, like, favorite, badloc) {
     $('#multimedia_pop').modal('show');
 
     //Infos sur le multimedia
-    document.getElementById("multi_title").innerHTML = document.getElementById("pos" + i + "_multi" + j + "_title").value;
-    document.getElementById("multi_publisher_date").innerHTML = by_fr + document.getElementById("pos" + i + "_multi" + j + "_publisher").value + the_fr + document.getElementById("pos" + i + "_multi" + j + "_uploaddate").value;
-    document.getElementById("multi_descr").innerHTML = document.getElementById("pos" + i + "_multi" + j + "_descr").value;
+    document.getElementById("multi_title").innerHTML = document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_title").value;
+    document.getElementById("multi_publisher_date").innerHTML = by_fr + document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_publisher").value + the_fr + document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_uploaddate").value;
+    document.getElementById("multi_descr").innerHTML = document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_descr").value;
 
     //Ouverture du multimedia
-    var path = document.getElementById("pos" + i + "_multi" + j + "_path").value + "." + document.getElementById("pos" + i + "_multi" + j + "_format").value;
-    var type = document.getElementById("pos" + i + "_multi" + j + "_type").value;
+    var path = document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_path").value + "." + document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_format").value;
+    var type = document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_type").value;
     loadMulti(path, type);
 
     //Affichage de la fonctionnalité favoris
@@ -93,10 +96,10 @@ function displayMultimedia(id, i, j, like, favorite, badloc) {
 
     //Variable pour désigner si la personne est le publicateur du multimédia ou non.
     // En effet, si tel est le cas, il ne pourra pas liké ou signalé le contenu
-    var isPublisher = (document.getElementById("pos" + i + "_multi" + j + "_publisherID").value == document.getElementById("person_id").value);
+    var isPublisher = (document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_publisherID").value == document.getElementById("person_id").value);
 
     //Affichage de la fonctionnalité like/dislike
-    displayLikeDiv(like, isPublisher, document.getElementById("pos" + i + "_multi" + j + "_like").value, document.getElementById("pos" + i + "_multi" + j + "_dislike").value);
+    displayLikeDiv(like, isPublisher, document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_like").value, document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_dislike").value);
 
     //Affichage de la fonctionnalité de signalement
     displayBadLocDiv(badloc || isPublisher);
@@ -158,7 +161,8 @@ function  displayFavoriteDiv(favorite) {
 }
 /**
  * Affichage de la fonctionnalité "like/dislike"
- * @param {booleen} like - True si la fonctionnalité est bloquée
+ * @param {string} like - Vaut like, dislike ou no suivant si la personne a liké, disliké ou non le multimédia
+ * @param {booléen} publisher - True si la personne est le publisher de la vidéo
  * @param {int} nlike - Nombre de likes
  * @param {int} ndislike - Nombre de dislike
  * @returns {void}
@@ -176,12 +180,15 @@ function displayLikeDiv(like, publisher, nlike, ndislike) {
         document.getElementById("like_action").style.display = "none";
     } else {
         if (like === 'LIKE') {
+            alert("like");
             document.getElementById("like_action_locked").style.display = "block";
             document.getElementById("like_action").style.display = "none";
             document.getElementById("like_lock").style.backgroundImage = "url('Ressources/like_green.png')";
             document.getElementById("dislike_lock").style.backgroundImage = "url('Ressources/dislike.png')";
+            
         }
         if (like === 'DISLIKE') {
+            alert("dislike");
             document.getElementById("like_action_locked").style.display = "block";
             document.getElementById("like_action").style.display = "none";
             document.getElementById("dislike_lock").style.backgroundImage = "url('Ressources/dislike_red.png')";
@@ -216,23 +223,27 @@ function displayBadLocDiv(badloc) {
  * @returns {void}
  */
 function incrLike(id, type) {
-    var cptPos = document.getElementById("nbMarkers").value;
+    var cptSrc = document.getElementById("nbSources").value;
     var i;
     var j;
+    var k;
 
-    for (var k = 0; k < cptPos; k++) {
-        var cptMult = document.getElementById("nbMulti" + k).value;
-        for (var p = 0; p < cptMult; p++) {
-            if (document.getElementById("pos" + k + "_multi" + p + "_id").value == id) {
-                i = k;
-                j = p;
+    for (var m = 0; m < cptSrc; m++) {
+        var cptPos = document.getElementById("nbPos" + m).value;
+        for (var n = 0; n < cptPos; n++) {
+            var cptMult = document.getElementById("nbMulti" + m + "_" + n).value;
+            for (var p = 0; p < cptMult; p++) {
+                if (document.getElementById("src" + m + "_pos" + n + "_multi" + p + "_id").value == id) {
+                    i = m;
+                    j = n;
+                    k = p;
+                }
             }
         }
     }
-
     if (type === 'LIKE') {
-        document.getElementById("pos" + i + "_multi" + j + "_like").value = parseInt(document.getElementById("pos" + i + "_multi" + j + "_like").value) + 1;
+        document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_like").value = parseInt(document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_like").value) + 1;
     } else {
-        document.getElementById("pos" + i + "_multi" + j + "_dislike").value = parseInt(document.getElementById("pos" + i + "_multi" + j + "_dislike").value) + 1;
+        document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_dislike").value = parseInt(document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_dislike").value) + 1;
     }
 }

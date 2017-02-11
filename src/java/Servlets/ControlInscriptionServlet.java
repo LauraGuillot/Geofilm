@@ -33,22 +33,24 @@ public class ControlInscriptionServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //Paramètres
         String email = request.getParameter("email");
         String mdp = request.getParameter("mdp");
         String name = request.getParameter("name");
         String firstname = request.getParameter("firstname");
 
+        //Personne
         PersonManager pm = PersonManagerImpl.getInstance();
         Person p = pm.findPersonByEmail(email);
+        Boolean b = (p == null); // Booléen vrai si aucune personne ne correspond à l'email donné
 
-        Boolean b = (p == null);
-
-        //Inscription
+        //Inscription si aucune personne ne correspond à l'email donné
         if (b) {
             pm.insert(email, mdp, name, firstname);
         }
 
+        //Envoi de la réponse
         response.setContentType("text/html; charset=UTF-8");
-        response.getWriter().write(b + "");
+        response.getWriter().write(b + ""); // Réponse : true si l'inscription a été effectuée et false si l'email était déjà dans la base
     }
 }

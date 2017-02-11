@@ -65,7 +65,6 @@ var remove_bad_location_fr = "Retirer les contenus mal géolocalisés"
 var password_title_fr = "MOT DE PASSE OUBLIE";
 var error_email_not_found_fr = "Cette adresse email est inconnue de notre base de données";
 
-
 //Visualisation d'un multimédia
 var signal_fr = "Signaler";
 var signal2_fr = "une mauvaise géolocalisation";

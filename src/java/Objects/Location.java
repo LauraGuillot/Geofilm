@@ -1,3 +1,10 @@
+/*
+ * Classe Location.java
+ * ------------------------------------------------------------------------------
+ * Objet de la base de données
+ * Une localisation désigne une position d'un multimédia. 
+ * Elle comporte un identifiant et une géométrie (de type point, line ou polygon)
+ */
 package Objects;
 
 import java.io.Serializable;
@@ -16,10 +23,6 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Laura
- */
 @Entity
 @Table(name = "location", catalog = "geofilm", schema = "geofilm")
 @XmlRootElement
@@ -96,5 +99,5 @@ public class Location implements Serializable {
     public String toString() {
         return "Objects.Location[ locationId=" + locationId + " ]";
     }
-    
+
 }

@@ -41,13 +41,16 @@ public class LocationManagerImpl implements LocationManager {
      *
      * @return Liste de positions
      */
+    @Override
     public ArrayList<Location> getMarkers() {
         ArrayList<Location> l = new ArrayList<>();
 
+        //Requête
         EntityManager em = emf.createEntityManager();
         Query queryProductsByName = em.createNamedQuery("Location.findAll", Location.class);
         Collection c = queryProductsByName.getResultList();
 
+        //Transformation en arrayList
         for (Object loc : c) {
             l.add((Location) loc);
         }
@@ -67,6 +70,7 @@ public class LocationManagerImpl implements LocationManager {
 
         ArrayList<ArrayList<Location>> loc = new ArrayList<>();
 
+        //Pour chaque source, on renvoie la liste des positions 
         for (Source source : s) {
             ArrayList<Location> location = new ArrayList<>();
 
@@ -83,5 +87,4 @@ public class LocationManagerImpl implements LocationManager {
 
         return loc;
     }
-
 }

@@ -30,14 +30,15 @@ public class ControlConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+        //Paramètres
         String mdp = request.getParameter("mdp");
         String email = request.getParameter("email");
-        
+
+        //Envoi de la réponse : true si les login/mdp correspondent et false sinon
         ConnectManager m = ConnectManagerImpl.getInstance();
         response.setContentType("text/html; charset=UTF-8");
         response.getWriter().write(m.identifierValidation(email, mdp) + "");
-        
 
     }
 }

@@ -8,7 +8,6 @@
  */
 package Managers;
 
-import Objects.Badlocation;
 import Objects.Source;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +44,10 @@ public class SourceManagerImpl implements SourceManager {
         ArrayList<Source> s = new ArrayList<>();
 
         EntityManager em = emf.createEntityManager();
-        Query q = em.createNamedQuery("Source.findAll", Source.class);
+        Query q = em.createNamedQuery("Source.findAll", Source.class); // Query pour récupérer toute les sources
         List l = q.getResultList();
 
+        //Transformation en arrayList
         for (Object o : l) {
             if (((Source) o).getSourceId() > 0) {
                 s.add((Source) o);

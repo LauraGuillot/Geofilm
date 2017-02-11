@@ -1,3 +1,9 @@
+/*
+Controller RouteMapController
+------------------------------------------------------------------------------
+Controller pour l'affichage de la carte interactive 2 où les multimédias sont 
+groupés par source.
+*/
 package Controllers;
 
 import Managers.LocationManager;
@@ -30,6 +36,7 @@ public class RouteMapController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView get(HttpServletRequest request, HttpServletResponse response, @RequestParam("idco") String idco) {
+       //Résultat
         ModelAndView result = new ModelAndView("routeMap");
 
         //Récupération de l'utilisateur
@@ -55,7 +62,7 @@ public class RouteMapController {
         ArrayList<ArrayList<ArrayList<Multimedia>>> multis = mm.getMultimediaForSource(markers);
         result.addObject("multis", multis);
 
-          //Pour chaque multimédia : like, dislike et bad location
+        //Pour chaque multimédia : like, dislike et bad location
         result.addObject("likes", mm.getLikesSource(multis));
         result.addObject("dislikes", mm.getDislikesSource(multis));
         result.addObject("badloc", mm.getBadLocSource(multis));

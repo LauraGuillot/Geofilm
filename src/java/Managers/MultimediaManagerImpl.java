@@ -51,18 +51,19 @@ public class MultimediaManagerImpl implements MultimediaManager {
     public ArrayList<ArrayList<Multimedia>> getMultiByPos(ArrayList<Location> pos) {
         ArrayList<ArrayList<Multimedia>> mult = new ArrayList<>();
 
+        //Pour chaque position : on récupère la liste des multimédias y étant géolocalisés
         for (Location loc : pos) {
             ArrayList<Multimedia> m = new ArrayList<>();
 
             EntityManager em = emf.createEntityManager();
-            Query q = em.createQuery("SELECT m FROM Multimedia m WHERE  m.locationId=:loc");
+            Query q = em.createQuery("SELECT m FROM Multimedia m WHERE  m.locationId=:loc");//Sélection des multimédias à la position donnée
             q.setParameter("loc", loc);
             List l = q.getResultList();
 
+            //Transformation en arrayList
             for (Object o : l) {
                 m.add((Multimedia) o);
             }
-
             mult.add(m);
         }
         return mult;
@@ -77,10 +78,11 @@ public class MultimediaManagerImpl implements MultimediaManager {
     @Override
     public Integer getLike(Multimedia m) {
         EntityManager em = emf.createEntityManager();
-        Query q = em.createQuery("SELECT l FROM Liked l WHERE  l.multimedia=:m");
+        Query q = em.createQuery("SELECT l FROM Liked l WHERE  l.multimedia=:m"); //On récupère la liste des likes/dislikes faits pour ce multimédia
         q.setParameter("m", m);
         List l = q.getResultList();
 
+        //On compte le nombre d(objet de type like (et non dislike)
         int cpt = 0;
         for (Object o : l) {
             Liked li = (Liked) o;
@@ -100,11 +102,12 @@ public class MultimediaManagerImpl implements MultimediaManager {
     @Override
     public Integer getDislike(Multimedia m) {
         EntityManager em = emf.createEntityManager();
-        Query q = em.createQuery("SELECT l FROM Liked l WHERE  l.multimedia=:m");
+        Query q = em.createQuery("SELECT l FROM Liked l WHERE  l.multimedia=:m");//On récupère la liste des likes/dislikes faits pour ce multimédia
         q.setParameter("m", m);
         List l = q.getResultList();
 
         int cpt = 0;
+        //On compte le nombre d'objet de type dislike (et non like)
         for (Object o : l) {
             Liked li = (Liked) o;
             if (!li.getLikedType().equals("LIKE")) {
@@ -117,7 +120,7 @@ public class MultimediaManagerImpl implements MultimediaManager {
     /**
      * Récupérer les likes de chaque multimédias
      *
-     * @param multis Matrice de multimédias
+     * @param multis Matrice de multimédias (multimédias regroupés par position)
      * @return Matrice de nombre de likes
      */
     @Override
@@ -136,7 +139,7 @@ public class MultimediaManagerImpl implements MultimediaManager {
     /**
      * Récupérer les dislikes de chaque multimédias
      *
-     * @param multis Matrice de multimédias
+     * @param multis Matrice de multimédias (multimédias regroupés par position)
      * @return Matrice de nombre de dislikes
      */
     @Override
@@ -162,17 +165,17 @@ public class MultimediaManagerImpl implements MultimediaManager {
     @Override
     public int getBadLocMult(Multimedia m) {
         EntityManager em = emf.createEntityManager();
-        Query q = em.createQuery("SELECT b FROM Badlocation b WHERE  b.multimediaId=:m");
+        Query q = em.createQuery("SELECT b FROM Badlocation b WHERE  b.multimediaId=:m"); // Mauvaises localisations pour le multimédia
         q.setParameter("m", m);
         List l = q.getResultList();
         return l.size();
     }
 
     /**
-     * Récupérer les signalements de mauvais géolocalisation pour tous les
+     * Récupérer les signalements de mauvaise géolocalisation pour tous les
      * multimédias
      *
-     * @param multis Matrice de multimédias
+     * @param multis Matrice de multimédias (multimédias regroupés par position)
      * @return Matrice de nombre de mauvaise géolocalisation
      */
     @Override
@@ -234,7 +237,7 @@ public class MultimediaManagerImpl implements MultimediaManager {
         List l1 = q1.getResultList();
         result += (!l1.isEmpty());
 
-        //Est ce que la perosnne a liké/disliké ce multimédia?
+        //Est ce que la personne a liké/disliké ce multimédia?
         result += "*like:";
         Query q2 = em.createQuery("SELECT l FROM Liked l WHERE  l.multimedia=:m AND l.person=:p");
         q2.setParameter("m", m);
@@ -290,7 +293,7 @@ public class MultimediaManagerImpl implements MultimediaManager {
         Query q = em.createNamedQuery("Badlocation.findAll", Badlocation.class);
         List l = q.getResultList();
 
-        //Création du favoris
+        //Création de la mauvaise localisation
         System.out.println(l.size() + 1);
         Badlocation b = new Badlocation(l.size() + 1);
         b.setMultimediaId(m);
@@ -332,7 +335,8 @@ public class MultimediaManagerImpl implements MultimediaManager {
     }
 
     /**
-     * Matrice de multimédias qui correspond à une matrice de positions
+     * A partir d'une matrice de position (positions regroupées par source),
+     * obtenir une matrice de multimédias correspondante
      *
      * @param loc Matrice de positions
      * @return Matrice de multimédia
@@ -348,7 +352,9 @@ public class MultimediaManagerImpl implements MultimediaManager {
     }
 
     /**
-     * Récupérer les likes de chaque multimédiasde chaque source
+     * A partir d'une matrice de multimédias de dimension 3 (multimédias
+     * regroupés par source puis par localisation), récupérer une matrice de
+     * likes correspondante
      *
      * @param multis Matrice de multimédias
      * @return Matrice de nombre de likes
@@ -363,7 +369,9 @@ public class MultimediaManagerImpl implements MultimediaManager {
     }
 
     /**
-     * Récupérer les dislikes de chaque multimédias pour chaque sources
+     * A partir d'une matrice de multimédias de dimension 3 (multimédias
+     * regroupés par source puis par localisation), récupérer une matrice de
+     * dislikes correspondante
      *
      * @param multis Matrice de multimédias
      * @return Matrice de nombre de dislikes
@@ -378,8 +386,9 @@ public class MultimediaManagerImpl implements MultimediaManager {
     }
 
     /**
-     * Récupérer le nombre de signalements de chaque multimédias pour chaque
-     * sources
+     * A partir d'une matrice de multimédias de dimension 3 (multimédias
+     * regroupés par source puis par localisation), récupérer une matrice de
+     * mauvaises localisations correspondante
      *
      * @param multis Matrice de multimédias
      * @return Matrice de nombre de dsignalements

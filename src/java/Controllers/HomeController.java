@@ -2,6 +2,8 @@
  * ********************************************************************
  * Controller Home page (index)
  * --------------------------------------------------------------------
+ * Affichage de la page d'accueil
+ * --------------------------------------------------------------------
  * Last update : 29/01/2017
  *********************************************************************
  */
@@ -33,6 +35,7 @@ public class HomeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView handleDeco(HttpServletRequest request, HttpServletResponse response, @RequestParam("idco") String idco) {
+        //Résultat
         ModelAndView r = new ModelAndView("index");
 
         ConnectManager cm = ConnectManagerImpl.getInstance();
@@ -53,5 +56,4 @@ public class HomeController {
         return r;
     }
 
-  
 }

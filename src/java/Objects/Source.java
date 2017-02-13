@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Classe Source.java
+ * ------------------------------------------------------------------------------
+ * Objet de la base de données
+ * Une source peut être un film, une série ou un jeu.
+ * Elle se caractérise par un identifiant, un titre et un type (FILM, SERIE, JEU).
+ * La source d'identifiant 0 est la source nulle. Un multimédia qui a pour source 
+ * la source nulle n'a en réalité pas de source connue.
  */
 package Objects;
 
@@ -21,10 +25,6 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Laura
- */
 @Entity
 @Table(name = "source", catalog = "geofilm", schema = "geofilm")
 @XmlRootElement
@@ -118,5 +118,5 @@ public class Source implements Serializable {
     public String toString() {
         return "Objects.Source[ sourceId=" + sourceId + " ]";
     }
-    
+
 }

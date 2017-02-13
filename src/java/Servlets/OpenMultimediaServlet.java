@@ -52,7 +52,7 @@ public class OpenMultimediaServlet extends HttpServlet {
         MultimediaManager mm = MultimediaManagerImpl.getInstance();
         Multimedia m = mm.getMultById(Integer.parseInt(multiid));
         
-        //On envoie la réponse : informations sur les actions faites par la personne sur le multimédia
+        //On envoie la réponse : informations sur les actions faites par la personne sur le multimédia (likes, signalement, ajout aux favoris)
         response.setContentType("text/html; charset=UTF-8");
         response.getWriter().write(mm.getInfosMuliPerson(m,p));
     }

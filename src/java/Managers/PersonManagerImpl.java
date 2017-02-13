@@ -8,12 +8,8 @@
  */
 package Managers;
 
-import Objects.Liked;
-import Objects.Multimedia;
 import Objects.Person;
 import Util.PasswordHash;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -78,11 +74,13 @@ public class PersonManagerImpl implements PersonManager {
      */
     @Override
     public void insert(String email, String mdp, String name, String firstname) {
+        //Création de l'objet personne
         Person p = new Person();
         p.setPersonEmail(email);
         p.setPersonFirstname(firstname);
         p.setPersonName(name);
         p.setPersonPassword(PasswordHash.hash(mdp));
+        //Insertion
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(p);
@@ -99,9 +97,11 @@ public class PersonManagerImpl implements PersonManager {
      */
     @Override
     public void updateInfos(Person p, String name, String firstname, String email) {
+        //Mise à jour des infos
         p.setPersonEmail(email);
         p.setPersonFirstname(firstname);
         p.setPersonName(name);
+        //Update dans la base de données
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(p);

@@ -80,3 +80,20 @@ function getGlobalMap() {
     document.body.appendChild(form);
     form.submit();
 }
+
+/**
+ * Fonction d'affichage dynamique pour le bouton d'ajout aux favoris
+ */
+function overFavorite() {
+    document.getElementById("button_favorite").src = "Ressources/star_over.png";
+    document.getElementById("add_favorite").style.color = "#FFFF51";
+    document.getElementById("add_favorite").style.textDecoration = "underline";
+}
+/**
+ * Fonction d'affichage dynamique pour le bouton d'ajout aux favoris
+ */
+function outFavorite() {
+    document.getElementById("button_favorite").src = "Ressources/star.png";
+    document.getElementById("add_favorite").style.color = "#fffe83";
+    document.getElementById("add_favorite").style.textDecoration = "none";
+}

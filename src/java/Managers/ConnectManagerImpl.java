@@ -39,7 +39,7 @@ public class ConnectManagerImpl implements ConnectManager {
     }
 
     /**
-     * Méthode pour creer un identifiant de connexion : chîne de 100 caractères
+     * Méthode pour creer un identifiant de connexion : chaîne de 100 caractères
      * tirés aléatoirement
      *
      * @return Identifiant de connexion
@@ -92,6 +92,7 @@ public class ConnectManagerImpl implements ConnectManager {
         Query q = em.createQuery("SELECT c FROM Connect c WHERE c.personId =:person");
         q.setParameter("person", p);
         List l = q.getResultList();
+        //Delete de la connexion
         if (!l.isEmpty()) {
             Connect c = (Connect) l.get(0);
             em.getTransaction().begin();
@@ -108,9 +109,11 @@ public class ConnectManagerImpl implements ConnectManager {
      */
     @Override
     public String createConnection(Person p) {
+        //Création de la connexion
         String idco = createID();
         String lastAction = now();
         Connect c = new Connect(idco, lastAction, p);
+        //Insertion
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(c);
@@ -126,7 +129,9 @@ public class ConnectManagerImpl implements ConnectManager {
      */
     @Override
     public void updateConnection(Connect c) {
+        //Mise à jout de la date
         c.setConnectLastAction(now());
+        //Update dans la base de données
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(c);
@@ -142,13 +147,16 @@ public class ConnectManagerImpl implements ConnectManager {
      */
     @Override
     public String connect(Person p) {
+        //On récupère la connexion de la personne
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("SELECT c FROM Connect c WHERE c.personId =:person");
         q.setParameter("person", p);
         List l = q.getResultList();
 
+        //Si elle n'existe pas, on la crée
         if (l.isEmpty()) {
             return createConnection(p);
+            //Sinon, on la met à jour
         } else {
             Connect c = (Connect) l.get(0);
             updateConnection(c);
@@ -218,13 +226,13 @@ public class ConnectManagerImpl implements ConnectManager {
         Query q = em.createQuery("SELECT p FROM Person p WHERE  p.personEmail=:email");
         q.setParameter("email", email);
         List l = q.getResultList();
-        
-        if(l.isEmpty()){
+
+        if (l.isEmpty()) {
             return false;
-        }else{
-            return PasswordHash.match(mdp, ((Person)l.get(0)).getPersonPassword());
+        } else {
+            return PasswordHash.match(mdp, ((Person) l.get(0)).getPersonPassword());
         }
-        
+
     }
 
 }

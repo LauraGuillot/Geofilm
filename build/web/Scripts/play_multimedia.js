@@ -179,11 +179,13 @@ function displayLikeDiv(like, publisher, nlike, ndislike) {
             document.getElementById("like_action_locked").style.display = "block";
             document.getElementById("like_action").style.display = "none";
             document.getElementById("like_lock").style.backgroundImage = "url('Ressources/like_green.png')";
+            document.getElementById("dislike_lock").style.backgroundImage = "url('Ressources/dislike.png')";
         }
         if (like === 'DISLIKE') {
             document.getElementById("like_action_locked").style.display = "block";
             document.getElementById("like_action").style.display = "none";
             document.getElementById("dislike_lock").style.backgroundImage = "url('Ressources/dislike_red.png')";
+            document.getElementById("like_lock").style.backgroundImage = "url('Ressources/like.png')";
         }
         if (like === 'no') {
             document.getElementById("like_action").style.display = "block";
@@ -204,5 +206,33 @@ function displayBadLocDiv(badloc) {
     } else {
         document.getElementById("signalisation_action_locked").style.display = "none";
         document.getElementById("signalisation_action").style.display = "block";
+    }
+}
+
+/**
+ * Incrémentation du nombre de likes au like par un utilisateur 
+ * @param {type} id - Id du multimedia
+ * @param {type} type - Type du like 
+ * @returns {void}
+ */
+function incrLike(id, type) {
+    var cptPos = document.getElementById("nbMarkers").value;
+    var i;
+    var j;
+
+    for (var k = 0; k < cptPos; k++) {
+        var cptMult = document.getElementById("nbMulti" + k).value;
+        for (var p = 0; p < cptMult; p++) {
+            if (document.getElementById("pos" + k + "_multi" + p + "_id").value == id) {
+                i = k;
+                j = p;
+            }
+        }
+    }
+
+    if (type === 'LIKE') {
+        document.getElementById("pos" + i + "_multi" + j + "_like").value = parseInt(document.getElementById("pos" + i + "_multi" + j + "_like").value) + 1;
+    } else {
+        document.getElementById("pos" + i + "_multi" + j + "_dislike").value = parseInt(document.getElementById("pos" + i + "_multi" + j + "_dislike").value) + 1;
     }
 }

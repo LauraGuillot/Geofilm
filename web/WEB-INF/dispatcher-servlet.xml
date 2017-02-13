@@ -22,6 +22,7 @@
                 <prop key="index.htm">homeController</prop>
                 <prop key="globalMap.htm">connectController</prop>
                 <prop key="routeMap.htm">routeMapController</prop>
+                <prop key="uploading.htm">uploadController</prop>
                 
             </props>
         </property>
@@ -50,6 +51,10 @@
      <bean
         name="routeMapController"
         class="Controllers.RouteMapController"
+    />
+     <bean
+        name="uploadController"
+        class="Controllers.UploadController"
     />
    
 

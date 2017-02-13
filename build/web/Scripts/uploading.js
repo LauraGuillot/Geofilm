@@ -1,6 +1,5 @@
 function load() {
     loadText();
-    loadMap();
 }
 
 
@@ -32,6 +31,9 @@ function loadText() {
         document.getElementById("upload_film").innerHTML = upload_source_movie_fr;
         document.getElementById("upload_serie").innerHTML = upload_source_serie_fr;
         document.getElementById("upload_game").innerHTML = upload_source_game_fr;
+        document.getElementById("validation1").innerHTML = validation_fr;
+
+        
 
         //UPLOAD MERDIA 1 : LOCALISATION
         document.getElementById("title2").innerHTML = upload_title_fr;
@@ -45,11 +47,13 @@ function loadText() {
         document.getElementById("country").innerHTML = country_fr;
         document.getElementById("next").innerHTML = next_fr;
         document.getElementById("title2").innerHTML = upload_title_fr;
-        
-         //UPLOAD MERDIA 2 : UPLOAD
+        document.getElementById("validation2").innerHTML = validation_fr;
+
+        //UPLOAD MERDIA 2 : UPLOAD
         document.getElementById("title3").innerHTML = upload_title_fr;
         document.getElementById("subtitle3").innerHTML = upload_subtitle3_fr;
         document.getElementById("input_choice").innerHTML = upload_choice_input_fr;
+        document.getElementById("validation3").innerHTML = validation_fr;
 
     }
 }

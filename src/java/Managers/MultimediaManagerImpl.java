@@ -15,6 +15,7 @@ import Objects.LikedPK;
 import Objects.Location;
 import Objects.Multimedia;
 import Objects.Person;
+import Objects.Source;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -330,5 +331,38 @@ public class MultimediaManagerImpl implements MultimediaManager {
         em.persist(like);
         em.getTransaction().commit();
 
+    }
+    
+    /**
+     * Insertion d'un multimédia dans la base de données et création de la localisation associée (à partir d'une géométrie reçue en paramètre)
+     * @param title
+     * @param description
+     * @param path
+     * @param date
+     * @param format
+     * @param language
+     * @param type 
+     * @param l Localisation du média
+     * @param p Person p qui upload le multimédia
+     * @param source s Source du multimédia
+     */
+    @Override
+    public void insertMultimedia(String title, String description, String path, String date, String format, String language, String type, Location l, Person p, Source sourceId) {
+        Multimedia m = new Multimedia();
+        m.setMultimediaTitle(title);
+        m.setMultimediaDescription(description);
+        m.setMultimediaPath(path);
+        m.setMultimediaUploadDate(date);
+        m.setMultimediaFormat(format);
+        m.setMultimediaLanguage(language);
+        m.setMultimediaType(type);
+        m.setLocationId(l);
+        m.setPublisher(p);
+        m.setSourceId(sourceId);
+        
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(m);
+        em.getTransaction().commit();
     }
 }

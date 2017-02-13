@@ -11,6 +11,7 @@ package Managers;
 import Objects.Location;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -50,4 +51,45 @@ public class LocationManagerImpl implements LocationManager {
         }
         return l;
     }
+    
+    /**
+     * Création d'une location à partir d'une géométrie entrée
+     * @param the_geom
+     * @return 
+     */
+    @Override
+    public Location insertLocation(String the_geom){
+        Location l = new Location();
+        l.setLocationThegeom(the_geom);
+        return l;
+    }
+    
+    /**
+     * Trouver une localisation par son Id
+     * @param id Identifiant de la localisation
+     * @return 
+     */
+    @Override
+    public Location findLocationById (Integer id){
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("SELECT l.LocationId FROM Location l WHERE  l.locationId=:id");
+        q.setParameter("id", id);
+        List l = q.getResultList();
+        return l.isEmpty() ? null : (Location) l.get(0);
+    }
+    
+    /**
+     * Trouver une localisation par sa géométrie
+     * @param the_geom Géométrie
+     * @return 
+     */
+    @Override
+    public Location findLocation (String thegeom){
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("SELECT l.LocationId FROM Location l WHERE  l.locationThegeom=:thegeom");
+        q.setParameter("thegeom", thegeom);
+        List l = q.getResultList();
+        return l.isEmpty() ? null : (Location) l.get(0);
+    }
+    
 }

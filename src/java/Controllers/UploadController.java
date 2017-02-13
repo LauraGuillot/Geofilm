@@ -7,12 +7,13 @@
  */
 package Controllers;
 
+import Managers.PersonManager;
+import Managers.PersonManagerImpl;
 import Managers.ConnectManager;
 import Managers.ConnectManagerImpl;
 import Managers.LocationManager;
 import Managers.LocationManagerImpl;
-import Managers.PersonManager;
-import Managers.PersonManagerImpl;
+import Objects.Person;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -25,28 +26,36 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UploadController {
 
+    
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView deco(@RequestParam("idco") String idco) {
-        ModelAndView r = new ModelAndView("redirect:uploading.htm");
+        ModelAndView r = new ModelAndView("redirect:index.htm");
+        
+        //Mise à jour des connexions dans la base de données
+        ConnectManager cm = ConnectManagerImpl.getInstance();
+        cm.checkConnection();
+
         r.addObject("idco", idco);
         return r;
     }
-     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView handleDeco(HttpServletRequest request, HttpServletResponse response, @RequestParam("idco") String idco) {
-        ModelAndView r = new ModelAndView("uploading");
+    
+    
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView get(HttpServletRequest request, HttpServletResponse response, @RequestParam("idco") String idco) {
+        ModelAndView result = new ModelAndView("redirect:uploading.htm");
 
-        ConnectManager cm = ConnectManagerImpl.getInstance();
+        //Récupération de l'utilisateur
         PersonManager pm = PersonManagerImpl.getInstance();
+        Person p = pm.findPerson(idco);
+//        result.addObject("email", p.getPersonEmail());
+//        result.addObject("nom", p.getPersonName());
+//        result.addObject("prenom", p.getPersonFirstname());
+//        result.addObject("id", p.getPersonId());
 
-        //Si il y a une personne à déconnecter
-        if (!idco.equals("0")) {
-            cm.deconnect(pm.findPerson(idco));
-        }
+        //Connexion de l'utilisateur 
+        result.addObject("idco", idco);
 
-        //Mise à jour des connexions dans la base de données
-        cm.checkConnection();
-
-        return r;
+        
+        return result;
     }
-
 }

@@ -10,6 +10,7 @@ package Managers;
 import Objects.Location;
 import Objects.Multimedia;
 import Objects.Person;
+import Objects.Source;
 import java.util.ArrayList;
 
 public interface MultimediaManager {
@@ -118,4 +119,19 @@ public interface MultimediaManager {
      * @param type Type : like ou dislike
      */
     public void like(Multimedia m, Person p, String type);
+    
+    /**
+     * Insertion d'un multimédia dans la base de données
+     * @param title
+     * @param description
+     * @param path
+     * @param date
+     * @param format
+     * @param language
+     * @param type 
+     * @param l Localisation du média
+     * @param p Personne qui upload la vidéo
+     * @param sourceId Source du multimédia
+     */
+    public void insertMultimedia(String title, String description, String path, String date, String format, String language, String type, Location l, Person p, Source sourceId);
 }

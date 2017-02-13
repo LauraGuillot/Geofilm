@@ -7,6 +7,13 @@
  */
 package Managers;
 
+import Objects.Source;
+
 public interface SourceManager {
-    
+    /**
+     * Trouver une Source à partir de son nom
+     * @param name
+     * @return 
+     */
+    public Source findSource(String name);
 }

@@ -2,11 +2,12 @@
  * Définition des chaînes de caractères pour les pages HTML
  */
 
-var star_fr = "*";
+
 
 //GENERAL
 var close_fr = "FERMER";
 var validation_fr = "VALIDER";
+var star_fr = "*";
 
 // ACCUEIL
 var welcome_fr = "Bienvenue sur";
@@ -34,33 +35,33 @@ var name_fr = "Nom *";
 var firstname_fr = "Prénom *";
 var inscription_password_fr = "Mot de passe (6 caractères minimum) *";
 var password2_fr = "Confirmation du mot de passe *";
-var error_name_fr="Veuillez saisir votre nom";
-var error_firstname_fr="Veuillez saisir votre prénom";
-var error_password_fr="Veuillez saisir un mot de passe d'au moins 6 caractères.";
-var error_passwords_fr="Les mots de passe ne correspondent pas.";
-var error_email_already_taken_fr ="Cette adresse email est déjà utilisée.";
+var error_name_fr = "Veuillez saisir votre nom";
+var error_firstname_fr = "Veuillez saisir votre prénom";
+var error_password_fr = "Veuillez saisir un mot de passe d'au moins 6 caractères.";
+var error_passwords_fr = "Les mots de passe ne correspondent pas.";
+var error_email_already_taken_fr = "Cette adresse email est déjà utilisée.";
 
 //Navigation
-var global_map_fr ="GLOBAL MAP";
-var route_map_fr="ROUTE MAP";
-var modification_fr="Modifier";
-var favorite_fr ="Favoris";
-var upload_fr="UPLOAD";
+var global_map_fr = "GLOBAL MAP";
+var route_map_fr = "ROUTE MAP";
+var modification_fr = "Modifier";
+var favorite_fr = "Favoris";
+var upload_fr = "UPLOAD";
 
 //Modification des informations personnelles
 var modif_infos_fr = "MODIFICATION DES INFORMATIONS PERSONNELLES";
 
 //Pop-up pour les markers
 var by_fr = "Par ";
-var the_fr=" le ";
-var sort_by_fr="Trier par :";
-var title_fr ="Titre";
-var date_fr="Date";
-var likes_fr="Likes";
-var source_type_fr ="Type de contenu :";
-var video_fr ="Video";
+var the_fr = " le ";
+var sort_by_fr = "Trier par :";
+var title_fr = "Titre";
+var date_fr = "Date";
+var likes_fr = "Likes";
+var source_type_fr = "Type de contenu :";
+var video_fr = "Video";
 var image_fr = "Image";
-var sound_fr ="Son";
+var sound_fr = "Son";
 var remove_bad_location_fr = "Retirer les contenus mal géolocalisés"
 
 //Mot de passe oublié
@@ -97,6 +98,9 @@ var next_fr = "SUIVANT";
 var upload_subtitle3_fr = "Ajout du fichier multimédia";
 var upload_choice_input_fr = "Choisissez un fichier multimédia :";
 
+var error_multimedia_type_fr ="Veuillez sélectionner un type de multimédia";
+var error_mandatory_fr = "Veuillez remplir les champs obligatoires *";
+
 
 //Visualisation d'un multimédia
 var signal_fr = "Signaler";
@@ -104,7 +108,14 @@ var signal2_fr = "une mauvaise géolocalisation";
 var signal_lock_fr = "Vous avez signalé une mauvaise localisation";
 var add_favorite_fr = "Ajouter aux favoris";
 var favorite_added_fr="Ajouté aux favoris";
-var or_fr = "OU";
 var point_map_fr = "POINTER SUR LA CARTE";
 
 
+
+//Route map
+var chose_source_fr = "Choisissez une source";
+var search_key_word_fr = "Recherche par mots clés";
+var film_fr = "FILM";
+var game_fr = "JEU";
+var serie_fr = "SERIE";
+var or_fr = "OU";

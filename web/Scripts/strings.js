@@ -110,8 +110,6 @@ var add_favorite_fr = "Ajouter aux favoris";
 var favorite_added_fr="Ajouté aux favoris";
 var point_map_fr = "POINTER SUR LA CARTE";
 
-
-
 //Route map
 var chose_source_fr = "Choisissez une source";
 var search_key_word_fr = "Recherche par mots clés";
@@ -119,3 +117,4 @@ var film_fr = "FILM";
 var game_fr = "JEU";
 var serie_fr = "SERIE";
 var or_fr = "OU";
+var no_source_fr ="Aucune source ne correspond à cette recherche."

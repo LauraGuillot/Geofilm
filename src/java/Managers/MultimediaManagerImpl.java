@@ -241,11 +241,11 @@ public class MultimediaManagerImpl implements MultimediaManager {
         q2.setParameter("m", m);
         q2.setParameter("p", p);
         List l2 = q2.getResultList();
-        
-        if(l2.isEmpty()){
-            result+="no";
-        }else{
-            result+=((Liked)l2.get(0)).getLikedType();
+
+        if (l2.isEmpty()) {
+            result += "no";
+        } else {
+            result += ((Liked) l2.get(0)).getLikedType();
         }
 
         return result;
@@ -332,19 +332,21 @@ public class MultimediaManagerImpl implements MultimediaManager {
         em.getTransaction().commit();
 
     }
-    
+
     /**
-     * Insertion d'un multimédia dans la base de données et création de la localisation associée (à partir d'une géométrie reçue en paramètre)
+     * Insertion d'un multimédia dans la base de données et création de la
+     * localisation associée (à partir d'une géométrie reçue en paramètre)
+     *
      * @param title
      * @param description
      * @param path
      * @param date
      * @param format
      * @param language
-     * @param type 
+     * @param type
      * @param l Localisation du média
      * @param p Person p qui upload le multimédia
-     * @param source s Source du multimédia
+     * @param sourceId s Source du multimédia
      */
     @Override
     public void insertMultimedia(String title, String description, String path, String date, String format, String language, String type, Location l, Person p, Source sourceId) {
@@ -359,10 +361,75 @@ public class MultimediaManagerImpl implements MultimediaManager {
         m.setLocationId(l);
         m.setPublisher(p);
         m.setSourceId(sourceId);
-        
+
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(m);
         em.getTransaction().commit();
     }
+
+    /**
+     * Matrice de multimédias qui correspond à une matrice de positions
+     *
+     * @param loc Matrice de positions
+     * @return Matrice de multimédia
+     */
+    @Override
+    public ArrayList<ArrayList<ArrayList<Multimedia>>> getMultimediaForSource(ArrayList<ArrayList<Location>> loc) {
+        ArrayList<ArrayList<ArrayList<Multimedia>>> multi = new ArrayList<>();
+
+        for (ArrayList<Location> pos : loc) {
+            multi.add(getMultiByPos(pos));
+        }
+
+        return multi;
+    }
+
+    /**
+     * Récupérer les likes de chaque multimédiasde chaque source
+     *
+     * @param multis Matrice de multimédias
+     * @return Matrice de nombre de likes
+     */
+    @Override
+    public ArrayList<ArrayList<ArrayList<Integer>>> getLikesSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis) {
+        ArrayList<ArrayList< ArrayList< Integer>>> li = new ArrayList<>();
+        for (ArrayList<ArrayList<Multimedia>> m : multis) {
+            li.add(this.getLikes(m));
+        }
+        return li;
+    }
+
+    /**
+     * Récupérer les dislikes de chaque multimédias pour chaque sources
+     *
+     * @param multis Matrice de multimédias
+     * @return Matrice de nombre de dislikes
+     */
+    @Override
+    public ArrayList<ArrayList<ArrayList<Integer>>> getDislikesSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis) {
+        ArrayList<ArrayList< ArrayList< Integer>>> li = new ArrayList<>();
+        for (ArrayList<ArrayList<Multimedia>> m : multis) {
+            li.add(this.getDislikes(m));
+        }
+        return li;
+    }
+
+    /**
+     * Récupérer le nombre de signalements de chaque multimédias pour chaque
+     * sources
+     *
+     * @param multis Matrice de multimédias
+     * @return Matrice de nombre de dsignalements
+     */
+    @Override
+    public ArrayList<ArrayList<ArrayList<Integer>>> getBadLocSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis) {
+        ArrayList<ArrayList< ArrayList< Integer>>> li = new ArrayList<>();
+        for (ArrayList<ArrayList<Multimedia>> m : multis) {
+            li.add(this.getBadLoc(m));
+        }
+        return li;
+    }
+
 }
+

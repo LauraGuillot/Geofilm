@@ -180,7 +180,7 @@ function displayLikeDiv(like, publisher, nlike, ndislike) {
         document.getElementById("like_action").style.display = "none";
     } else {
         if (like === 'LIKE') {
-            alert("like");
+ 
             document.getElementById("like_action_locked").style.display = "block";
             document.getElementById("like_action").style.display = "none";
             document.getElementById("like_lock").style.backgroundImage = "url('Ressources/like_green.png')";
@@ -188,7 +188,7 @@ function displayLikeDiv(like, publisher, nlike, ndislike) {
             
         }
         if (like === 'DISLIKE') {
-            alert("dislike");
+    
             document.getElementById("like_action_locked").style.display = "block";
             document.getElementById("like_action").style.display = "none";
             document.getElementById("dislike_lock").style.backgroundImage = "url('Ressources/dislike_red.png')";

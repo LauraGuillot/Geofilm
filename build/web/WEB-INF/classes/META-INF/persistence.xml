@@ -18,7 +18,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/geofilm"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="17pa_k.2o"/> <!--à la base : 24121994Laura-->
+      <property name="javax.persistence.jdbc.password" value="24121994Laura"/> <!--à la base : 24121994Laura-->
       <property name="eclipselink.allow-zero-id" value="true"/>
     </properties>
   </persistence-unit>

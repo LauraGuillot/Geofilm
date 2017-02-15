@@ -41,10 +41,11 @@ function search_source_type() {
 function search_key_word() {
 
     //TRI PAR TYPE
+    var type = document.getElementById("select_source").value;
     var sources = search_source_type();
 
     //Si aucun type n'a été choisi, on prend toutes les sources
-    if (sources.length == 0) {
+    if (sources.length == 0 && type === chose_source_fr) {
         var cpt = document.getElementById("nbSources").value;
         for (var i = 0; i < cpt; i++) {
             var s = new Object();

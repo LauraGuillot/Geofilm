@@ -13,9 +13,34 @@ function loadMap() {
         zoom: 13
     });
 
+    //Ajout du géocoder : barre de recherche par adresse
     map.addControl(new MapboxGeocoder({
         accessToken: mapboxgl.accessToken
     }));
+
+    //Ajout d'un layer "building 3D" qui s'affiche au zoom
+    map.on('load', function () {
+        map.addLayer({
+            'id': '3d-buildings',
+            'source': 'composite',
+            'source-layer': 'building',
+            'filter': ['==', 'extrude', 'true'],
+            'type': 'fill-extrusion',
+            'minzoom': 15,
+            'paint': {
+                'fill-extrusion-color': '#aaa',
+                'fill-extrusion-height': {
+                    'type': 'identity',
+                    'property': 'height'
+                },
+                'fill-extrusion-base': {
+                    'type': 'identity',
+                    'property': 'min_height'
+                },
+                'fill-extrusion-opacity': .6
+            }
+        });
+    });
 
     // Zoom 
     map.addControl(new mapboxgl.NavigationControl());

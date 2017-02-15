@@ -26,7 +26,7 @@ function open_upload() {
  */
 function upload() {
 
-    //On récupère les infos
+//On récupère les infos
     var type_video = document.getElementById("upload_video").value;
     var type_image = document.getElementById("upload_image").value;
     var type_sound = document.getElementById("upload_sound").value;
@@ -42,10 +42,8 @@ function upload() {
     var day = d.getDate();
     var month = d.getMonth() + 1;
     var year = d.getFullYear();
-
     //Variable du jour :
     var date = document.getElementById("day").value + "/" + document.getElementById("month").value + "/" + document.getElementById("year");
-
     // Pour l'instant, la reconnaissance d'adresse n'est pas effective.
     // On contrôle seulement si des caractères sont bien entrés dans les champs obligatoires pour une adresse
     var number = document.getElementById("numero_entered").value;
@@ -54,9 +52,6 @@ function upload() {
     var city = document.getElementById("city_entered").value;
     var country = document.getElementById("country_entered").value;
     var file = document.getElementById("file_entered").value;
-
-
-
     //Si la saisie est valide
     if (valid_form_upload1(type_video, type_sound, type_image, title, source)) {
 
@@ -65,8 +60,6 @@ function upload() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
                 //Réponse de la servlet
                 var answer = xhttp.responseText;
-
-
                 if (answer == "true") {
 
                     //Appel du controller pour effuectuer l'ajout d'un multimédia via un formulaire (Post)
@@ -102,11 +95,13 @@ function upload() {
 //        xhttp.open("GET", "ControlInscriptionServlet?" + data, true);
 //        xhttp.setRequestHeader("Content-Type", "text/html; charset=UTF-8");
 //        xhttp.send();
-        //TODO
+                    //TODO
+                }
+            }
+
+        }
     }
 }
-
-
 
 /**
  * Vérifier qu'une valeur est entrée pour le type de multimédia (i.e. qu'une case est bien cochée)

@@ -5,6 +5,7 @@ var map;
  * Chargement de la carte avec tous les marqueurs
  */
 function loadMap() {
+    //Création de la carte, centrage initial sur Paris
     mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VvZmlsbSIsImEiOiJjaXlqd2d1NGUwMDA5MnFrMXUyaHdtYmt5In0.zaWf5uM65g8RiAj9LACvHw';
     map = new mapboxgl.Map({
         container: 'mapid',
@@ -13,9 +14,34 @@ function loadMap() {
         zoom: 13
     });
 
+    //Ajout du géocoder : barre de recherche par adresse
     map.addControl(new MapboxGeocoder({
         accessToken: mapboxgl.accessToken
     }));
+
+    //Ajout d'un layer "building 3D" qui s'affiche au zoom
+    map.on('load', function () {
+        map.addLayer({
+            'id': '3d-buildings',
+            'source': 'composite',
+            'source-layer': 'building',
+            'filter': ['==', 'extrude', 'true'],
+            'type': 'fill-extrusion',
+            'minzoom': 15,
+            'paint': {
+                'fill-extrusion-color': '#aaa',
+                'fill-extrusion-height': {
+                    'type': 'identity',
+                    'property': 'height'
+                },
+                'fill-extrusion-base': {
+                    'type': 'identity',
+                    'property': 'min_height'
+                },
+                'fill-extrusion-opacity': .6
+            }
+        });
+    });
 
     // Zoom 
     map.addControl(new mapboxgl.NavigationControl());
@@ -57,7 +83,7 @@ function displayMarkers() {
  * Ajout d'un marker sur la carte
  * @param {double} x longitude
  * @param {double} y latitude
- * @param {popup} Popup
+ * @param {popup} popup
  * @returns {marker}
  */
 function addMarker(x, y, popup) {
@@ -101,8 +127,8 @@ function preparePopUp(i) {
 
 /**
  * Préparation d'un lien pour chaque multimédia
- * @param {type} i
- * @param {type} j
+ * @param {type} i - indice de la popup
+ * @param {type} j - indice du multimedia
  * @returns {String}
  */
 function getLinkMulti(i, j) {
@@ -128,6 +154,7 @@ function getLinkMulti(i, j) {
 
 /**
  * Création du header pour les pop-up
+ * @param {type} i - Indice de la popup
  * @returns {String}
  */
 function header(i) {

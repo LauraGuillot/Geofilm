@@ -42,7 +42,6 @@
         <script src="Scripts/load_map_2.js"></script>
 
         <!-- SCRIPTS -->
-        <script src="Scripts/update_connexion.js"></script>
         <script src="Scripts/global_map.js"></script>
         <script src="Scripts/deconnect.js"></script>
         <script src="Scripts/modif_infos_perso.js"></script>

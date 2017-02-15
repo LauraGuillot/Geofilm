@@ -134,4 +134,37 @@ public interface MultimediaManager {
      * @param sourceId Source du multimédia
      */
     public void insertMultimedia(String title, String description, String path, String date, String format, String language, String type, Location l, Person p, Source sourceId);
+
+    /**
+     * Matrice de multimédias qui correspond à une matrice de positions
+     *
+     * @param loc Matrice de positions
+     * @return Matrice de multimédia
+     */
+    public ArrayList<ArrayList<ArrayList<Multimedia>>> getMultimediaForSource(ArrayList<ArrayList<Location>> loc);
+    
+    /**
+     * Récupérer les likes de chaque multimédiasde chaque source
+     *
+     * @param multis Matrice de multimédias
+     * @return Matrice de nombre de likes
+     */
+    public ArrayList<ArrayList<ArrayList<Integer>>> getLikesSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis) ;
+    
+    /**
+     * Récupérer les dislikes de chaque multimédias pour chaque sources
+     *
+     * @param multis Matrice de multimédias
+     * @return Matrice de nombre de dislikes
+     */
+    public ArrayList<ArrayList<ArrayList<Integer>>> getDislikesSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis) ;
+    
+    /**
+     * Récupérer le nombre de signalements de chaque multimédias pour chaque
+     * sources
+     *
+     * @param multis Matrice de multimédias
+     * @return Matrice de nombre de dsignalements
+     */
+    public ArrayList<ArrayList<ArrayList<Integer>>> getBadLocSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis);
 }

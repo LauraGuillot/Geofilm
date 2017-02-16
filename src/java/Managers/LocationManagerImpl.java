@@ -9,6 +9,7 @@
 package Managers;
 
 import Objects.Location;
+import Objects.Person;
 import Objects.Source;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -124,6 +125,28 @@ public class LocationManagerImpl implements LocationManager {
             loc.add(location);
         }
 
+        return loc;
+    }
+
+    /**
+     * Récupérer les positions des favoris de l'utilisateur
+     *
+     * @param p Personne
+     * @return Liste de positions
+     */
+    @Override
+    public ArrayList<Location> getFavorite(Person p) {
+        EntityManager em = emf.createEntityManager();
+
+        ArrayList<Location> loc = new ArrayList<>();
+
+        Query q = em.createQuery("SELECT distinct l FROM Location l INNER JOIN  Favorite f ON (l.locationId = f.multimediaId.locationId.locationId) WHERE  f.personId=:p");
+        q.setParameter("p", p);
+        List l = q.getResultList();
+
+        for (Object o : l) {
+            loc.add((Location) o);
+        }
         return loc;
     }
 }

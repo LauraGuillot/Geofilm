@@ -68,7 +68,6 @@ var remove_bad_location_fr = "Retirer les contenus mal géolocalisés"
 var password_title_fr = "MOT DE PASSE OUBLIE";
 var error_email_not_found_fr = "Cette adresse email est inconnue de notre base de données";
 
-
 //Upload d'un multimédia
 var upload_title_fr = "UPLOADER UN MULTIMEDIA";
 var upload_subtitle1_fr = "Informations générales";
@@ -101,7 +100,6 @@ var upload_choice_input_fr = "Choisissez un fichier multimédia :";
 var error_multimedia_type_fr ="Veuillez sélectionner un type de multimédia";
 var error_mandatory_fr = "Veuillez remplir les champs obligatoires *";
 
-
 //Visualisation d'un multimédia
 var signal_fr = "Signaler";
 var signal2_fr = "une mauvaise géolocalisation";
@@ -118,3 +116,7 @@ var game_fr = "JEU";
 var serie_fr = "SERIE";
 var or_fr = "OU";
 var no_source_fr ="Aucune source ne correspond à cette recherche."
+
+//Favoris
+var favorite2_fr="FAVORIS";
+var delete_fr = "Supprimer";

@@ -169,11 +169,5 @@ public interface MultimediaManager {
      */
     public ArrayList<ArrayList<ArrayList<Integer>>> getBadLocSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis);
 
-    /**
-     * Obtention des favoris d'un utilisateur
-     *
-     * @param p Personne
-     * @return Liste de ses favoris
-     */
-    public ArrayList<Multimedia> getFavorites(Person p) ;
+   
 }

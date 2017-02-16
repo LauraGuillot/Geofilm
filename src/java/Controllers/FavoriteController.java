@@ -7,11 +7,15 @@ package Controllers;
 
 import Managers.ConnectManager;
 import Managers.ConnectManagerImpl;
+import Managers.LocationManager;
+import Managers.LocationManagerImpl;
 import Managers.MultimediaManager;
 import Managers.MultimediaManagerImpl;
 import Managers.PersonManager;
 import Managers.PersonManagerImpl;
+import Objects.Location;
 import Objects.Person;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -26,7 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class FavoriteController {
-    
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView get(HttpServletRequest request, HttpServletResponse response, @RequestParam("idco") String idco) {
         //Résultat
@@ -49,9 +53,12 @@ public class FavoriteController {
         result.addObject("idco", idco);
 
         //Récupération des multimédias favoris
+        LocationManager lm = LocationManagerImpl.getInstance();
         MultimediaManager mm = MultimediaManagerImpl.getInstance();
-        result.addObject("favorites", mm.getFavorites(p));
-        
+        ArrayList<Location> loc = lm.getFavorite(p);
+        result.addObject("locations", loc);
+        result.addObject("favorites", mm.getMultiByPos(loc));
+
         return result;
     }
 }

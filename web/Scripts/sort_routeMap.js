@@ -16,6 +16,7 @@ function sort(i, j) {
         var date = document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_uploaddate").value;
         var type = document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_type").value;
         var likes = document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_like").value;
+        var dislikes = document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_dislike").value;
         var badloc = document.getElementById("src" + i + "_pos" + j + "_multi" + k + "_badloc").value;
 
         var m = new Object();
@@ -25,6 +26,7 @@ function sort(i, j) {
         m.date = date;
         m.type = type;
         m.likes = likes;
+         m.dislikes = dislikes;
         m.badloc = badloc;
         m.rank = k;
 
@@ -63,7 +65,11 @@ function sort(i, j) {
     var title_sort = document.getElementById("title_" + i + "_" + j).checked;
     if (title_sort) {
         multis.sort(function (a, b) {
-            return a.title > b.title;
+            if (a.title < b.title)
+                return -1;
+            if (a.title > b.title)
+                return 1;
+            return 0;
         });
     }
 
@@ -93,7 +99,7 @@ function sort(i, j) {
     var likes_sort = document.getElementById("likes_" + i + "_" + j).checked;
     if (likes_sort) {
         multis.sort(function (a, b) {
-            return a.likes > b.likes;
+             return (a.likes - a.dislikes) < (b.likes - b.dislikes);
         });
     }
 

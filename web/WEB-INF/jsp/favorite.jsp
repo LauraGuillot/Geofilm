@@ -46,6 +46,9 @@
         <script src="Scripts/deconnect.js"></script>
         <script src="Scripts/modif_infos_perso.js"></script> 
         <script src="Scripts/display_favorite.js"></script> 
+        <script src="Scripts/load_favorite_map.js"></script> 
+        <script src="Scripts/mapbox_tracker.js"></script> 
+          <script src="Scripts/sort_favorite.js"></script> 
 
     </head>
     <body onload="load();"><!-- Chargement des chaînes de caractères et de la carte-->
@@ -58,17 +61,25 @@
             <input type="hidden" id="firstname" value="<c:out value="${prenom}"/>"/> 
             <input type="hidden" id="email" value="<c:out value="${email}"/>"/> 
             <input type="hidden" id="idco" value="<c:out value="${idco}"/>"/>   
+            <!-- Position-->
+            <input type="hidden" id="nbLoc" value="<c:out value="${fn:length(locations)}"/>"/> 
+            <c:forEach var="l" items="${locations}" varStatus="status">
+                <input type="hidden" id="loc<c:out value="${status.index}"/>" value="<c:out value="${l['locationThegeom']}"/>"/>
+            </c:forEach> 
+
             <!-- Favoris-->
-            <input type="hidden" id="nbFavorite" value="<c:out value="${fn:length(favorites)}"/>"/> 
-            <c:forEach var="f" items="${favorites}" varStatus="status">
-                <input type="hidden" id="f<c:out value="${status.index}"/>_title" value="<c:out value="${f['multimediaTitle']}"/>"/>
-                <input type="hidden" id="f<c:out value="${status.index}"/>_id" value="<c:out value="${f['multimediaId']}"/>"/>
-                <input type="hidden" id="f<c:out value="${status.index}"/>_publisher" value="<c:out value="${f['publisher']['personFirstname']}"/> <c:out value="${f['publisher']['personName']}"/>"/>
-                <input type="hidden" id="f<c:out value="${status.index}"/>_descr" value="<c:out value="${f['multimediaDescription']}"/>"/>
-                <input type="hidden" id="f<c:out value="${status.index}"/>_path" value="<c:out value="${f['multimediaPath']}"/>"/>
-                <input type="hidden" id="f<c:out value="${status.index}"/>_uploaddate" value="<c:out value="${f['multimediaUploadDate']}"/>"/>
-                <input type="hidden" id="f<c:out value="${status.index}"/>_format" value="<c:out value="${f['multimediaFormat']}"/>"/>
-                <input type="hidden" id="f<c:out value="${status.index}"/>_type" value="<c:out value="${f['multimediaType']}"/>"/>
+            <c:forEach var="mu" items="${favorites}" varStatus="status">
+                <input type="hidden" id="nbMulti<c:out value="${status.index}"/>" value="<c:out value="${fn:length(mu)}"/>"/> 
+                <c:forEach var="m" items="${mu}" varStatus="status1">
+                    <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_id"/>" value="<c:out value="${m['multimediaId']}"/>"/>
+                    <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_title"/>" value="<c:out value="${m['multimediaTitle']}"/>"/>
+                    <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_publisher"/>" value="<c:out value="${m['publisher']['personFirstname']}"/> <c:out value="${m['publisher']['personName']}"/>"/>
+                    <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_descr"/>" value="<c:out value="${m['multimediaDescription']}"/>"/>
+                    <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_path"/>" value="<c:out value="${m['multimediaPath']}"/>"/>
+                    <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_uploaddate"/>" value="<c:out value="${m['multimediaUploadDate']}"/>"/>
+                    <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_format"/>" value="<c:out value="${m['multimediaFormat']}"/>"/>
+                    <input type="hidden" id="pos<c:out value="${status.index}"/>_multi<c:out value="${status1.index}_type"/>" value="<c:out value="${m['multimediaType']}"/>"/>
+                </c:forEach>
             </c:forEach>
         </div>
 
@@ -102,19 +113,62 @@
 
         <!-- CONTENU PRINCIPAL -->
         <div class="container"> 
-            <!-- Zone pour les fonctionnalités de tri-->
-            <div class="sort">
+            <div  class="row content">          
+                <!-- Volet de gauche-->
+                <div id="left_div" class="col-md-4"> 
+                    <!-- Zone pour les fonctionnalités de tri-->
+                    <div class="sort">
+                        <!--TITRE-->
+                        <div id="title_fav" class="title" style="font-size: 18pt;"></div>
+                        <br>
 
+                        <div class="form_fav">
+                            <!-- Tri attributaire-->
+                            <p class="text" id="sort_by"></p>
+
+                            <!-- Tri par titre -->
+                            <div class="input_checkbox">    
+                                <input id="sort_title" class="checkbox_fav" type="checkbox" name="title" onclick="sort();"/>
+                                <label class="input_label" id="title_label"> </label>
+                            </div>
+
+                            <!-- Tri par date -->
+                            <div class="input_checkbox">
+                                <input id="sort_date" class="checkbox_fav" type="checkbox" name="date" onclick="sort();"/>
+                                <label class="input_label" id="date_label"> </label>
+                            </div>
+                        </div>
+                        <div class="form_fav" style="margin-left: 20px;">
+                            <!-- Tri par type de contenu -->
+                            <p class="text" id="sort_type"></p>
+                            <!-- Video -->
+                            <div class="input_checkbox">                
+                                <input id="sort_video" class="checkbox_fav" type="checkbox" name="video" onclick="sort();" checked="true"/>    
+                                <label class="input_label" id="video_label"> </label>
+                            </div>
+                            <!-- Image -->
+                            <div class="input_checkbox">                         
+                                <input id="sort_image" class="checkbox_fav" type="checkbox" name="image" onclick="sort();" checked="true"/>   
+                                <label class="input_label" id="image_label"> </label>
+                            </div>
+                            <!-- Son -->
+                            <div class="input_checkbox">
+                                <input id="sort_sound" class="checkbox_fav" type="checkbox" name="sound" onclick="sort();" checked="true"/>   
+                                <label class="input_label" id="sound_label"> </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <center>
+                        <div id="separator"> </div>
+                    </center>
+                    <!-- Zone pour afficher les favoris-->
+                    <div id="favorite"></div>  
+                </div>
+
+                <!-- Map -->
+                <div id="mapid" class="col-md-8"> </div>
             </div>
-            <!-- Zone pour afficher les favoris-->
-            <div id="favorite">
-
-            </div>
-            <!-- Zone pour la barre de recherche-->
-            <div class="search_bar">
-
-            </div>
-
         </div>
 
         <!--POPUP : visualisation d'un multimédia-->

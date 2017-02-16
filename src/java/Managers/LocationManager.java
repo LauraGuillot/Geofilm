@@ -8,6 +8,7 @@
 package Managers;
 
 import Objects.Location;
+import Objects.Person;
 import Objects.Source;
 import java.util.ArrayList;
 
@@ -44,4 +45,12 @@ public interface LocationManager {
      * @return Liste de liste de position
      */
     public ArrayList<ArrayList<Location>> getLocationForSources(ArrayList<Source> s) ;
+    
+     /**
+     * Récupérer les positions des favoris de l'utilisateur
+     *
+     * @param p Personne
+     * @return Liste de positions
+     */
+    public ArrayList<Location> getFavorite(Person p);
 }

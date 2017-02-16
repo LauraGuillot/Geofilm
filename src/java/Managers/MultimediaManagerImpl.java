@@ -431,5 +431,25 @@ public class MultimediaManagerImpl implements MultimediaManager {
         return li;
     }
 
-}
+    /**
+     * Obtention des favoris d'un utilisateur
+     *
+     * @param p Personne
+     * @return Liste de ses favoris
+     */
+    @Override
+    public ArrayList<Multimedia> getFavorites(Person p) {
+        ArrayList<Multimedia> m = new ArrayList<>();
 
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("SELECT f.multimediaId FROM Favorite f WHERE  f.personId=:p");
+        q.setParameter("p", p);
+        List l = q.getResultList();
+
+        for (Object o : l) {
+            m.add((Multimedia) o);
+        }
+
+        return m;
+    }
+}

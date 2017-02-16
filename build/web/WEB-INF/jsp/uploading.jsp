@@ -28,7 +28,6 @@
 
         <!-- STYLES -->
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/navigation.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/global_map.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/button.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/modal_error.css">
         <link rel="stylesheet" type="text/css" media="screen" href="Stylesheets/modal_form.css">
@@ -38,13 +37,11 @@
 
         <!-- MAP -->
         <script src="Scripts/mapbox_tracker.js"></script>
-        <script src="Scripts/load_map_2.js"></script>
 
         <!-- SCRIPTS -->
-        <script src="Scripts/update_connexion.js"></script>
+           <script src="Scripts/navigation.js"></script>
         <script src="Scripts/deconnect.js"></script>
         <script src="Scripts/modif_infos_perso.js"></script>
-        <script src="Scripts/sort.js"></script>
         <script src="Scripts/uploading.js"></script>
         <script src="Scripts/upload.js"></script>
 
@@ -59,28 +56,26 @@
         <input type="hidden" id="email" value="<c:out value="${email}"/>"/> 
         <input type="hidden" id="idco" value="<c:out value="${idco}"/>"/> 
 
-        <!-- Markers (positions) -->
-        <input type="hidden" id="nbMarkers" value="<c:out value="${fn:length(markers)}"/>"/> 
-        <c:forEach var="p" items="${markers}" varStatus="status">
-            <input type="hidden" id="p<c:out value="${status.index}"/>" value="<c:out value="${p['locationThegeom']}"/>"/>
-        </c:forEach>
-
-
         <!-- NAVIGATION -->
         <nav class="navbar-default navbar " role="navigation">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="navbar-left" ><a href="#" id="logo"><img src="Ressources/logo1.png" width="100px" ></a></li> <!-- LOGO-->
-                    <li class="navbar-left onglet" ><a href="#" class=" onglet onglet_actif" id="global_map"></a></li>
-                    <li class="navbar-left onglet" ><a href="#" class="onglet" id="route_map"></a></li>
+                    <li class="navbar-left onglet" ><a onclick="getGlobalMap();" class=" onglet " id="global_map"></a></li> <!-- ONGLET GLOBAL MAP-->
+                    <li class="navbar-left onglet" ><a onclick="getRouteMap();" class="onglet " id="route_map"></a></li> <!-- ONGLET ROUTE MAP-->
                     <li class="navbar-right"><a href="#"><img id="connection" src="Ressources/connection.png" onMouseOver="this.src = 'Ressources/connection_over.png'" onMouseOut="this.src = 'Ressources/connection.png'" width="25px" onclick="deconnect();"></a></li><!-- Connexion-->
+                    <!-- INFORMATION PERSONNELLES-->
                     <li class="navbar-right" style="margin-right:20px; border-left: solid white 1px; padding-left:6px;">
+                        <!-- nom prénom-->
                         <p class="info_perso" id="info_name" style="margin-top:10px;font-weight:bold;"><c:out value="${prenom}"/> <c:out value="${nom}"/></p>
+                        <!-- email-->
                         <p class="info_perso"id="info_email" ><c:out value="${email}"/></p>
+                        <!-- lien de modificatio -->
                         <a id="modification_link" href="#" onclick="pop_info();"></a>
                     </li>
+                    <!-- ONGLET FAVORIS-->
                     <li class="navbar-right">
-                        <a href="#" onclick="" onmouseover="favoriteOver();" onmouseout="favoriteOut();" style="padding-right:6px;padding-top:9px;">
+                        <a href="#" onclick="getFavorite();" onmouseover="favoriteOver();" onmouseout="favoriteOut();" style="padding-right:6px;padding-top:9px;">
                             <img id="star" style="padding-bottom:4px;" src="Ressources/star.png" width="30px" >
                             <p id="favorite_link"></p>
                         </a>
@@ -103,27 +98,27 @@
                     <!--TODO : mettre image step-->
                 </div>
                 <div id ="content1" class="col-md-6">
-                  
+
                     <!--Saisie du type de multimédia-->
                     <p class="error_message" id="error_multimedia_type"></p>
                     <p class="label_form" id="upload_type_multimedia"></p>
                     <input type="radio" name="video" id="upload_video" value="v"> <!--changer v par video ?-->
                     <input type="radio" name="image" id="upload_image" value="i"> 
                     <input type="radio" name="sound" id="upload_sound" value="s"> 
-                    
+
                     <!--Saisie du titre de multimédia-->
                     <p class="error_message" id="error_name"></p>
                     <p class="label_form" id="upload_title_multimedia"></p>
                     <p class="label_form" id="star1"></p>
                     <br>
                     <input type="text" name="titre" id="upload_title_entered"><!--id = id à retenir pour le fichier upload.js-->
-                    
+
                     <!--Saisie d'une description du multimédia-->
                     <p class="label_form" id="upload_description"></p>
                     <input type="text" name ="description" id="upload_description_entered">
-                    
+
                     <!--Saisie des informations liées à la source (nom, type)-->
-                     <p class="error_message" id="error_source_type"></p>
+                    <p class="error_message" id="error_source_type"></p>
                     <p class="label_form" id="upload_source"></p>
                     <p class="label_form" id="star2"></p>
                     <br>
@@ -160,7 +155,7 @@
                     <p class="label_form" id="numero"></p>
                     <p class=label_form" id="star3">    </p>
                     <p class="label_form" id="street"></p>
-                    <p class=label_form" id=""star4"></p>    
+                    <p class=label_form" id="star4"></p>    
                     <br>
                     <input type="text" name="loc_numero" id="numero_entered">
                     <input type="text" name="loc_street" id="street_entered">

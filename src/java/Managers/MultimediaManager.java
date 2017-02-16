@@ -119,16 +119,17 @@ public interface MultimediaManager {
      * @param type Type : like ou dislike
      */
     public void like(Multimedia m, Person p, String type);
-    
+
     /**
      * Insertion d'un multimédia dans la base de données
+     *
      * @param title
      * @param description
      * @param path
      * @param date
      * @param format
      * @param language
-     * @param type 
+     * @param type
      * @param l Localisation du média
      * @param p Personne qui upload la vidéo
      * @param sourceId Source du multimédia
@@ -142,23 +143,23 @@ public interface MultimediaManager {
      * @return Matrice de multimédia
      */
     public ArrayList<ArrayList<ArrayList<Multimedia>>> getMultimediaForSource(ArrayList<ArrayList<Location>> loc);
-    
+
     /**
      * Récupérer les likes de chaque multimédiasde chaque source
      *
      * @param multis Matrice de multimédias
      * @return Matrice de nombre de likes
      */
-    public ArrayList<ArrayList<ArrayList<Integer>>> getLikesSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis) ;
-    
+    public ArrayList<ArrayList<ArrayList<Integer>>> getLikesSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis);
+
     /**
      * Récupérer les dislikes de chaque multimédias pour chaque sources
      *
      * @param multis Matrice de multimédias
      * @return Matrice de nombre de dislikes
      */
-    public ArrayList<ArrayList<ArrayList<Integer>>> getDislikesSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis) ;
-    
+    public ArrayList<ArrayList<ArrayList<Integer>>> getDislikesSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis);
+
     /**
      * Récupérer le nombre de signalements de chaque multimédias pour chaque
      * sources
@@ -167,4 +168,12 @@ public interface MultimediaManager {
      * @return Matrice de nombre de dsignalements
      */
     public ArrayList<ArrayList<ArrayList<Integer>>> getBadLocSource(ArrayList<ArrayList<ArrayList<Multimedia>>> multis);
+
+    /**
+     * Obtention des favoris d'un utilisateur
+     *
+     * @param p Personne
+     * @return Liste de ses favoris
+     */
+    public ArrayList<Multimedia> getFavorites(Person p) ;
 }

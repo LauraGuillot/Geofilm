@@ -1,26 +1,17 @@
 /*
-Controller RouteMapController
+Controller FavoriteController
 ------------------------------------------------------------------------------
-Controller pour l'affichage de la carte interactive 2 où les multimédias sont 
-groupés par source.
-*/
+Controller pour l'affichage des favoris de l'utilisateur
+ */
 package Controllers;
 
 import Managers.ConnectManager;
 import Managers.ConnectManagerImpl;
-import Managers.LocationManager;
-import Managers.LocationManagerImpl;
 import Managers.MultimediaManager;
 import Managers.MultimediaManagerImpl;
 import Managers.PersonManager;
 import Managers.PersonManagerImpl;
-import Managers.SourceManager;
-import Managers.SourceManagerImpl;
-import Objects.Location;
-import Objects.Multimedia;
 import Objects.Person;
-import Objects.Source;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -34,18 +25,18 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Laura
  */
 @Controller
-public class RouteMapController {
-
+public class FavoriteController {
+    
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView get(HttpServletRequest request, HttpServletResponse response, @RequestParam("idco") String idco) {
-       //Résultat
-        ModelAndView result = new ModelAndView("routeMap");
+        //Résultat
+        ModelAndView result = new ModelAndView("favorite");
 
         //Mise à jour des connexions dans la base de données
         ConnectManager cm = ConnectManagerImpl.getInstance();
         cm.checkConnection();
         cm.updateConnection(cm.getByConnectId(idco));
-        
+
         //Récupération de l'utilisateur
         PersonManager pm = PersonManagerImpl.getInstance();
         Person p = pm.findPerson(idco);
@@ -57,22 +48,9 @@ public class RouteMapController {
         //Connexion de l'utilisateur 
         result.addObject("idco", idco);
 
-        //Récupération des multimédias
+        //Récupération des multimédias favoris
         MultimediaManager mm = MultimediaManagerImpl.getInstance();
-        LocationManager lm = LocationManagerImpl.getInstance();
-        SourceManager sm = SourceManagerImpl.getInstance();
-
-        ArrayList<Source> sources = sm.getSources();
-        result.addObject("src", sources);
-        ArrayList<ArrayList< Location>> markers = lm.getLocationForSources(sources);
-        result.addObject("pos", markers);
-        ArrayList<ArrayList<ArrayList<Multimedia>>> multis = mm.getMultimediaForSource(markers);
-        result.addObject("multis", multis);
-
-        //Pour chaque multimédia : like, dislike et bad location
-        result.addObject("likes", mm.getLikesSource(multis));
-        result.addObject("dislikes", mm.getDislikesSource(multis));
-        result.addObject("badloc", mm.getBadLocSource(multis));
+        result.addObject("favorites", mm.getFavorites(p));
         
         return result;
     }

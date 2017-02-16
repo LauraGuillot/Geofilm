@@ -45,6 +45,7 @@
         <script src="Scripts/load_route_map.js"></script>
 
         <!-- SCRIPTS -->
+        <script src="Scripts/navigation.js"></script>
         <script src="Scripts/route_map.js"></script>
         <script src="Scripts/deconnect.js"></script>
         <script src="Scripts/modif_infos_perso.js"></script>
@@ -124,7 +125,7 @@
                     </li>
                     <!-- ONGLET FAVORIS-->
                     <li class="navbar-right">
-                        <a href="#" onclick="" onmouseover="favoriteOver();" onmouseout="favoriteOut();" style="padding-right:6px;padding-top:9px;">
+                        <a href="#" onclick="getFavorite();" onmouseover="favoriteOver();" onmouseout="favoriteOut();" style="padding-right:6px;padding-top:9px;">
                             <img id="star" style="padding-bottom:4px;" src="Ressources/star.png" width="30px" >
                             <p id="favorite_link"></p>
                         </a>

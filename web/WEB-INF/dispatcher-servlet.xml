@@ -23,7 +23,7 @@
                 <prop key="globalMap.htm">connectController</prop>
                 <prop key="routeMap.htm">routeMapController</prop>
                 <prop key="uploading.htm">uploadController</prop>
-                
+                <prop key="favorite.htm">favoriteController</prop>
             </props>
         </property>
     </bean>
@@ -55,6 +55,11 @@
      <bean
         name="uploadController"
         class="Controllers.UploadController"
+    />
+     
+      <bean
+        name="favoriteController"
+        class="Controllers.FavoriteController"
     />
    
 

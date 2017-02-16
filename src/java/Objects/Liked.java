@@ -1,10 +1,7 @@
 /*
- * Classe Liked.java
- * ------------------------------------------------------------------------------
- * Objet de la base de données
- * Un objet 'Liked' désigne un like fait par un utilisateur sur un multimédia.
- * Il comporte donc l'identifiant de la personne et celui du multimédia concerné. 
- * Il a aussi un type : 'like' ou 'dislike'
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Objects;
 

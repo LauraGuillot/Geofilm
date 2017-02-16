@@ -1,11 +1,7 @@
 /*
- * Classe Multimédia.java
- * ------------------------------------------------------------------------------
- * Objet de la base de données
- * Un multimédia est une vidéo, une imge ou un son qui est localisé.
- * Il comporte un identifiant, un titre, une description (facultative), une source, un path,
- * une date d'upload, un format (extension), un langage, un type (VIDEO, IMAGE, SON),
- * une localisation et un publisher, c'est-à-dire l'utilisateur qui a uploadé ce contenu.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Objects;
 
@@ -19,8 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -29,6 +23,10 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author Laura
+ */
 @Entity
 @Table(name = "multimedia", catalog = "geofilm", schema = "geofilm")
 @XmlRootElement
@@ -43,12 +41,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Multimedia.findByMultimediaLanguage", query = "SELECT m FROM Multimedia m WHERE m.multimediaLanguage = :multimediaLanguage"),
     @NamedQuery(name = "Multimedia.findByMultimediaType", query = "SELECT m FROM Multimedia m WHERE m.multimediaType = :multimediaType")})
 public class Multimedia implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimediaId")
-    private Collection<Favorite> favoriteCollection;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimediaId")
-    private Collection<Badlocation> badlocationCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -75,13 +67,8 @@ public class Multimedia implements Serializable {
     @Basic(optional = false)
     @Column(name = "multimedia_type")
     private String multimediaType;
-    @JoinTable(name = "badlocation", joinColumns = {
-        @JoinColumn(name = "multimedia_id", referencedColumnName = "multimedia_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "person_id", referencedColumnName = "person_id")})
-    @ManyToMany
-    private Collection<Person> personCollection;
-    @ManyToMany(mappedBy = "multimediaCollection1")
-    private Collection<Person> personCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimediaId")
+    private Collection<Badlocation> badlocationCollection;
     @JoinColumn(name = "location_id", referencedColumnName = "location_id")
     @ManyToOne(optional = false)
     private Location locationId;
@@ -91,6 +78,8 @@ public class Multimedia implements Serializable {
     @JoinColumn(name = "source_id", referencedColumnName = "source_id")
     @ManyToOne(optional = false)
     private Source sourceId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimediaId")
+    private Collection<Favorite> favoriteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "multimedia")
     private Collection<Liked> likedCollection;
 
@@ -175,21 +164,12 @@ public class Multimedia implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Person> getPersonCollection() {
-        return personCollection;
+    public Collection<Badlocation> getBadlocationCollection() {
+        return badlocationCollection;
     }
 
-    public void setPersonCollection(Collection<Person> personCollection) {
-        this.personCollection = personCollection;
-    }
-
-    @XmlTransient
-    public Collection<Person> getPersonCollection1() {
-        return personCollection1;
-    }
-
-    public void setPersonCollection1(Collection<Person> personCollection1) {
-        this.personCollection1 = personCollection1;
+    public void setBadlocationCollection(Collection<Badlocation> badlocationCollection) {
+        this.badlocationCollection = badlocationCollection;
     }
 
     public Location getLocationId() {
@@ -214,6 +194,15 @@ public class Multimedia implements Serializable {
 
     public void setSourceId(Source sourceId) {
         this.sourceId = sourceId;
+    }
+
+    @XmlTransient
+    public Collection<Favorite> getFavoriteCollection() {
+        return favoriteCollection;
+    }
+
+    public void setFavoriteCollection(Collection<Favorite> favoriteCollection) {
+        this.favoriteCollection = favoriteCollection;
     }
 
     @XmlTransient
@@ -248,24 +237,6 @@ public class Multimedia implements Serializable {
     @Override
     public String toString() {
         return "Objects.Multimedia[ multimediaId=" + multimediaId + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Badlocation> getBadlocationCollection() {
-        return badlocationCollection;
-    }
-
-    public void setBadlocationCollection(Collection<Badlocation> badlocationCollection) {
-        this.badlocationCollection = badlocationCollection;
-    }
-
-    @XmlTransient
-    public Collection<Favorite> getFavoriteCollection() {
-        return favoriteCollection;
-    }
-
-    public void setFavoriteCollection(Collection<Favorite> favoriteCollection) {
-        this.favoriteCollection = favoriteCollection;
     }
     
 }

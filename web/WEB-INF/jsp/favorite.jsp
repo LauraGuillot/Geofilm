@@ -48,7 +48,8 @@
         <script src="Scripts/display_favorite.js"></script> 
         <script src="Scripts/load_favorite_map.js"></script> 
         <script src="Scripts/mapbox_tracker.js"></script> 
-          <script src="Scripts/sort_favorite.js"></script> 
+        <script src="Scripts/sort_favorite.js"></script> 
+        <script src="Scripts/delete_favorite.js"></script> 
 
     </head>
     <body onload="load();"><!-- Chargement des chaînes de caractères et de la carte-->

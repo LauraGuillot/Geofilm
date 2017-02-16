@@ -1,9 +1,7 @@
 /*
- * Classe Person.java
- * ------------------------------------------------------------------------------
- * Objet de la base de données
- * Une personne désigne tout utilisateur de l'application. 
- * Elle est caractérisée par un identifiant, un nom, un prénom, un email (qui est unique),un mot de passe hashé.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Objects;
 
@@ -16,9 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,6 +21,10 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author Laura
+ */
 @Entity
 @Table(name = "person", catalog = "geofilm", schema = "geofilm")
 @XmlRootElement
@@ -37,12 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Person.findByPersonEmail", query = "SELECT p FROM Person p WHERE p.personEmail = :personEmail"),
     @NamedQuery(name = "Person.findByPersonPassword", query = "SELECT p FROM Person p WHERE p.personPassword = :personPassword")})
 public class Person implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personId")
-    private Collection<Favorite> favoriteCollection;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personId")
-    private Collection<Badlocation> badlocationCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -62,15 +55,12 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @Column(name = "person_password")
     private String personPassword;
-    @ManyToMany(mappedBy = "personCollection")
-    private Collection<Multimedia> multimediaCollection;
-    @JoinTable(name = "favorite", joinColumns = {
-        @JoinColumn(name = "person_id", referencedColumnName = "person_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "multimedia_id", referencedColumnName = "multimedia_id")})
-    @ManyToMany
-    private Collection<Multimedia> multimediaCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personId")
+    private Collection<Badlocation> badlocationCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisher")
-    private Collection<Multimedia> multimediaCollection2;
+    private Collection<Multimedia> multimediaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personId")
+    private Collection<Favorite> favoriteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "personId")
     private Collection<Connect> connectCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
@@ -132,6 +122,15 @@ public class Person implements Serializable {
     }
 
     @XmlTransient
+    public Collection<Badlocation> getBadlocationCollection() {
+        return badlocationCollection;
+    }
+
+    public void setBadlocationCollection(Collection<Badlocation> badlocationCollection) {
+        this.badlocationCollection = badlocationCollection;
+    }
+
+    @XmlTransient
     public Collection<Multimedia> getMultimediaCollection() {
         return multimediaCollection;
     }
@@ -141,21 +140,12 @@ public class Person implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Multimedia> getMultimediaCollection1() {
-        return multimediaCollection1;
+    public Collection<Favorite> getFavoriteCollection() {
+        return favoriteCollection;
     }
 
-    public void setMultimediaCollection1(Collection<Multimedia> multimediaCollection1) {
-        this.multimediaCollection1 = multimediaCollection1;
-    }
-
-    @XmlTransient
-    public Collection<Multimedia> getMultimediaCollection2() {
-        return multimediaCollection2;
-    }
-
-    public void setMultimediaCollection2(Collection<Multimedia> multimediaCollection2) {
-        this.multimediaCollection2 = multimediaCollection2;
+    public void setFavoriteCollection(Collection<Favorite> favoriteCollection) {
+        this.favoriteCollection = favoriteCollection;
     }
 
     @XmlTransient
@@ -200,23 +190,5 @@ public class Person implements Serializable {
     public String toString() {
         return "Objects.Person[ personId=" + personId + " ]";
     }
-
-    @XmlTransient
-    public Collection<Badlocation> getBadlocationCollection() {
-        return badlocationCollection;
-    }
-
-    public void setBadlocationCollection(Collection<Badlocation> badlocationCollection) {
-        this.badlocationCollection = badlocationCollection;
-    }
-
-    @XmlTransient
-    public Collection<Favorite> getFavoriteCollection() {
-        return favoriteCollection;
-    }
-
-    public void setFavoriteCollection(Collection<Favorite> favoriteCollection) {
-        this.favoriteCollection = favoriteCollection;
-    }
-
+    
 }

@@ -1,9 +1,7 @@
 /*
- * Classe Badlocation.java
- * ------------------------------------------------------------------------------
- * Objet de la base de données
- * Une 'badlocation' désigne un signalement de mauvaise localisation fait par un utilisateur.
- * Il comporte un identifiant, l'identifiant de l'utilisateur ainsi que celui du multimédia.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Objects;
 
@@ -19,6 +17,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author Laura
+ */
 @Entity
 @Table(name = "badlocation", catalog = "geofilm", schema = "geofilm")
 @XmlRootElement

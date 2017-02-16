@@ -1,8 +1,7 @@
 /*
- * Classe LikedPK.java
- * ------------------------------------------------------------------------------
- * Clé primaire de l'objet 'Liked'
- * Elle est formé de l'identifiant d'une personne et de celui d'un multimédia.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Objects;
 

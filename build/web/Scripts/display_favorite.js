@@ -89,7 +89,7 @@ function displayFavorite(favorites) {
         var button = document.createElement("a");
         button.className = "del_button";
         button.innerHTML = delete_fr;
-        button.addEventListener("click", delegate1(multi.rank, multi.id), false);
+        button.addEventListener("click", delegate1( multi.id), false);
 
         p_group.appendChild(img);
         p.appendChild(p1);
@@ -136,6 +136,3 @@ function openMulti(i) {
 }
 
 
-function  deleteFavorite(id) {
-    //TODO
-}

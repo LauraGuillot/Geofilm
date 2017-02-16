@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Laura/Desktop/Geofilm/web/Scripts/display_favorite.js</file>
-            <file>file:/Users/Laura/Desktop/Geofilm/web/Stylesheets/favorite.css</file>
             <file>file:/Users/Laura/Desktop/Geofilm/web/WEB-INF/jsp/favorite.jsp</file>
+            <file>file:/Users/Laura/Desktop/Geofilm/src/java/Managers/PersonManagerImpl.java</file>
+            <file>file:/Users/Laura/Desktop/Geofilm/src/conf/persistence.xml</file>
+            <file>file:/Users/Laura/Desktop/Geofilm/src/java/Managers/ConnectManagerImpl.java</file>
+            <file>file:/Users/Laura/Desktop/Geofilm/src/java/Servlets/DeleteFavoriteServlet.java</file>
         </group>
     </open-files>
 </project-private>

@@ -7,11 +7,8 @@
  */
 package Managers;
 
-import Objects.Liked;
-import Objects.Location;
 import Objects.Multimedia;
 import Objects.Person;
-import java.util.ArrayList;
 
 public interface PersonManager {
 
@@ -50,6 +47,12 @@ public interface PersonManager {
      * @param email Adresse Email
      */
     public void updateInfos(Person p, String name, String firstname, String email);
-    
-   
+
+    /**
+     * Suppression d'un favoris
+     *
+     * @param p Personne
+     * @param m Multimedia
+     */
+    public void removeFavorite(Person p, Multimedia m);
 }

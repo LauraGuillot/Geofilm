@@ -1,9 +1,7 @@
 /*
- * Classe Favorite.java
- * ------------------------------------------------------------------------------
- * Objet de la base de données
- * Un objet 'Favorite' désigne un multimédia ajouté dans les favoris d'un utilisateur.
- * Il comporte un identifiant, l'identifiant de la personne et celui du multimédia.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Objects;
 
@@ -19,6 +17,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author Laura
+ */
 @Entity
 @Table(name = "favorite", catalog = "geofilm", schema = "geofilm")
 @XmlRootElement
@@ -94,5 +96,5 @@ public class Favorite implements Serializable {
     public String toString() {
         return "Objects.Favorite[ favoriteId=" + favoriteId + " ]";
     }
-
+    
 }

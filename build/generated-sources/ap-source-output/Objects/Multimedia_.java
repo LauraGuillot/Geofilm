@@ -11,16 +11,15 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-02-15T11:42:26")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-02-16T20:41:20")
 @StaticMetamodel(Multimedia.class)
 public class Multimedia_ { 
 
     public static volatile SingularAttribute<Multimedia, Source> sourceId;
     public static volatile SingularAttribute<Multimedia, String> multimediaFormat;
-    public static volatile CollectionAttribute<Multimedia, Favorite> favoriteCollection;
-    public static volatile CollectionAttribute<Multimedia, Badlocation> badlocationCollection;
     public static volatile SingularAttribute<Multimedia, String> multimediaPath;
-    public static volatile CollectionAttribute<Multimedia, Person> personCollection;
+    public static volatile CollectionAttribute<Multimedia, Badlocation> badlocationCollection;
+    public static volatile CollectionAttribute<Multimedia, Favorite> favoriteCollection;
     public static volatile SingularAttribute<Multimedia, String> multimediaDescription;
     public static volatile SingularAttribute<Multimedia, String> multimediaTitle;
     public static volatile SingularAttribute<Multimedia, String> multimediaType;
@@ -29,7 +28,6 @@ public class Multimedia_ {
     public static volatile SingularAttribute<Multimedia, String> multimediaUploadDate;
     public static volatile SingularAttribute<Multimedia, Location> locationId;
     public static volatile SingularAttribute<Multimedia, Person> publisher;
-    public static volatile CollectionAttribute<Multimedia, Person> personCollection1;
     public static volatile SingularAttribute<Multimedia, String> multimediaLanguage;
 
 }

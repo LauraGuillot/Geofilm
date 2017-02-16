@@ -8,6 +8,8 @@
  */
 package Managers;
 
+import Objects.Favorite;
+import Objects.Multimedia;
 import Objects.Person;
 import Util.PasswordHash;
 import java.util.List;
@@ -108,4 +110,26 @@ public class PersonManagerImpl implements PersonManager {
         em.getTransaction().commit();
     }
 
+    /**
+     * Suppression d'un favoris
+     *
+     * @param p Personne
+     * @param m Multimedia
+     */
+    @Override
+    public void removeFavorite(Person p, Multimedia m) {
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("SELECT f FROM Favorite f WHERE f.personId=:p AND f.multimediaId=:m");
+        q.setParameter("p", p);
+        q.setParameter("m", m);
+        List l = q.getResultList();
+        if (!l.isEmpty()) {
+            Favorite f = ((Favorite) l.get(0));
+            em.getTransaction().begin();
+            em.remove(f);
+            em.getTransaction().commit();
+        }
+    }
+
 }
+

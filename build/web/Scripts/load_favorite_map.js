@@ -88,7 +88,7 @@ function displayMarkers(fav) {
             var x = pt[0];
             var y = pt[1];
 
-            var popup = preparePopUp(fav[i].loc);
+            var popup = preparePopUp(fav, fav[i].loc);
             var m = addMarker(x, y, popup);
             markers.push(m);
         }
@@ -126,15 +126,16 @@ function addMarker(x, y, popup) {
  * @param {type} i
  * @returns {popup}
  */
-function preparePopUp(i) {
+function preparePopUp(fav, i) {
 
     var html = '';
     //Pour chaque multimédia, on ajoute un lien
     html += '<div class="links" id="multis_' + i + '">';
-    var cpt = document.getElementById("nbMulti" + i).value;
-    for (var j = 0; j < cpt; j++) {
-        var li = getLinkMulti(i, j);
-        html = html + li;
+    for (var j = 0; j < fav.length; j++) {
+        if (fav[j].loc === i) {
+            var li = getLinkMulti(i, fav[j].rank);
+            html = html + li;
+        }
     }
     html += '</div>';
 
@@ -156,7 +157,7 @@ function getLinkMulti(i, j) {
     var date = document.getElementById("pos" + i + "_multi" + j + "_uploaddate").value;
     var type = document.getElementById("pos" + i + "_multi" + j + "_type").value;
 
-    html += '<a class="link_marker"  onclick="openMult(' + i + ',' + j + ')">';
+    html += '<a class="link_marker"  onclick="openMulti(' + i + ',' + j + ')">';
     html += '<div class="p_group"><p class="link_title">';
     html += title;
     html += '</p>';
